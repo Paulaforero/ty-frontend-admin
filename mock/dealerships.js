@@ -1,4 +1,4 @@
-const dealerships = [
+export const dealerships = [
   {
     rif: 'J-123456789',
     name: 'Concesionaria A',
