@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <ThemeProvider theme={theme}>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className + 'w-screen h-screen'}>{children}</body>
       </ThemeProvider>
     </html>
   )
