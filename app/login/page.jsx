@@ -7,15 +7,14 @@ import {
   Input,
   InputAdornment,
   IconButton,
-  Button,
   InputLabel,
   FormControl,
   Box,
-  CircularProgress,
 } from '@mui/material'
 import { useState } from 'react'
 import Image from 'next/image'
 import { useEffect } from 'react'
+import { TyButton } from '@/components/shared/button'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -29,7 +28,6 @@ export default function LoginPage() {
     user: '',
     password: '',
   })
-
   const handleClickShowPassword = () => setShowPassword(show => !show)
 
   const handleMouseDownPassword = event => {
@@ -108,20 +106,14 @@ export default function LoginPage() {
                 }
               />
             </FormControl>
-            <Button
-              variant="contained"
-              size="medium"
+            <TyButton
               type="submit"
-              className="mx-12 mt-[90px]  font-semibold normal-case text-[14px]"
-              color="primary"
+              className="mx-12 mt-[90px]"
               disabled={loading === true}
-            >
-              {loading ? (
-                <CircularProgress color="primary" size={24} />
-              ) : (
-                'Iniciar sesión'
-              )}
-            </Button>
+              label="Iniciar Sesión"
+              size="medium"
+              loading={loading}
+            ></TyButton>
           </Grid>
         </form>
       </Grid>
