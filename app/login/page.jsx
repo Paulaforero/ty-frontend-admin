@@ -10,6 +10,7 @@ import {
   InputLabel,
   FormControl,
   Box,
+  Container,
 } from '@mui/material'
 import { useState } from 'react'
 import Image from 'next/image'
@@ -42,12 +43,13 @@ export default function LoginPage() {
   }
 
   return (
-    <>
+    <Container className="h-full w-full flex flex-col justify-center items-center">
       <Grid
         container
         direction="column"
         justifyContent="center"
         alignItems="center"
+        className='pb-14'
       >
         <Typography
           className=" text-secondary mb-5 mt-3"
@@ -61,7 +63,7 @@ export default function LoginPage() {
           variant="h5"
           textAlign="center"
         >
-          "Comprometidos con el ambiente"
+          &ldquo;Comprometidos con el ambiente&rdquo;
         </Typography>
         <form onSubmit={handleSubmit}>
           <Grid
@@ -118,7 +120,7 @@ export default function LoginPage() {
         </form>
       </Grid>
 
-      <Box className="rounded-e-full	w-[358px] h-48 fixed left-0 bottom-5 bg-primary">
+      <Box className="rounded-e-full	w-[358px] h-48 fixed left-0 bottom-5 bg-primary -z-10">
         <Image
           src="/images/image_car_1.png"
           width={380}
@@ -127,6 +129,6 @@ export default function LoginPage() {
           className="absolute left-5 border-solid"
         />
       </Box>
-    </>
+    </Container>
   )
 }
