@@ -16,7 +16,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <ThemeProvider theme={theme}>
+<<<<<<< Updated upstream
         <body className={inter.className + 'w-screen h-screen'}>{children}</body>
+=======
+        <body className={inter.className + ' h-screen w-screen overflow-x-hidden'}>{children}</body>
+>>>>>>> Stashed changes
       </ThemeProvider>
     </html>
   )
