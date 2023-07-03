@@ -272,7 +272,9 @@ export default function MiniDrawer({ children }) {
             </ListItem>
           ))}
         </List>
-        <Divider variant='middle'/>
+        <Divider variant="middle" textAlign="left">
+          {open ? 'CRUD' : ''}
+        </Divider>
         <List>
           {menuItemsSecondary.map(item => (
             <ListItem key={item.name} disablePadding className="block">
@@ -302,7 +304,7 @@ export default function MiniDrawer({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box className='ml-[35px]'>{children}</Box>
+      <Box className="ml-[35px]">{children}</Box>
     </>
   )
 }
