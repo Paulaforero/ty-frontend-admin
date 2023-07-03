@@ -16,7 +16,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { Typography } from '@mui/material'
+import { Divider, Typography } from '@mui/material'
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
@@ -120,6 +120,8 @@ const closedMixin = theme => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  whiteSpace: 'nowrap',
+  overflow: 'overlay',
   overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
@@ -128,7 +130,6 @@ const closedMixin = theme => ({
 })
 
 const DrawerHeader = styled('div')(({ theme }) => ({
-  whiteSpace: 'nowrap',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
@@ -136,7 +137,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }))
 
-const AppBar = styled(MuiAppBar, {
+const CollapseButton = styled(Box, {
   shouldForwardProp: prop => prop !== 'open',
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -161,13 +162,12 @@ const Drawer = styled(MuiDrawer, {
 })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
-  whiteSpace: 'wrap',
+  borderRight: 'none',
   boxSizing: 'border-box',
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': {
       ...openedMixin(theme),
-      whiteSpace: 'wrap',
       borderRight: 'none',
     },
   }),
@@ -175,8 +175,7 @@ const Drawer = styled(MuiDrawer, {
     ...closedMixin(theme),
     '& .MuiDrawer-paper': {
       ...closedMixin(theme),
-      whiteSpace: 'wrap',
-      borderRight: 'none',
+      border: 'none',
     },
   }),
 }))
@@ -195,106 +194,115 @@ export default function MiniDrawer({ children }) {
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <AppBar position="fixed" open={open}>
-          <Toolbar>
-            <IconButton
-              color="secondary"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
+      <CssBaseline />
+      <CollapseButton position="fixed" open={open}></CollapseButton>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader style={{ display: open ? 'flex' : 'none' }}>
+          <IconButton
+            onClick={handleDrawerClose}
+            style={{ display: open ? 'block' : 'none' }}
+            color="secondary"
+          >
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+
+          <Typography
+            variant="h5"
+            style={{ display: open ? 'block' : 'none' }}
+            className="ml-12"
+            color="secondary"
+          >
+            T&Y
+          </Typography>
+        </DrawerHeader>
+        <List>
+          <ListItem
+            style={{ display: !open ? 'block' : 'none' }}
+            disablePadding
+            className="block"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+          >
+            <ListItemButton
               sx={{
-                marginRight: 5,
-                ...(open && { display: 'none' }),
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
               }}
             >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
-            <IconButton
-              onClick={handleDrawerClose}
-              style={{ display: open ? 'block' : 'none' }}
-              color="secondary"
-            >
-              {theme.direction === 'rtl' ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-
-            <Typography
-              variant="h5"
-              style={{ display: open ? 'block' : 'none' }}
-              className="ml-12"
-              color="secondary"
-            >
-              T&Y
-            </Typography>
-          </DrawerHeader>
-          <List>
-            {menuItemsPrimary.map(item => (
-              <ListItem key={item.name} disablePadding className="block">
-                <ListItemButton
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <MenuIcon />
+              </ListItemIcon>
+            </ListItemButton>
+          </ListItem>
+          {menuItemsPrimary.map(item => (
+            <ListItem key={item.name} disablePadding className="block">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-secondary"
-                    sx={{ opacity: open ? 1 : 0 }}
-                    primary={item.name}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <List>
-            {menuItemsSecondary.map(item => (
-              <ListItem key={item.name} disablePadding className="block">
-                <ListItemButton
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  className="text-secondary"
+                  sx={{ opacity: open ? 1 : 0 }}
+                  primary={item.name}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider variant='middle'/>
+        <List>
+          {menuItemsSecondary.map(item => (
+            <ListItem key={item.name} disablePadding className="block">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-secondary"
-                    sx={{ opacity: open ? 1 : 0 }}
-                    primary={item.name}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        <Box>{children}</Box>
-      </Box>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  className="text-secondary"
+                  sx={{ opacity: open ? 1 : 0 }}
+                  primary={item.name}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <Box className='ml-[35px]'>{children}</Box>
     </>
   )
 }
