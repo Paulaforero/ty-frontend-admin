@@ -15,11 +15,65 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import { Typography } from '@mui/material'
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
+import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+import CarRepairOutlinedIcon from '@mui/icons-material/CarRepairOutlined';
+import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
+import ContentPasteOutlinedIcon from '@mui/icons-material/ContentPasteOutlined';
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import DiscountOutlinedIcon from '@mui/icons-material/DiscountOutlined';
+import StoreMallDirectoryOutlinedIcon from '@mui/icons-material/StoreMallDirectoryOutlined';
+import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import LocationCityOutlinedIcon from '@mui/icons-material/LocationCityOutlined';
+import PlumbingOutlinedIcon from '@mui/icons-material/PlumbingOutlined';
+import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
+import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined';
+import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined';
 
 const drawerWidth = 240
+
+const menuItemsPrimary = [
+  { name: 'Dashboard', icon: <DashboardOutlinedIcon color='secondary' /> },
+  { name: 'Estadisticas', icon: <InsertChartOutlinedRoundedIcon color='secondary'/> },
+];
+
+const menuItemsSecondary = [
+  { name: 'Concesionarios', icon: <StoreMallDirectoryOutlinedIcon color='secondary' /> },
+  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon color='secondary'/> },
+  { name: 'Empleados', icon: <BadgeOutlinedIcon color='secondary'/> },
+  { name: 'Vehiculos', icon: <DirectionsCarOutlinedIcon color='secondary'/> },
+  { name: 'Modelos', icon: <MinorCrashOutlinedIcon color='secondary'/> },
+  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon color='secondary'/> },
+  { name: 'Servicios', icon: <ConstructionOutlinedIcon color='secondary'/> },
+  { name: 'Servicios Ofrecidos', icon: <CarRepairOutlinedIcon color='secondary'/> },
+  { name: 'Actividades', icon: <ContentPasteOutlinedIcon color='secondary'/> },
+  { name: 'Mantenimientos Recomendados', icon: <NoteAltOutlinedIcon color='secondary'/> },
+  { name: 'Especializaciones', icon: <EngineeringOutlinedIcon color='secondary'/> },
+  { name: 'Productos', icon: <CategoryOutlinedIcon color='secondary'/> },
+  { name: 'Lineas de Suministros', icon: <ViewListOutlinedIcon color='secondary'/> },
+  { name: 'Detalles de orden', icon: <ShoppingCartCheckoutOutlinedIcon color='secondary'/> },
+  { name: 'Disponibilidades', icon: <Inventory2OutlinedIcon color='secondary'/> },
+  { name: 'Pagos', icon: <CreditCardOutlinedIcon color='secondary'/> },
+  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon color='secondary'/> },
+  { name: 'Costos de Actividades', icon: <RequestQuoteOutlinedIcon color='secondary'/> },
+  { name: 'Descuentos', icon: <DiscountOutlinedIcon color='secondary'/> },
+  { name: 'Aplicaciones de productos', icon: <PlumbingOutlinedIcon color='secondary'/> },
+  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon color='secondary'/> },
+  { name: 'Ciudades', icon: <LocationCityOutlinedIcon color='secondary'/> },
+  { name: 'Estados', icon: < PublicOutlinedIcon color='secondary'/> },
+];
 
 const openedMixin = theme => ({
   width: drawerWidth,
@@ -43,6 +97,7 @@ const closedMixin = theme => ({
 })
 
 const DrawerHeader = styled('div')(({ theme }) => ({
+  whiteSpace: 'nowrap',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
@@ -58,7 +113,7 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  backgroundColor: 'transparent',
+  backgroundColor: 'white',
   boxShadow: 'none',
   ...(open && {
     marginLeft: drawerWidth,
@@ -75,19 +130,21 @@ const Drawer = styled(MuiDrawer, {
 })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
-  whiteSpace: 'nowrap',
+  whiteSpace: 'wrap',
   boxSizing: 'border-box',
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': {
       ...openedMixin(theme),
-      borderRight: 'none', 
+      whiteSpace: 'wrap',
+      borderRight: 'none',
     },
   }),
   ...(!open && {
     ...closedMixin(theme),
     '& .MuiDrawer-paper': {
       ...closedMixin(theme),
+      whiteSpace: 'wrap',
       borderRight: 'none', 
     },
   }),
@@ -149,8 +206,8 @@ export default function MiniDrawer({ children }) {
             </Typography>
           </DrawerHeader>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem key={text} disablePadding className="block">
+          {menuItemsPrimary.map((item) => (
+          <ListItem key={item.name} disablePadding className="block">
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -165,16 +222,16 @@ export default function MiniDrawer({ children }) {
                       justifyContent: 'center',
                     }}
                   >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                  <ListItemText className="text-secondary"sx={{ opacity: open ? 1 : 0 }} primary={item.name}/>
                 </ListItemButton>
               </ListItem>
             ))}
-          </List>
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem key={text} disablePadding className="block">
+        </List>
+        <List>
+          {menuItemsSecondary.map((item) => (
+          <ListItem key={item.name} disablePadding className="block">
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -189,13 +246,14 @@ export default function MiniDrawer({ children }) {
                       justifyContent: 'center',
                     }}
                   >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                  <ListItemText className="text-secondary"sx={{ opacity: open ? 1 : 0 }} primary={item.name}/>
                 </ListItemButton>
               </ListItem>
             ))}
-          </List>
+        </List>
+          
         </Drawer>
         <Box>{children}</Box>
       </Box>
