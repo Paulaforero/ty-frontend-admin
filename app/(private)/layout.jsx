@@ -193,11 +193,12 @@ export default function MiniDrawer({ children }) {
   }
 
   return (
-    <>
+    <Box className="flex flex-row">
       <CssBaseline />
-      <CollapseButton position="fixed" open={open}></CollapseButton>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader style={{ display: open ? 'flex' : 'none' }}>
+      <Drawer variant="permanent" open={open} className="block">
+        <DrawerHeader
+          style={{ display: open ? 'flex' : 'none', position: 'relative' }}
+        >
           <IconButton
             onClick={handleDrawerClose}
             style={{ display: open ? 'block' : 'none' }}
@@ -219,7 +220,7 @@ export default function MiniDrawer({ children }) {
             T&Y
           </Typography>
         </DrawerHeader>
-        <List>
+        <List className="-pt-2">
           <ListItem
             style={{ display: !open ? 'block' : 'none' }}
             disablePadding
@@ -229,6 +230,7 @@ export default function MiniDrawer({ children }) {
           >
             <ListItemButton
               sx={{
+                height: '66px',
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
                 px: 2.5,
@@ -304,7 +306,7 @@ export default function MiniDrawer({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box className="ml-[35px]">{children}</Box>
-    </>
+      <Box>{children}</Box>
+    </Box>
   )
 }
