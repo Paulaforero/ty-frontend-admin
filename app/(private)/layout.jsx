@@ -41,7 +41,7 @@ import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined'
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined'
 import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined'
 
-const drawerWidth = 250
+const drawerWidth = 295
 
 const menuItemsPrimary = [
   { name: 'Dashboard', icon: <DashboardOutlinedIcon /> },
