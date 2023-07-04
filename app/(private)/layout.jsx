@@ -50,7 +50,7 @@ const menuItemsPrimary = [
     icon: <InsertChartOutlinedRoundedIcon />,
   },
 ]
-let stateColor = 'primary'
+
 const menuItemsSecondary = [
   {
     name: 'Concesionarios',
