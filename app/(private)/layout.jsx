@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { styled, useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import MuiDrawer from '@mui/material/Drawer'
-import MuiAppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
 import List from '@mui/material/List'
 import CssBaseline from '@mui/material/CssBaseline'
 import IconButton from '@mui/material/IconButton'
@@ -46,64 +44,64 @@ import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined'
 const drawerWidth = 240
 
 const menuItemsPrimary = [
-  { name: 'Dashboard', icon: <DashboardOutlinedIcon color="secondary" /> },
+  { name: 'Dashboard', icon: <DashboardOutlinedIcon /> },
   {
     name: 'Estadisticas',
-    icon: <InsertChartOutlinedRoundedIcon color="secondary" />,
+    icon: <InsertChartOutlinedRoundedIcon />,
   },
 ]
-
+let stateColor = 'primary'
 const menuItemsSecondary = [
   {
     name: 'Concesionarios',
-    icon: <StoreMallDirectoryOutlinedIcon color="secondary" />,
+    icon: <StoreMallDirectoryOutlinedIcon />,
   },
-  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon color="secondary" /> },
-  { name: 'Empleados', icon: <BadgeOutlinedIcon color="secondary" /> },
-  { name: 'Vehiculos', icon: <DirectionsCarOutlinedIcon color="secondary" /> },
-  { name: 'Modelos', icon: <MinorCrashOutlinedIcon color="secondary" /> },
-  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon color="secondary" /> },
-  { name: 'Servicios', icon: <ConstructionOutlinedIcon color="secondary" /> },
+  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon /> },
+  { name: 'Empleados', icon: <BadgeOutlinedIcon /> },
+  { name: 'Vehiculos', icon: <DirectionsCarOutlinedIcon /> },
+  { name: 'Modelos', icon: <MinorCrashOutlinedIcon /> },
+  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon /> },
+  { name: 'Servicios', icon: <ConstructionOutlinedIcon /> },
   {
     name: 'Servicios Ofrecidos',
-    icon: <CarRepairOutlinedIcon color="secondary" />,
+    icon: <CarRepairOutlinedIcon />,
   },
-  { name: 'Actividades', icon: <ContentPasteOutlinedIcon color="secondary" /> },
+  { name: 'Actividades', icon: <ContentPasteOutlinedIcon /> },
   {
     name: 'Mantenimientos Recomendados',
-    icon: <NoteAltOutlinedIcon color="secondary" />,
+    icon: <NoteAltOutlinedIcon />,
   },
   {
     name: 'Especializaciones',
-    icon: <EngineeringOutlinedIcon color="secondary" />,
+    icon: <EngineeringOutlinedIcon />,
   },
-  { name: 'Productos', icon: <CategoryOutlinedIcon color="secondary" /> },
+  { name: 'Productos', icon: <CategoryOutlinedIcon /> },
   {
     name: 'Lineas de Suministros',
-    icon: <ViewListOutlinedIcon color="secondary" />,
+    icon: <ViewListOutlinedIcon />,
   },
   {
     name: 'Detalles de orden',
-    icon: <ShoppingCartCheckoutOutlinedIcon color="secondary" />,
+    icon: <ShoppingCartCheckoutOutlinedIcon />,
   },
   {
     name: 'Disponibilidades',
-    icon: <Inventory2OutlinedIcon color="secondary" />,
+    icon: <Inventory2OutlinedIcon />,
   },
-  { name: 'Pagos', icon: <CreditCardOutlinedIcon color="secondary" /> },
-  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon color="secondary" /> },
+  { name: 'Pagos', icon: <CreditCardOutlinedIcon /> },
+  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon /> },
   {
     name: 'Costos de Actividades',
-    icon: <RequestQuoteOutlinedIcon color="secondary" />,
+    icon: <RequestQuoteOutlinedIcon />,
   },
-  { name: 'Descuentos', icon: <DiscountOutlinedIcon color="secondary" /> },
+  { name: 'Descuentos', icon: <DiscountOutlinedIcon /> },
   {
     name: 'Aplicaciones de productos',
-    icon: <PlumbingOutlinedIcon color="secondary" />,
+    icon: <PlumbingOutlinedIcon />,
   },
-  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon color="secondary" /> },
-  { name: 'Ciudades', icon: <LocationCityOutlinedIcon color="secondary" /> },
-  { name: 'Estados', icon: <PublicOutlinedIcon color="secondary" /> },
+  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon /> },
+  { name: 'Ciudades', icon: <LocationCityOutlinedIcon /> },
+  { name: 'Estados', icon: <PublicOutlinedIcon /> },
 ]
 
 const openedMixin = theme => ({
@@ -180,6 +178,22 @@ const Drawer = styled(MuiDrawer, {
   }),
 }))
 
+const ListItemButtonStyled = styled(ListItemButton)({
+  '&:hover': {
+    background: 'rgb(48,166,136)',
+    background:
+      'linear-gradient(90deg, rgba(48,166,136,1) 16%, rgba(22,50,73,1) 65%)',
+    borderTopRightRadius: '5rem',
+    borderBottomRightRadius: '5rem',
+  },
+  '&:hover .MuiTypography-root': {
+    color: 'white',
+  },
+  '&:hover .MuiListItemIcon-root': {
+    color: 'white',
+  },
+})
+
 export default function MiniDrawer({ children }) {
   const theme = useTheme()
   const [open, setOpen] = useState(false)
@@ -228,7 +242,7 @@ export default function MiniDrawer({ children }) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
           >
-            <ListItemButton
+            <ListItemButtonStyled
               sx={{
                 height: '66px',
                 minHeight: 48,
@@ -237,6 +251,7 @@ export default function MiniDrawer({ children }) {
               }}
             >
               <ListItemIcon
+                className="text-secondary"
                 sx={{
                   minWidth: 0,
                   mr: open ? 3 : 'auto',
@@ -245,11 +260,11 @@ export default function MiniDrawer({ children }) {
               >
                 <MenuIcon />
               </ListItemIcon>
-            </ListItemButton>
+            </ListItemButtonStyled>
           </ListItem>
           {menuItemsPrimary.map(item => (
             <ListItem key={item.name} disablePadding className="block">
-              <ListItemButton
+              <ListItemButtonStyled
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -257,6 +272,7 @@ export default function MiniDrawer({ children }) {
                 }}
               >
                 <ListItemIcon
+                  className="text-secondary"
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
@@ -270,7 +286,7 @@ export default function MiniDrawer({ children }) {
                   sx={{ opacity: open ? 1 : 0 }}
                   primary={item.name}
                 />
-              </ListItemButton>
+              </ListItemButtonStyled>
             </ListItem>
           ))}
         </List>
@@ -280,7 +296,7 @@ export default function MiniDrawer({ children }) {
         <List>
           {menuItemsSecondary.map(item => (
             <ListItem key={item.name} disablePadding className="block">
-              <ListItemButton
+              <ListItemButtonStyled
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -288,6 +304,7 @@ export default function MiniDrawer({ children }) {
                 }}
               >
                 <ListItemIcon
+                  className="text-secondary"
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
@@ -301,7 +318,7 @@ export default function MiniDrawer({ children }) {
                   sx={{ opacity: open ? 1 : 0 }}
                   primary={item.name}
                 />
-              </ListItemButton>
+              </ListItemButtonStyled>
             </ListItem>
           ))}
         </List>
