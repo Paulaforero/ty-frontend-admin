@@ -41,7 +41,7 @@ import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined'
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined'
 import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined'
 
-const drawerWidth = 240
+const drawerWidth = 250
 
 const menuItemsPrimary = [
   { name: 'Dashboard', icon: <DashboardOutlinedIcon /> },
@@ -135,26 +135,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }))
 
-const CollapseButton = styled(Box, {
-  shouldForwardProp: prop => prop !== 'open',
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  backgroundColor: 'white',
-  boxShadow: 'none',
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}))
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== 'open',
 })(({ theme, open }) => ({
@@ -177,22 +157,6 @@ const Drawer = styled(MuiDrawer, {
     },
   }),
 }))
-
-const ListItemButtonStyled = styled(ListItemButton)({
-  '&:hover': {
-    background: 'rgb(48,166,136)',
-    background:
-      'linear-gradient(90deg, rgba(48,166,136,1) 16%, rgba(22,50,73,1) 65%)',
-    borderTopRightRadius: '5rem',
-    borderBottomRightRadius: '5rem',
-  },
-  '&:hover .MuiTypography-root': {
-    color: 'white',
-  },
-  '&:hover .MuiListItemIcon-root': {
-    color: 'white',
-  },
-})
 
 export default function MiniDrawer({ children }) {
   const theme = useTheme()
@@ -242,7 +206,7 @@ export default function MiniDrawer({ children }) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
           >
-            <ListItemButtonStyled
+            <ListItemButton
               sx={{
                 height: '66px',
                 minHeight: 48,
@@ -260,11 +224,11 @@ export default function MiniDrawer({ children }) {
               >
                 <MenuIcon />
               </ListItemIcon>
-            </ListItemButtonStyled>
+            </ListItemButton>
           </ListItem>
           {menuItemsPrimary.map(item => (
             <ListItem key={item.name} disablePadding className="block">
-              <ListItemButtonStyled
+              <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -286,7 +250,7 @@ export default function MiniDrawer({ children }) {
                   sx={{ opacity: open ? 1 : 0 }}
                   primary={item.name}
                 />
-              </ListItemButtonStyled>
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
@@ -296,7 +260,7 @@ export default function MiniDrawer({ children }) {
         <List>
           {menuItemsSecondary.map(item => (
             <ListItem key={item.name} disablePadding className="block">
-              <ListItemButtonStyled
+              <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -318,7 +282,7 @@ export default function MiniDrawer({ children }) {
                   sx={{ opacity: open ? 1 : 0 }}
                   primary={item.name}
                 />
-              </ListItemButtonStyled>
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
