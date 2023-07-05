@@ -130,6 +130,14 @@ const openedMixin = theme => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
+  '&::-webkit-scrollbar': {
+    width: '0.438rem',
+    padding: 10,
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#30A688',
+    borderRadius: '5px',
+  },
 })
 
 const closedMixin = theme => ({
@@ -139,6 +147,14 @@ const closedMixin = theme => ({
   }),
   whiteSpace: 'nowrap',
   overflowX: 'hidden',
+  '&::-webkit-scrollbar': {
+    width: '0.438rem',
+    padding: 10,
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#30A688',
+    borderRadius: '5px',
+  },
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(10)} + 1px)`,
@@ -160,6 +176,8 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   borderRight: 'none',
   boxSizing: 'border-box',
+  overflowX: 'hideen',
+
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': {
@@ -177,15 +195,28 @@ const Drawer = styled(MuiDrawer, {
 }))
 
 const ListItemButtonStyled = styled(ListItemButton)({
+  borderTopRightRadius: '5rem',
+  borderBottomRightRadius: '5rem',
+  backgroundColor: 'rgba(0, 0, 0, 0)',
   '&:hover': {
-    borderTopRightRadius: '5rem',
-    borderBottomRightRadius: '5rem',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  '&.Mui-selected': {
+    background:
+      'linear-gradient(90deg, rgba(48,166,136,1) 16%, rgba(22,50,73,1) 65%)',
+    '& .MuiTypography-root': {
+      color: 'white',
+    },
+    '& .MuiListItemIcon-root': {
+      color: 'white',
+    },
   },
 })
 
 export default function MiniDrawer({ children }) {
   const theme = useTheme()
   const [open, setOpen] = useState(false)
+  const [selectItem, setSelectItem] = useState(null)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -195,12 +226,18 @@ export default function MiniDrawer({ children }) {
     setOpen(false)
   }
 
+  const handleSelectItem = item => {
+    if (selectItem !== item) {
+      setSelectItem(item)
+    }
+  }
+
   return (
     <Box className="flex flex-row">
       <CssBaseline />
       <Drawer variant="permanent" open={open} className="block">
         <DrawerHeader
-          style={{ display: open ? 'flex' : 'none', position: 'relative' }}
+          sx={{ display: open ? 'flex' : 'none', position: 'relative' }}
         >
           <IconButton
             onClick={handleDrawerClose}
@@ -232,9 +269,10 @@ export default function MiniDrawer({ children }) {
           >
             <ListItemButtonStyled
               sx={{
-                height: '66px',
+                height: '50px',
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
+                marginRight: '0.3rem',
                 px: 2.5,
               }}
             >
@@ -251,13 +289,24 @@ export default function MiniDrawer({ children }) {
             </ListItemButtonStyled>
           </ListItem>
           {menuItemsPrimary.map(item => (
-            <Link href={item.route} className="no-underline ">
-              <ListItem key={item.name} disablePadding className="block">
+            <ListItem
+              key={item.name}
+              disablePadding
+              className="block"
+              onClick={() => handleSelectItem(item)}
+            >
+              <Link
+                href={item.route}
+                key={item.name}
+                className="no-underline text-current"
+              >
                 <ListItemButtonStyled
+                  selected={selectItem === item}
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
+                    marginRight: '0.3rem',
                   }}
                 >
                   <ListItemIcon
@@ -276,22 +325,48 @@ export default function MiniDrawer({ children }) {
                     primary={item.name}
                   />
                 </ListItemButtonStyled>
-              </ListItem>
-            </Link>
+              </Link>
+            </ListItem>
           ))}
         </List>
-        <Divider variant="middle" textAlign="left">
+        <Divider variant="middle" textAlign="left" className="">
           {open ? 'CRUD' : ''}
         </Divider>
         <List>
           {menuItemsSecondary.map(item => (
-            <Link href={item.route} className="no-underline ">
-              <ListItem key={item.name} disablePadding className="block">
+            <ListItem
+              key={item.name}
+              disablePadding
+              className="block"
+              onClick={() => handleSelectItem(item)}
+            >
+              {item.name === 'Ciudades' ? (
+                <Divider
+                  variant="middle"
+                  textAlign="left"
+                  className="text-secondary"
+                >
+                  {open ? 'Localidades' : ''}
+                </Divider>
+              ) : item.name === 'Servicios' ? (
+                <Divider
+                  variant="middle"
+                  textAlign="left"
+                  className="text-secondary"
+                >
+                  {open ? 'Servicios - Actividades' : ''}
+                </Divider>
+              ) : (
+                ''
+              )}
+              <Link href={item.route} key={item.name} className="no-underline">
                 <ListItemButtonStyled
+                  selected={selectItem === item}
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
+                    marginRight: '0.3rem',
                   }}
                 >
                   <ListItemIcon
@@ -310,8 +385,8 @@ export default function MiniDrawer({ children }) {
                     primary={item.name}
                   />
                 </ListItemButtonStyled>
-              </ListItem>
-            </Link>
+              </Link>
+            </ListItem>
           ))}
         </List>
       </Drawer>
