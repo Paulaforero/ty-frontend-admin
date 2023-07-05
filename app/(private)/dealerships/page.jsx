@@ -25,10 +25,11 @@ import { MoreVertOutlined } from '@mui/icons-material'
 import IconMenu from '@/components/menu'
 
 export default function DealershipsPage() {
+  const [rows, setRows] = useState(dealerships)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [page, setPage] = useState(0)
 
-  const incrementPage = () => setPage(page => page + 1)
+  const handlePageChange = (event, newPage) => setPage(newPage)
 
   return (
     <Box component="main" className="w-full h-full pt-9">
@@ -119,9 +120,9 @@ export default function DealershipsPage() {
           <TablePagination
             component="div"
             rowsPerPage={rowsPerPage}
-            count={dealerships.length}
-            page={0}
-            onPageChange={setPage}
+            count={rows.length}
+            page={page}
+            onPageChange={handlePageChange}
           />
         </Card>
       </Container>
