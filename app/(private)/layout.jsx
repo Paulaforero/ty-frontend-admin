@@ -45,57 +45,82 @@ import Link from 'next/link'
 const drawerWidth = 295
 
 const menuItemsPrimary = [
-  { name: 'Dashboard', icon: <DashboardOutlinedIcon />, route:'/dashboard' },
+  { name: 'Dashboard', icon: <DashboardOutlinedIcon />, route: '/dashboard' },
   {
     name: 'Estadisticas',
-    icon: <InsertChartOutlinedRoundedIcon />, route:'/statistics'
+    icon: <InsertChartOutlinedRoundedIcon />,
+    route: '/statistics',
   },
 ]
 
 const menuItemsSecondary = [
   {
-    name: 'Concesionarios', icon: <StoreMallDirectoryOutlinedIcon />, route:'/dealerships'},
-  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon />, route:'/users' },
-  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route:'/employees' },
-  { name: 'Vehiculos', icon: <DirectionsCarOutlinedIcon />, route:'/vehicles' },
-  { name: 'Modelos', icon: <MinorCrashOutlinedIcon />,route:'/models' },
-  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon />, route:'/orders'},
-  { name: 'Servicios', icon: <ConstructionOutlinedIcon />, route:'/services'},
+    name: 'Concesionarios',
+    icon: <StoreMallDirectoryOutlinedIcon />,
+    route: '/dealerships',
+  },
+  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon />, route: '/users' },
+  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route: '/employees' },
   {
-    name: 'Servicios Ofrecidos',icon: <CarRepairOutlinedIcon />, route:'/services-provided'},
-  { name: 'Actividades', icon: <ContentPasteOutlinedIcon />,  route:'/activities'},
-  { name: 'Mantenimientos Recomendados',icon: <NoteAltOutlinedIcon />,route:'/recommended-maintenances'},
+    name: 'Vehiculos',
+    icon: <DirectionsCarOutlinedIcon />,
+    route: '/vehicles',
+  },
+  { name: 'Modelos', icon: <MinorCrashOutlinedIcon />, route: '/models' },
+  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon />, route: '/orders' },
+  { name: 'Servicios', icon: <ConstructionOutlinedIcon />, route: '/services' },
+  {
+    name: 'Servicios Ofrecidos',
+    icon: <CarRepairOutlinedIcon />,
+    route: '/services-provided',
+  },
+  {
+    name: 'Actividades',
+    icon: <ContentPasteOutlinedIcon />,
+    route: '/activities',
+  },
+  {
+    name: 'Mantenimientos Recomendados',
+    icon: <NoteAltOutlinedIcon />,
+    route: '/recommended-maintenances',
+  },
   {
     name: 'Especializaciones',
-    icon: <EngineeringOutlinedIcon />,route:'/specialties'
+    icon: <EngineeringOutlinedIcon />,
+    route: '/specialties',
   },
-  { name: 'Productos', icon: <CategoryOutlinedIcon />,route:'/products' },
+  { name: 'Productos', icon: <CategoryOutlinedIcon />, route: '/products' },
   {
     name: 'Lineas de Suministros',
-    icon: <ViewListOutlinedIcon />, route:'/supply-lines'
+    icon: <ViewListOutlinedIcon />,
+    route: '/supply-lines',
   },
   {
     name: 'Detalles de orden',
-    icon: <ShoppingCartCheckoutOutlinedIcon />, route:'/order-details'
+    icon: <ShoppingCartCheckoutOutlinedIcon />,
+    route: '/order-details',
   },
   {
     name: 'Disponibilidades',
-    icon: <Inventory2OutlinedIcon />, route:'/availabilities'
+    icon: <Inventory2OutlinedIcon />,
+    route: '/availabilities',
   },
-  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route:'/pagos' },
-  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon />, route:'/invoices' },
+  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route: '/pagos' },
+  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon />, route: '/invoices' },
   {
     name: 'Costos de Actividades',
-    icon: <RequestQuoteOutlinedIcon />, route:'/costs-activities'
+    icon: <RequestQuoteOutlinedIcon />,
+    route: '/costs-activities',
   },
-  { name: 'Descuentos', icon: <DiscountOutlinedIcon />, route:'/discounts' }, 
+  { name: 'Descuentos', icon: <DiscountOutlinedIcon />, route: '/discounts' },
   {
     name: 'Aplicaciones de productos',
-    icon: <PlumbingOutlinedIcon />, route:'/product-applications'
+    icon: <PlumbingOutlinedIcon />,
+    route: '/product-applications',
   },
-  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route:'/charges' },
-  { name: 'Ciudades', icon: <LocationCityOutlinedIcon />, route:'/cities' },
-  { name: 'Estados', icon: <PublicOutlinedIcon />, route:'/states' },
+  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route: '/charges' },
+  { name: 'Ciudades', icon: <LocationCityOutlinedIcon />, route: '/cities' },
+  { name: 'Estados', icon: <PublicOutlinedIcon />, route: '/states' },
 ]
 
 const openedMixin = theme => ({
@@ -118,8 +143,6 @@ const closedMixin = theme => ({
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(10)} + 1px)`,
   },
-  
-
 })
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -137,26 +160,18 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   borderRight: 'none',
   boxSizing: 'border-box',
-  '&::webkit-scrollbar':{
-    width:"100px"
-},
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': {
       ...openedMixin(theme),
       borderRight: 'none',
-      '&::webkit-scrollbar':{
-        width:"100px"
     },
-  }}),
+  }),
   ...(!open && {
     ...closedMixin(theme),
     '& .MuiDrawer-paper': {
       ...closedMixin(theme),
       border: 'none',
-      '&::webkit-scrollbar':{
-        width:"100px"
-    },
     },
   }),
 }))
@@ -183,11 +198,7 @@ export default function MiniDrawer({ children }) {
   return (
     <Box className="flex flex-row">
       <CssBaseline />
-      <Drawer
-        variant="permanent"
-        open={open}
-        className="block"
-      >
+      <Drawer variant="permanent" open={open} className="block">
         <DrawerHeader
           style={{ display: open ? 'flex' : 'none', position: 'relative' }}
         >
@@ -202,7 +213,6 @@ export default function MiniDrawer({ children }) {
               <ChevronLeftIcon />
             )}
           </IconButton>
-
           <Typography
             variant="h5"
             style={{ display: open ? 'block' : 'none' }}
@@ -241,32 +251,32 @@ export default function MiniDrawer({ children }) {
             </ListItemButtonStyled>
           </ListItem>
           {menuItemsPrimary.map(item => (
-          <Link href={item.route} className='no-underline '>
-            <ListItem key={item.name} disablePadding className="block">
-              <ListItemButtonStyled
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  className="text-secondary"
+            <Link href={item.route} className="no-underline ">
+              <ListItem key={item.name} disablePadding className="block">
+                <ListItemButtonStyled
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  className="text-secondary"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  primary={item.name}
-                />
-              </ListItemButtonStyled>
-            </ListItem>
+                  <ListItemIcon
+                    className="text-secondary"
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    className="text-secondary"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    primary={item.name}
+                  />
+                </ListItemButtonStyled>
+              </ListItem>
             </Link>
           ))}
         </List>
@@ -275,33 +285,32 @@ export default function MiniDrawer({ children }) {
         </Divider>
         <List>
           {menuItemsSecondary.map(item => (
-          <Link href={item.route} className='no-underline '>
-
-            <ListItem key={item.name} disablePadding className="block">
-              <ListItemButtonStyled
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  className="text-secondary"
+            <Link href={item.route} className="no-underline ">
+              <ListItem key={item.name} disablePadding className="block">
+                <ListItemButtonStyled
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  className="text-secondary"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  primary={item.name}
-                />
-              </ListItemButtonStyled>
-            </ListItem>
+                  <ListItemIcon
+                    className="text-secondary"
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    className="text-secondary"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    primary={item.name}
+                  />
+                </ListItemButtonStyled>
+              </ListItem>
             </Link>
           ))}
         </List>
