@@ -63,41 +63,45 @@ export default function DataPageView({
           className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10"
         >
           {filters && (
-            <Box component="section">
-              <Typography
-                variant="h5"
-                component="h3"
-                className="pb-2"
-                color="secondary"
-              >
-                Filtros de busqueda
-              </Typography>
-              <Stack direction="row" spacing={1}>
-                {filters.map(filter => (
-                  <FormControl fullWidth key={filter.label}>
-                    <InputLabel id={filter.label} color='secondary'>{filter.label}</InputLabel>
-                    <Select
-                      id={filter.label}
-                      className="flex-grow"
-                      label={filter.label}
-                      color="secondary"
-                    >
-                      {filter.options.map(option => (
-                        <MenuItem
-                          value={option.value}
-                          key={option.value}
-                          className="text-black"
-                        >
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                ))}
-              </Stack>
-            </Box>
+            <>
+              <Box component="section">
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  className="pb-2"
+                  color="secondary"
+                >
+                  Filtros de busqueda
+                </Typography>
+                <Stack direction="row" spacing={1}>
+                  {filters.map(filter => (
+                    <FormControl fullWidth key={filter.label}>
+                      <InputLabel id={filter.label} color="secondary">
+                        {filter.label}
+                      </InputLabel>
+                      <Select
+                        id={filter.label}
+                        className="flex-grow"
+                        label={filter.label}
+                        color="secondary"
+                      >
+                        {filter.options.map(option => (
+                          <MenuItem
+                            value={option.value}
+                            key={option.value}
+                            className="text-black"
+                          >
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  ))}
+                </Stack>
+              </Box>
+              <Divider variant="middle" />
+            </>
           )}
-          <Divider variant="middle" />
 
           <Box
             component="section"
