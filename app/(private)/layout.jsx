@@ -40,68 +40,62 @@ import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCh
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined'
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined'
 import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined'
+import Link from 'next/link'
 
 const drawerWidth = 295
 
 const menuItemsPrimary = [
-  { name: 'Dashboard', icon: <DashboardOutlinedIcon /> },
+  { name: 'Dashboard', icon: <DashboardOutlinedIcon />, route:'/dashboard' },
   {
     name: 'Estadisticas',
-    icon: <InsertChartOutlinedRoundedIcon />,
+    icon: <InsertChartOutlinedRoundedIcon />, route:'/statistics'
   },
 ]
 
 const menuItemsSecondary = [
   {
-    name: 'Concesionarios',
-    icon: <StoreMallDirectoryOutlinedIcon />,
-  },
-  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon /> },
-  { name: 'Empleados', icon: <BadgeOutlinedIcon /> },
-  { name: 'Vehiculos', icon: <DirectionsCarOutlinedIcon /> },
-  { name: 'Modelos', icon: <MinorCrashOutlinedIcon /> },
-  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon /> },
-  { name: 'Servicios', icon: <ConstructionOutlinedIcon /> },
+    name: 'Concesionarios', icon: <StoreMallDirectoryOutlinedIcon />, route:'/dealerships'},
+  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon />, route:'/users' },
+  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route:'/employees' },
+  { name: 'Vehiculos', icon: <DirectionsCarOutlinedIcon />, route:'/vehicles' },
+  { name: 'Modelos', icon: <MinorCrashOutlinedIcon />,route:'/models' },
+  { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon />, route:'/orders'},
+  { name: 'Servicios', icon: <ConstructionOutlinedIcon />, route:'/services'},
   {
-    name: 'Servicios Ofrecidos',
-    icon: <CarRepairOutlinedIcon />,
-  },
-  { name: 'Actividades', icon: <ContentPasteOutlinedIcon /> },
-  {
-    name: 'Mantenimientos Recomendados',
-    icon: <NoteAltOutlinedIcon />,
-  },
+    name: 'Servicios Ofrecidos',icon: <CarRepairOutlinedIcon />, route:'/services-provided'},
+  { name: 'Actividades', icon: <ContentPasteOutlinedIcon />,  route:'/activities'},
+  { name: 'Mantenimientos Recomendados',icon: <NoteAltOutlinedIcon />,route:'/recommended-maintenances'},
   {
     name: 'Especializaciones',
-    icon: <EngineeringOutlinedIcon />,
+    icon: <EngineeringOutlinedIcon />,route:'/specialties'
   },
-  { name: 'Productos', icon: <CategoryOutlinedIcon /> },
+  { name: 'Productos', icon: <CategoryOutlinedIcon />,route:'/products' },
   {
     name: 'Lineas de Suministros',
-    icon: <ViewListOutlinedIcon />,
+    icon: <ViewListOutlinedIcon />, route:'/supply-lines'
   },
   {
     name: 'Detalles de orden',
-    icon: <ShoppingCartCheckoutOutlinedIcon />,
+    icon: <ShoppingCartCheckoutOutlinedIcon />, route:'/order-details'
   },
   {
     name: 'Disponibilidades',
-    icon: <Inventory2OutlinedIcon />,
+    icon: <Inventory2OutlinedIcon />, route:'/availabilities'
   },
-  { name: 'Pagos', icon: <CreditCardOutlinedIcon /> },
-  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon /> },
+  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route:'/pagos' },
+  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon />, route:'/invoices' },
   {
     name: 'Costos de Actividades',
-    icon: <RequestQuoteOutlinedIcon />,
+    icon: <RequestQuoteOutlinedIcon />, route:'/costs-activities'
   },
-  { name: 'Descuentos', icon: <DiscountOutlinedIcon /> },
+  { name: 'Descuentos', icon: <DiscountOutlinedIcon />, route:'/discounts' }, 
   {
     name: 'Aplicaciones de productos',
-    icon: <PlumbingOutlinedIcon />,
+    icon: <PlumbingOutlinedIcon />, route:'/product-applications'
   },
-  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon /> },
-  { name: 'Ciudades', icon: <LocationCityOutlinedIcon /> },
-  { name: 'Estados', icon: <PublicOutlinedIcon /> },
+  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route:'/charges' },
+  { name: 'Ciudades', icon: <LocationCityOutlinedIcon />, route:'/cities' },
+  { name: 'Estados', icon: <PublicOutlinedIcon />, route:'/states' },
 ]
 
 const openedMixin = theme => ({
@@ -119,12 +113,13 @@ const closedMixin = theme => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   whiteSpace: 'nowrap',
-  overflow: 'overlay',
   overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(10)} + 1px)`,
   },
+  
+
 })
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -142,21 +137,36 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   borderRight: 'none',
   boxSizing: 'border-box',
+  '&::webkit-scrollbar':{
+    width:"100px"
+},
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': {
       ...openedMixin(theme),
       borderRight: 'none',
+      '&::webkit-scrollbar':{
+        width:"100px"
     },
-  }),
+  }}),
   ...(!open && {
     ...closedMixin(theme),
     '& .MuiDrawer-paper': {
       ...closedMixin(theme),
       border: 'none',
+      '&::webkit-scrollbar':{
+        width:"100px"
+    },
     },
   }),
 }))
+
+const ListItemButtonStyled = styled(ListItemButton)({
+  '&:hover': {
+    borderTopRightRadius: '5rem',
+    borderBottomRightRadius: '5rem',
+  },
+})
 
 export default function MiniDrawer({ children }) {
   const theme = useTheme()
@@ -173,7 +183,11 @@ export default function MiniDrawer({ children }) {
   return (
     <Box className="flex flex-row">
       <CssBaseline />
-      <Drawer variant="permanent" open={open} className="block">
+      <Drawer
+        variant="permanent"
+        open={open}
+        className="block"
+      >
         <DrawerHeader
           style={{ display: open ? 'flex' : 'none', position: 'relative' }}
         >
@@ -206,7 +220,7 @@ export default function MiniDrawer({ children }) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
           >
-            <ListItemButton
+            <ListItemButtonStyled
               sx={{
                 height: '66px',
                 minHeight: 48,
@@ -224,11 +238,12 @@ export default function MiniDrawer({ children }) {
               >
                 <MenuIcon />
               </ListItemIcon>
-            </ListItemButton>
+            </ListItemButtonStyled>
           </ListItem>
           {menuItemsPrimary.map(item => (
+          <Link href={item.route} className='no-underline '>
             <ListItem key={item.name} disablePadding className="block">
-              <ListItemButton
+              <ListItemButtonStyled
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -250,8 +265,9 @@ export default function MiniDrawer({ children }) {
                   sx={{ opacity: open ? 1 : 0 }}
                   primary={item.name}
                 />
-              </ListItemButton>
+              </ListItemButtonStyled>
             </ListItem>
+            </Link>
           ))}
         </List>
         <Divider variant="middle" textAlign="left">
@@ -259,8 +275,10 @@ export default function MiniDrawer({ children }) {
         </Divider>
         <List>
           {menuItemsSecondary.map(item => (
+          <Link href={item.route} className='no-underline '>
+
             <ListItem key={item.name} disablePadding className="block">
-              <ListItemButton
+              <ListItemButtonStyled
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -282,8 +300,9 @@ export default function MiniDrawer({ children }) {
                   sx={{ opacity: open ? 1 : 0 }}
                   primary={item.name}
                 />
-              </ListItemButton>
+              </ListItemButtonStyled>
             </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>
