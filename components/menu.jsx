@@ -28,6 +28,7 @@ export default function IconMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        className='rounded-full min-w-[0.6rem]'
       >
         <MoreVertOutlined color="secondary" />
       </Button>
