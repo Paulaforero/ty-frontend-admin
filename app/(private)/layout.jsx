@@ -59,7 +59,7 @@ const menuItemsSecondary = [
     icon: <StoreMallDirectoryOutlinedIcon />,
     route: '/dealerships',
   },
-  { name: 'Usuarios', icon: <PersonOutlineOutlinedIcon />, route: '/users' },
+  { name: 'Clientes', icon: <PersonOutlineOutlinedIcon />, route: '/clients' },
   { name: 'Empleados', icon: <BadgeOutlinedIcon />, route: '/employees' },
   {
     name: 'Vehiculos',
@@ -334,12 +334,7 @@ export default function MiniDrawer({ children }) {
         </Divider>
         <List>
           {menuItemsSecondary.map(item => (
-            <ListItem
-              key={item.name}
-              disablePadding
-              className="block"
-              onClick={() => handleSelectItem(item)}
-            >
+            <>
               {item.name === 'Ciudades' ? (
                 <Divider
                   variant="middle"
@@ -359,34 +354,45 @@ export default function MiniDrawer({ children }) {
               ) : (
                 ''
               )}
-              <Link href={item.route} key={item.name} className="no-underline">
-                <ListItemButtonStyled
-                  selected={selectItem === item}
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    marginRight: '0.3rem',
-                  }}
+              <ListItem
+                key={item.name}
+                disablePadding
+                className="block"
+                onClick={() => handleSelectItem(item)}
+              >
+                <Link
+                  href={item.route}
+                  key={item.name}
+                  className="no-underline"
                 >
-                  <ListItemIcon
-                    className="text-secondary"
+                  <ListItemButtonStyled
+                    selected={selectItem === item}
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                      marginRight: '0.3rem',
                     }}
                   >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    className="text-secondary"
-                    sx={{ opacity: open ? 1 : 0 }}
-                    primary={item.name}
-                  />
-                </ListItemButtonStyled>
-              </Link>
-            </ListItem>
+                    <ListItemIcon
+                      className="text-secondary"
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      className="text-secondary"
+                      sx={{ opacity: open ? 1 : 0 }}
+                      primary={item.name}
+                    />
+                  </ListItemButtonStyled>
+                </Link>
+              </ListItem>
+            </>
           ))}
         </List>
       </Drawer>
