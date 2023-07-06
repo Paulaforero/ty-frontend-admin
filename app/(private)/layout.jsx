@@ -390,7 +390,7 @@ export default function MiniDrawer({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box>{children}</Box>
+      <Box className="flex-grow">{children}</Box>
     </Box>
   )
 }
