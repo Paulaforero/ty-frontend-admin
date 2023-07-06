@@ -83,13 +83,13 @@ export default function DataPageView({
                         id={filter.label}
                         className="flex-grow"
                         label={filter.label}
-                        color="secondary"
+                        color="primary"
                       >
                         {filter.options.map(option => (
                           <MenuItem
                             value={option.value}
                             key={option.value}
-                            className="text-black"
+                            className="text-secondary"
                           >
                             {option.label}
                           </MenuItem>
