@@ -2,7 +2,6 @@ import Paper from '@mui/material/Paper'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import ContentCut from '@mui/icons-material/ContentCut'
 import DeleteIcon from '@mui/icons-material/Delete'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import EditIcon from '@mui/icons-material/Edit'
@@ -28,6 +27,7 @@ export default function IconMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        className='rounded-full min-w-[0.6rem]'
       >
         <MoreVertOutlined color="secondary" />
       </Button>
