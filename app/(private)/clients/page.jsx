@@ -11,30 +11,7 @@ export default function DealershipsPage() {
     secondary_phone_no: 'Telefono secundario',
     email: 'Correo electronico',
   }
-
-  const filters = [
-    {
-      label: 'Filtar por ciudad',
-      options: [
-        { label: 'uno', value: 1 },
-        { label: 'dos', value: 2 },
-        { label: 'tres', value: 3 },
-        { label: 'cuatro', value: 4 },
-        { label: 'cinco', value: 5 },
-      ],
-    },
-    {
-      label: 'Filtrar por manager',
-      options: [
-        { label: 'uno', value: 1 },
-        { label: 'dos', value: 2 },
-        { label: 'tres', value: 3 },
-        { label: 'cuatro', value: 4 },
-        { label: 'cinco', value: 5 },
-      ],
-    },
-  ]
-
+  
   return (
     <DataPageView
       title="Clientes"
