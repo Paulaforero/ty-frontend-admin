@@ -60,7 +60,7 @@ const menuItemsSecondary = [
     route: '/dealerships',
   },
   { name: 'Clientes', icon: <PersonOutlineOutlinedIcon />, route: '/clients' },
-  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route: '/employees' },
+  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route: '/staff' },
   {
     name: 'Vehiculos',
     icon: <DirectionsCarOutlinedIcon />,
@@ -72,7 +72,7 @@ const menuItemsSecondary = [
   {
     name: 'Servicios Ofrecidos',
     icon: <CarRepairOutlinedIcon />,
-    route: '/services-provided',
+    route: '/offered-services',
   },
   {
     name: 'Actividades',
@@ -80,14 +80,14 @@ const menuItemsSecondary = [
     route: '/activities',
   },
   {
-    name: 'Mantenimientos Recomendados',
+    name: 'Servicios Recomendados',
     icon: <NoteAltOutlinedIcon />,
-    route: '/recommended-maintenances',
+    route: '/recommended-services',
   },
   {
     name: 'Especializaciones',
     icon: <EngineeringOutlinedIcon />,
-    route: '/specialties',
+    route: '/specializations',
   },
   { name: 'Productos', icon: <CategoryOutlinedIcon />, route: '/products' },
   {
@@ -103,14 +103,14 @@ const menuItemsSecondary = [
   {
     name: 'Disponibilidades',
     icon: <Inventory2OutlinedIcon />,
-    route: '/availabilities',
+    route: '/stock',
   },
-  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route: '/pagos' },
+  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route: '/payments' },
   { name: 'Facturas', icon: <ReceiptLongOutlinedIcon />, route: '/invoices' },
   {
     name: 'Costos de Actividades',
     icon: <RequestQuoteOutlinedIcon />,
-    route: '/costs-activities',
+    route: '/activities-prices',
   },
   { name: 'Descuentos', icon: <DiscountOutlinedIcon />, route: '/discounts' },
   {
@@ -118,7 +118,7 @@ const menuItemsSecondary = [
     icon: <PlumbingOutlinedIcon />,
     route: '/product-applications',
   },
-  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route: '/charges' },
+  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route: '/roles' },
   { name: 'Ciudades', icon: <LocationCityOutlinedIcon />, route: '/cities' },
   { name: 'Estados', icon: <PublicOutlinedIcon />, route: '/states' },
 ]
@@ -131,11 +131,11 @@ const openedMixin = theme => ({
   }),
   overflowX: 'hidden',
   '&::-webkit-scrollbar': {
-    width: '0.438rem',
+    width: '0.35rem',
     padding: 10,
   },
   '&::-webkit-scrollbar-thumb': {
-    background: '#30A688',
+    background: 'rgb(192, 192, 192)',
     borderRadius: '5px',
   },
 })
@@ -148,11 +148,11 @@ const closedMixin = theme => ({
   whiteSpace: 'nowrap',
   overflowX: 'hidden',
   '&::-webkit-scrollbar': {
-    width: '0.438rem',
+    width: '0.35rem',
     padding: 10,
   },
   '&::-webkit-scrollbar-thumb': {
-    background: '#30A688',
+    background: 'rgb(192, 192, 192)',
     borderRadius: '5px',
   },
   width: `calc(${theme.spacing(7)} + 1px)`,
@@ -329,7 +329,7 @@ export default function MiniDrawer({ children }) {
             </ListItem>
           ))}
         </List>
-        <Divider variant="middle" textAlign="left" className="">
+        <Divider variant="middle" textAlign="left" className="text-gray-500">
           {open ? 'CRUD' : ''}
         </Divider>
         <List>
@@ -339,7 +339,7 @@ export default function MiniDrawer({ children }) {
                 <Divider
                   variant="middle"
                   textAlign="left"
-                  className="text-secondary"
+                  className="text-gray-500"
                 >
                   {open ? 'Localidades' : ''}
                 </Divider>
@@ -347,7 +347,7 @@ export default function MiniDrawer({ children }) {
                 <Divider
                   variant="middle"
                   textAlign="left"
-                  className="text-secondary"
+                  className="text-gray-500"
                 >
                   {open ? 'Servicios - Actividades' : ''}
                 </Divider>
