@@ -28,7 +28,7 @@ export default function SelectInputListItem({
         <InputLabel
           id={`${name}-select`}
           size="small"
-          className="items-center ml-7 lg:ml-9 w-[95%] text-secondary"
+          className="items-center ml-7 lg:ml-9 w-[95%]"
         >
           {placeholder}
         </InputLabel>
