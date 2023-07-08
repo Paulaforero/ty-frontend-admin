@@ -13,7 +13,7 @@ export default function SelectInputListItem({
   value,
   options,
   name,
-  handleChange
+  handleChange,
 }) {
   return (
     <ListItem className="flex flex-row">
@@ -22,19 +22,19 @@ export default function SelectInputListItem({
       </Typography>
       <FormControl fullWidth>
         <InputLabel
-          id="city-select"
+          id={`${name}-select`}
           size="small"
           className="items-center ml-7 lg:ml-9 w-[95%]"
         >
           {placeholder}
         </InputLabel>
         <Select
-          id="city-select"
+          id={`${name}-select`}
           size="small"
           value={value}
+          label={placeholder}
           name={name}
           className="ml-7 lg:ml-9 w-[95%]"
-          label="Seleccione una ciudad"
           onChange={handleChange}
         >
           <MenuItem value="">{placeholder}</MenuItem>
