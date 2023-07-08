@@ -10,10 +10,16 @@ import {
   Stack,
 } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import TextInputListItem from './text-input-list-item'
-import SelectInputListItem from './select-input-list-item'
+import TextInputListItem from '../form-list-items/text-input-list-item'
+import SelectInputListItem from '../form-list-items/select-input-list-item'
 
-export default function CreationPage({ title, submitLabel, inputs, values, handleChange }) {
+export default function CreationPage({
+  title,
+  submitLabel,
+  inputs,
+  values,
+  handleChange,
+}) {
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
