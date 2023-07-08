@@ -20,7 +20,7 @@ import {
   InputLabel,
 } from '@mui/material'
 import { useState } from 'react'
-import IconMenu from '@/components/data-page/menu'
+import IconMenu from './menu'
 
 export default function DataPageView({
   title,

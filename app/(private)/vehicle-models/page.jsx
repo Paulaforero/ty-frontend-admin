@@ -1,6 +1,6 @@
 'use client'
 
-import DataPageView from '@/components/data-page/data-page-view'
+import DataPageView from '@/components/data-page-view'
 import { VehicleModels } from '@/mock/vehicle-models'
 
 export default function VehicleModelsPage() {
