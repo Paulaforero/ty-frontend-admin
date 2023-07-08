@@ -7,6 +7,7 @@ import {
   IconButton,
   Typography,
   Button,
+<<<<<<< Updated upstream
   InputLabel,
   Input,
   Stack,
@@ -28,6 +29,21 @@ export default function EditionPageView() {
 
   const { id } = useParams()
 
+=======
+  Stack,
+} from '@mui/material'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import TextInputListItem from '../form-list-items/text-input-list-item'
+import SelectInputListItem from '../form-list-items/select-input-list-item'
+
+export default function EditionPage({
+  title,
+  submitLabel,
+  inputs,
+  values,
+  handleChange,
+}) {
+>>>>>>> Stashed changes
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
@@ -48,6 +64,7 @@ export default function EditionPageView() {
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
+<<<<<<< Updated upstream
             <Typography variant="h5" align="right">
               Concesionario #{id}
             </Typography>
@@ -110,12 +127,53 @@ export default function EditionPageView() {
             <Box className="mx-auto">
               <Button variant="contained" className="max-w-md">
                 Editar Concesionario
+=======
+            <Typography variant="h4" align="left">
+              {title}
+            </Typography>
+
+            <Stack className="w-full" margin={0} component="ul">
+              {inputs.map(input =>
+                input.type === 'text' ? (
+                  <TextInputListItem
+                    key={input.name}
+                    label={input.label}
+                    name={input.name}
+                    placeholder={input.placeholder}
+                    handleChange={handleChange}
+                    value={values[input.name]}
+                  />
+                ) : (
+                  <SelectInputListItem
+                    key={input.name}
+                    label={input.label}
+                    placeholder={input.placeholder}
+                    handleChange={handleChange}
+                    options={input.options}
+                    value={values[input.name]}
+                    name={input.name}
+                  />
+                )
+              )}
+            </Stack>
+
+            <Box className="mx-auto">
+              <Button variant="contained" className="max-w-md">
+                {submitLabel}
+>>>>>>> Stashed changes
               </Button>
             </Box>
           </Card>
         </Box>
+<<<<<<< Updated upstream
 
       </Container>
     </Box>
   )
 }
+=======
+      </Container>
+    </Box>
+  )
+}
+>>>>>>> Stashed changes
