@@ -38,7 +38,7 @@ export default function SelectInputListItem({
           value={value}
           label={placeholder}
           name={name}
-          className="ml-7 lg:ml-9 w-[95%]"
+          className="ml-7 lg:ml-9 w-[95%] text-secondary"
           onChange={handleChange}
         >
           <MenuItem value="" className="text-secondary">
