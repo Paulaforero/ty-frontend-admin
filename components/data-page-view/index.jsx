@@ -20,7 +20,7 @@ import {
   InputLabel,
 } from '@mui/material'
 import { useState } from 'react'
-import IconMenu from '@/components/data-page/menu'
+import IconMenu from '@/components/data-page-view/menu'
 
 export default function DataPageView({
   title,
@@ -71,7 +71,7 @@ export default function DataPageView({
                   className="pb-2"
                   color="secondary"
                 >
-                  Filtros de busqueda
+                  Filtros de búsqueda
                 </Typography>
                 <Stack direction="row" spacing={1}>
                   {filters.map(filter => (
