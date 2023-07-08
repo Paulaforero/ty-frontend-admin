@@ -12,6 +12,7 @@ export default function SelectInputListItem({
   placeholder,
   value,
   options,
+  required,
   name,
   handleChange,
 }) {
@@ -38,6 +39,7 @@ export default function SelectInputListItem({
           value={value}
           label={placeholder}
           name={name}
+          required={required}
           className="ml-7 lg:ml-9 w-[95%] text-secondary"
           onChange={handleChange}
         >
