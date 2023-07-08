@@ -17,14 +17,18 @@ export default function SelectInputListItem({
 }) {
   return (
     <ListItem className="flex flex-row">
-      <Typography variant="p" align="left" className="font-bold w-[15%]">
+      <Typography
+        variant="p"
+        align="left"
+        className="font-bold w-[15%] text-secondary"
+      >
         {label}
       </Typography>
       <FormControl fullWidth>
         <InputLabel
           id={`${name}-select`}
           size="small"
-          className="items-center ml-7 lg:ml-9 w-[95%]"
+          className="items-center ml-7 lg:ml-9 w-[95%] text-secondary"
         >
           {placeholder}
         </InputLabel>
@@ -37,9 +41,15 @@ export default function SelectInputListItem({
           className="ml-7 lg:ml-9 w-[95%]"
           onChange={handleChange}
         >
-          <MenuItem value="">{placeholder}</MenuItem>
+          <MenuItem value="" className="text-secondary">
+            {placeholder}
+          </MenuItem>
           {options.map(option => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+              className="text-secondary"
+            >
               {option.label}
             </MenuItem>
           ))}
