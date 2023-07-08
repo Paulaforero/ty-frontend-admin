@@ -1,6 +1,6 @@
 'use client'
 
-import CreationPage from '@/components/creation-page'
+import CreationPageView from '@/components/creation-page-view'
 import { useState } from 'react'
 
 export default function CreatePage() {
@@ -53,7 +53,7 @@ export default function CreatePage() {
   }
 
   return (
-    <CreationPage
+    <CreationPageView
       title="Crear concesionario"
       submitLabel="Crear Concesionario"
       inputs={inputs}
