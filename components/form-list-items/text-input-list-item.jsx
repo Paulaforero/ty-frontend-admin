@@ -5,6 +5,7 @@ export default function TextInputListItem({
   placeholder,
   name,
   value,
+  required,
   handleChange,
 }) {
   return (
@@ -17,6 +18,7 @@ export default function TextInputListItem({
         {label}
       </Typography>
       <Input
+        required={required}
         placeholder={placeholder}
         className="ml-5 w-[85%] flex-grow text-secondary"
         name={name}
