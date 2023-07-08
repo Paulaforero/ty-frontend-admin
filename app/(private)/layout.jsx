@@ -68,6 +68,11 @@ const menuItemsSecondary = [
   },
   { name: 'Modelos', icon: <MinorCrashOutlinedIcon />, route: '/models' },
   { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon />, route: '/orders' },
+  {
+    name: 'Detalles de orden',
+    icon: <ShoppingCartCheckoutOutlinedIcon />,
+    route: '/order-details',
+  },
   { name: 'Servicios', icon: <ConstructionOutlinedIcon />, route: '/services' },
   {
     name: 'Servicios Ofrecidos',
@@ -75,19 +80,19 @@ const menuItemsSecondary = [
     route: '/offered-services',
   },
   {
-    name: 'Actividades',
-    icon: <ContentPasteOutlinedIcon />,
-    route: '/activities',
-  },
-  {
     name: 'Servicios Recomendados',
     icon: <NoteAltOutlinedIcon />,
     route: '/recommended-services',
   },
   {
-    name: 'Especializaciones',
-    icon: <EngineeringOutlinedIcon />,
-    route: '/specializations',
+    name: 'Actividades',
+    icon: <ContentPasteOutlinedIcon />,
+    route: '/activities',
+  },
+  {
+    name: 'Costos de Actividades',
+    icon: <RequestQuoteOutlinedIcon />,
+    route: '/activities-prices',
   },
   { name: 'Productos', icon: <CategoryOutlinedIcon />, route: '/products' },
   {
@@ -96,27 +101,22 @@ const menuItemsSecondary = [
     route: '/supply-lines',
   },
   {
-    name: 'Detalles de orden',
-    icon: <ShoppingCartCheckoutOutlinedIcon />,
-    route: '/order-details',
-  },
-  {
     name: 'Disponibilidades',
     icon: <Inventory2OutlinedIcon />,
     route: '/stock',
   },
-  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route: '/payments' },
-  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon />, route: '/invoices' },
-  {
-    name: 'Costos de Actividades',
-    icon: <RequestQuoteOutlinedIcon />,
-    route: '/activities-prices',
-  },
-  { name: 'Descuentos', icon: <DiscountOutlinedIcon />, route: '/discounts' },
   {
     name: 'Aplicaciones de productos',
     icon: <PlumbingOutlinedIcon />,
     route: '/product-applications',
+  },
+  { name: 'Pagos', icon: <CreditCardOutlinedIcon />, route: '/payments' },
+  { name: 'Facturas', icon: <ReceiptLongOutlinedIcon />, route: '/invoices' },
+  { name: 'Descuentos', icon: <DiscountOutlinedIcon />, route: '/discounts' },
+  {
+    name: 'Especializaciones',
+    icon: <EngineeringOutlinedIcon />,
+    route: '/specializations',
   },
   { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route: '/roles' },
   { name: 'Ciudades', icon: <LocationCityOutlinedIcon />, route: '/cities' },
@@ -330,7 +330,7 @@ export default function MiniDrawer({ children }) {
           ))}
         </List>
         <Divider variant="middle" textAlign="left" className="text-gray-500">
-          {open ? 'CRUD' : ''}
+          {open ? 'CRUDS' : ''}
         </Divider>
         <List>
           {menuItemsSecondary.map(item => (
@@ -350,6 +350,30 @@ export default function MiniDrawer({ children }) {
                   className="text-gray-500"
                 >
                   {open ? 'Servicios - Actividades' : ''}
+                </Divider>
+              ) : item.name === 'Productos' ? (
+                <Divider
+                  variant="middle"
+                  textAlign="left"
+                  className="text-gray-500"
+                >
+                  {open ? 'Productos - Aplicaciones' : ''}
+                </Divider>
+              ) : item.name === 'Pagos' ? (
+                <Divider
+                  variant="middle"
+                  textAlign="left"
+                  className="text-gray-500"
+                >
+                  {open ? 'Transacciones' : ''}
+                </Divider>
+              ) : item.name === 'Especializaciones' ? (
+                <Divider
+                  variant="middle"
+                  textAlign="left"
+                  className="text-gray-500"
+                >
+                  {open ? 'Especialidades - Cargos' : ''}
                 </Divider>
               ) : (
                 ''
