@@ -13,12 +13,12 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import TextInputListItem from './text-input-list-item'
 import SelectInputListItem from './select-input-list-item'
 
-export default function CreationPage({ title, submitLabel, inputs }) {
+export default function CreationPage({ title, submitLabel, inputs, values, handleChange }) {
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
         component="container"
-        className="flex flex-row justify-center items-center h-full w-full mb-5"
+        className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box component="header" className="pb-4 w-full">
           <IconButton size="large" color="secondary">
@@ -42,15 +42,22 @@ export default function CreationPage({ title, submitLabel, inputs }) {
               {inputs.map(input =>
                 input.type === 'text' ? (
                   <TextInputListItem
-                    key={input.label}
+                    key={input.name}
                     label={input.label}
+                    name={input.name}
                     placeholder={input.placeholder}
+                    handleChange={handleChange}
+                    value={values[input.name]}
                   />
                 ) : (
                   <SelectInputListItem
-                    key={input.label}
+                    key={input.name}
                     label={input.label}
                     placeholder={input.placeholder}
+                    handleChange={handleChange}
+                    options={input.options}
+                    value={values[input.name]}
+                    name={input.name}
                   />
                 )
               )}
