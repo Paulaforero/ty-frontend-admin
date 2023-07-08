@@ -40,7 +40,7 @@ export default function CreationPage({
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Typography variant="h4" align="left">
+            <Typography variant="h4" align="left" className='text-secondary'>
               {title}
             </Typography>
 
