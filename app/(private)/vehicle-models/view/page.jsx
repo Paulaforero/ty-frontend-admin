@@ -1,11 +1,5 @@
 'use client'
-import {
-  Container,
-  Box,
-  Card,
-  Typography,
-  IconButton,
-} from '@mui/material'
+import { Container, Box, Card, Typography, IconButton } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Link from 'next/link'
 
@@ -22,10 +16,7 @@ export default function VehicleModelViewPage() {
           sx={{ display: 'flex', alignItems: 'center' }}
         >
           <Link key={'DataPageModels'} href={'/vehicle-models'}>
-            <IconButton
-              color="secondary"
-              className="mr-2"
-            >
+            <IconButton color="secondary" className="mr-2">
               <ChevronLeftIcon />
             </IconButton>
           </Link>
