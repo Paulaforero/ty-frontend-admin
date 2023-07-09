@@ -19,7 +19,7 @@ export default function TextInputListItem({
         {label}
       </Typography>
       <FormControl className="ml-5 w-[85%] flex-grow" variant="standard">
-      <InputLabel htmlFor="standard-adornment-password">{placeholder}</InputLabel>
+      <InputLabel htmlFor="standard-adornment-text">{placeholder}</InputLabel>
       <Input
         required={ required ? required : false}
         className="text-secondary"
