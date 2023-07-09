@@ -40,7 +40,7 @@ export default function EditPage() {
   return (
     <EditionPageView
       title="Editar ciudad"
-      submitLabel="Editar ciudad"
+      submitLabel="Guardar ciudad"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}
