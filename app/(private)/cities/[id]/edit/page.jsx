@@ -14,24 +14,24 @@ export default function EditPage() {
 
   const inputs = [
     {
-        label: 'Nombre:',
-        type: 'text',
-        name: 'name',
-        placeholder: 'Ingrese el nombre',
-        required: true,
-      },
-      {
-        label: 'Estado:',
-        type: 'select',
-        options: states.map(state => ({
-          label: state.name,
-          value: state.id,
-        })),
-        name: 'state_id',
-        placeholder: 'Seleccione el estado',
-        required: true,
-      },
-    ]
+      label: 'Nombre:',
+      type: 'text',
+      name: 'name',
+      placeholder: 'Ingrese el nombre',
+      required: true,
+    },
+    {
+      label: 'Estado:',
+      type: 'select',
+      options: states.map(state => ({
+        label: state.name,
+        value: state.id,
+      })),
+      name: 'state_id',
+      placeholder: 'Seleccione el estado',
+      required: true,
+    },
+  ]
 
   const handleChange = event => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
