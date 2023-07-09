@@ -1,18 +1,20 @@
 'use client'
 
-import CreationPageView from '@/components/creation-page-view'
+import EditionPageView from '@/components/edition-page-view'
 import { useState } from 'react'
 
-export default function CreatePage() {
-  const [formValues, setFormValues] = useState({
-    name: '',
-    seat_count: '',
-    weight_in_kg: '',
-    octane_rating: '',
-    gearbox_oil_type: '',
-    engine_oil_type: '',
-    engine_coolant_type: '',
-  })
+export default function EditPage() {
+  const vehicleModels = {
+    id: 1,
+    name: 'Toyota Camry',
+    seat_count: 5,
+    weight_in_kg: 1600,
+    octane_rating: 87,
+    gearbox_oil_type: 'Automatic',
+    engine_oil_type: '5W-30',
+    engine_coolant_type: 'Ethylene glycol',
+  }
+  const [formValues, setFormValues] = useState(vehicleModels)
 
   const inputs = [
     {
@@ -80,18 +82,13 @@ export default function CreatePage() {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-  }
-
   return (
-    <CreationPageView
-      title="Crear modelo de vehículo"
-      submitLabel="Crear modelo de vehículo"
+    <EditionPageView
+      title="Editar modelo de vehículo"
+      submitLabel="Editar modelo de vehículo"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}
-      handleSubmit={handleSubmit}
     />
   )
 }

@@ -1,4 +1,11 @@
-import { FormControl, Input, InputAdornment, InputLabel, ListItem, Typography } from '@mui/material'
+import {
+  FormControl,
+  Input,
+  InputAdornment,
+  InputLabel,
+  ListItem,
+  Typography,
+} from '@mui/material'
 
 export default function TextInputListItem({
   label,
@@ -19,15 +26,21 @@ export default function TextInputListItem({
         {label}
       </Typography>
       <FormControl className="ml-5 w-[85%] flex-grow" variant="standard">
-      <InputLabel htmlFor="standard-adornment-text">{placeholder}</InputLabel>
-      <Input
-        required={ required ? required : false}
-        className="text-secondary"
-        name={name}
-        value={value}
-        onChange={handleChange}
-        startAdornment={ adornment ? <InputAdornment position="start">{adornment}</InputAdornment> : false}
-      />
+        <InputLabel htmlFor="standard-adornment-text">{placeholder}</InputLabel>
+        <Input
+          required={required ? required : false}
+          className="text-secondary"
+          name={name}
+          value={value}
+          onChange={handleChange}
+          startAdornment={
+            adornment ? (
+              <InputAdornment position="start">{adornment}</InputAdornment>
+            ) : (
+              false
+            )
+          }
+        />
       </FormControl>
     </ListItem>
   )
