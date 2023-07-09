@@ -2,6 +2,7 @@
 
 import EditionPageView from '@/components/edition-page-view'
 import { useState } from 'react'
+import { states } from '@/mock/cities'
 
 export default function EditPage() {
   const city = {
