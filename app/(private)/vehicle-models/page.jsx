@@ -15,7 +15,7 @@ export default function VehicleModelsPage() {
 
   const filters = [
     {
-      label: 'Filtar por peso',
+      label: 'Filtar por octanaje',
       options: [
         { label: 'uno', value: 1 },
         { label: 'dos', value: 2 },

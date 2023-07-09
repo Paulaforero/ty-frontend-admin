@@ -31,9 +31,10 @@ export default function CreatePage() {
     },
     {
       label: 'Peso en Kg:',
-      type: 'text',
-      name: 'weigh_in_kg',
+      type: 'number',
+      name: 'weight_in_kg',
       placeholder: 'Ingrese el peso',
+      min: 100,
       required: true,
       adornment: 'Kg',
     },
