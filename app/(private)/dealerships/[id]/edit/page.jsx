@@ -2,8 +2,11 @@
 
 import EditionPageView from '@/components/edition-page-view'
 import { useState } from 'react'
+import { useParams } from 'next/navigation'
 
 export default function EditPage() {
+  const { id } = useParams()
+
   const dealership = {
     rif: 'J-123456789',
     name: 'Concesionaria A',
@@ -55,8 +58,8 @@ export default function EditPage() {
 
   return (
     <EditionPageView
-      title="Editar concesionario"
-      submitLabel="Editar Concesionario"
+      title={`Concesionario #${id}`}
+      submitLabel="Guardar"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}
