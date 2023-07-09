@@ -25,3 +25,26 @@ export const cities = [
     state_id: 5,
   },
 ]
+
+export const states = [
+  {
+    id: 1,
+    name: 'New York',
+  },
+  {
+    id: 2,
+    name: 'California',
+  },
+  {
+    id: 3,
+    name: 'Illinois',
+  },
+  {
+    id: 4,
+    name: 'Texas',
+  },
+  {
+    id: 5,
+    name: 'Arizona',
+  },
+]
