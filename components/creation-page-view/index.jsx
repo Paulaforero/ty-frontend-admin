@@ -12,6 +12,7 @@ import {
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import TextInputListItem from '../form-list-items/text-input-list-item'
 import SelectInputListItem from '../form-list-items/select-input-list-item'
+import NumberInputListItem from '../form-list-items/number-input-list-item'
 
 export default function CreationPage({
   title,
@@ -56,6 +57,24 @@ export default function CreationPage({
                       handleChange={handleChange}
                       value={values[input.name]}
                       required={input.required}
+                      adornment={input.adornment}
+                    />
+                  </FormControl>
+                ) : input.type === 'number' ? (
+                  <FormControl key={input.name} fullWidth margin="normal">
+                    <NumberInputListItem
+                      key={input.name}
+                      label={input.label}
+                      name={input.name}
+                      placeholder={input.placeholder}
+                      handleChange={handleChange}
+                      value={values[input.name]}
+                      required={input.required}
+                      adornment={input.adornment}
+                      inputProps={{
+                        min: input.min,
+                        max: input.max,
+                      }}
                     />
                   </FormControl>
                 ) : (
