@@ -1,13 +1,16 @@
 'use client'
 
 import DataPageView from '@/components/data-page-view'
-import { cities } from '@/mock/cities'
+import { useState, useCallback, useEffect } from 'react'
+import { BACKEND_URLS } from '@/utils/backend-urls'
 
 export default function CitiesPage() {
+  const [cities, setCities] = useState([])
+
   const columns = {
     id: 'ID',
     name: 'Nombre',
-    state_id: 'Estado (ID)',
+    stateId: 'Estado (ID)',
   }
 
   const filters = [
@@ -22,6 +25,25 @@ export default function CitiesPage() {
       ],
     },
   ]
+
+  const fetchCities = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.cities, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const fetchedCities = await response.json()
+
+      setCities(fetchedCities)
+    } catch (error) {
+      alert('ERROR')
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchCities()
+  }, [fetchCities])
 
   return (
     <DataPageView

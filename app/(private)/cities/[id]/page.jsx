@@ -33,6 +33,28 @@ export default function ViewPage() {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
+  const editCity = async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.cities, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+        cache: 'no-store',
+      })
+
+      router.push('/cities')
+    } catch (error) {
+      alert('ERROR')
+    }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    editCity()
+  }
+
   return (
     <DetailsPageView
       title={`Ciudad #${id}`}
@@ -40,6 +62,7 @@ export default function ViewPage() {
       rows={rows}
       values={formValues}
       handleChange={handleChange}
+      handleSubmit={handleSubmit}
     />
   )
 }
