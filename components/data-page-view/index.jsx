@@ -50,21 +50,25 @@ export default function DataPageView({
         component="container"
         className="flex flex-col justify-center items-center w-full mb-5"
       >
-        <Box component="header" className="pb-4 w-full">
-          <Typography
-            variant="h4"
-            component="h2"
-            className="text-left"
-            color="secondary"
-          >
-            {title}
-          </Typography>
-        </Box>
-
         <Card
           variant="elevation"
           className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10"
         >
+           <Box className="flex justify-between w-full">
+            <Typography
+              variant="h4"
+              component="h2"
+              className="text-left"
+              color="secondary"
+            >
+              {title}
+            </Typography>
+            <Link href={pathname + '/create'}>
+              <Button variant="contained" color="primary" className='pt-2 pb-2'>
+                {createButtonLabel}
+              </Button>
+            </Link>
+          </Box>
           {filters && (
             <>
               <Box component="section">
@@ -105,18 +109,6 @@ export default function DataPageView({
               <Divider variant="middle" />
             </>
           )}
-
-          <Box
-            component="section"
-            className="flex flex-nowrap gap-2 justify-end mt-2"
-          >
-            <Link href={pathname + '/create'}>
-              <Button variant="contained" color="primary">
-                {createButtonLabel}
-              </Button>
-            </Link>
-          </Box>
-
           <TableContainer>
             <Table>
               <TableHead>
