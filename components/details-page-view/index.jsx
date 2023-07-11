@@ -16,6 +16,10 @@ import { usePathname } from 'next/navigation'
 
 export default function DetailsPage({ title, toEditButtonLabel, rows }) {
   const pathname = usePathname()
+  const getPreviousPage = (splittedPathname) => {
+    splittedPathname.pop()
+    return(splittedPathname.join('/')) 
+  }
 
   return (
     <Box component="main" className="w-full h-full pt-9">
@@ -24,9 +28,11 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box component="header" className="pb-4 w-full">
+          <Link href={getPreviousPage(pathname.split('/'))}>
           <IconButton size="large" color="secondary">
             <ChevronLeftIcon size="large" />
           </IconButton>
+          </Link>
         </Box>
 
         <Box
@@ -37,7 +43,7 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Typography variant="h4" align="left">
+            <Typography variant="h4" align="left" className='text-secondary'>
               {title}
             </Typography>
 
@@ -45,7 +51,7 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
               {rows.map(row => (
                 <ListItem
                   key={row.label}
-                  className="flex flex-row w-full justify-center"
+                  className="flex flex-row w-full justify-center text-secondary"
                 >
                   <Typography
                     variant="p"
