@@ -15,7 +15,7 @@ const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function IconMenu() {
+export default function IconMenu({ handleDelete }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [openDelete, setOpenDelete] = useState(false);
   const open = Boolean(anchorEl)
@@ -28,6 +28,7 @@ export default function IconMenu() {
   }
 
   const handleClickDelete = () => {
+    handleDelete()
     setAnchorEl(null)
     setOpenDelete(true);
   }
