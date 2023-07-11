@@ -90,7 +90,7 @@ export default function CreatePage() {
   return (
     <CreationPageView
       title="Crear modelo de vehículo"
-      submitLabel="Crear modelo de vehículo"
+      submitLabel="Crear"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}
