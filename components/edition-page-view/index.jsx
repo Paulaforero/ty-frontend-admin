@@ -13,6 +13,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import TextInputListItem from '../form-list-items/text-input-list-item'
 import SelectInputListItem from '../form-list-items/select-input-list-item'
 import NumberInputListItem from '../form-list-items/number-input-list-item'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function EditionPage({
   title,
@@ -22,18 +24,18 @@ export default function EditionPage({
   handleSubmit,
   handleChange,
 }) {
+  const pathname = usePathname()
+  const getPreviousPage = splittedPathname => {
+    splittedPathname.pop()
+    splittedPathname.pop()
+    return splittedPathname.join('/')
+  }
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
         component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
-        <Box component="header" className="pb-4 w-full">
-          <IconButton size="large" color="secondary">
-            <ChevronLeftIcon size="large" />
-          </IconButton>
-        </Box>
-
         <Box
           component="section"
           className="flex flex-row flex-grow gap-4 w-full"
@@ -42,9 +44,16 @@ export default function EditionPage({
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Typography variant="h4" align="left" className="text-secondary">
-              {title}
-            </Typography>
+            <Box component="header" className="flex pb-4 w-full">
+              <Link href={getPreviousPage(pathname.split('/'))}>
+                <IconButton size="large" color="secondary" className="mr-2">
+                  <ChevronLeftIcon size="large" />
+                </IconButton>
+              </Link>
+              <Typography variant="h4" align="left" className="text-secondary">
+                {title}
+              </Typography>
+            </Box>
             <form onSubmit={handleSubmit}>
               {inputs.map(input =>
                 input.type === 'text' ? (
@@ -93,9 +102,16 @@ export default function EditionPage({
                 )
               )}
 
-              <Box textAlign="center" mt={4} className="mx-auto">
+              <Box
+                textAlign="center"
+                mt={4}
+                className="flex flex-row justify-center gap-6"
+              >
                 <Button variant="contained" className="max-w-md" type="submit">
                   {submitLabel}
+                </Button>
+                <Button variant="contained" color="error">
+                  Cancelar
                 </Button>
               </Box>
             </form>
