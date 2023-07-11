@@ -23,6 +23,10 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id }) {
     return(splittedPathname.join('/')) 
   }
 
+  const handleDelete = () =>{
+    console.log('hello');
+  }
+
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
