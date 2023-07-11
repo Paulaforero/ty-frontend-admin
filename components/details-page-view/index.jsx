@@ -9,12 +9,14 @@ import {
   Button,
   Stack,
   ListItem,
+  Divider,
+  Item,
 } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export default function DetailsPage({ title, toEditButtonLabel, rows }) {
+export default function DetailsPage({ title, toEditButtonLabel, rows, id }) {
   const pathname = usePathname()
   const getPreviousPage = splittedPathname => {
     splittedPathname.pop()
@@ -24,7 +26,6 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
@@ -35,17 +36,20 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Box component="header" className=" flex pb-4 w-full">
+            <Box component="header" className="flex pb-0 w-full">
               <Link href={getPreviousPage(pathname.split('/'))}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
                 </IconButton>
               </Link>
-              <Typography variant="h4" align="left" className="text-secondary">
+              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
                 {title}
               </Typography>
+              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
+                  {id}
+              </Typography>
             </Box>
-
+            <Divider variant='middle'/>
             <Stack className="w-full" margin={0} component="ul">
               {rows.map(row => (
                 <ListItem
@@ -66,13 +70,13 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
               ))}
             </Stack>
 
-            <Box className="flex flex-row justify-center gap-2">
+            <Box className="flex flex-row justify-center gap-6">
               <Link href={pathname + '/edit'}>
                 <Button variant="contained" className="max-w-md">
                   {toEditButtonLabel}
                 </Button>
               </Link>
-              <Button variant="contained" color="error">
+              <Button variant="contained" color="error" onClick={handleDelete}>
                 Eliminar
               </Button>
             </Box>
