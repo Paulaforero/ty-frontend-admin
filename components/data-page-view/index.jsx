@@ -21,6 +21,8 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 import IconMenu from '@/components/data-page-view/menu'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function DataPageView({
   title,
@@ -29,6 +31,7 @@ export default function DataPageView({
   filters,
   createButtonLabel,
 }) {
+  const pathname = usePathname()
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [page, setPage] = useState(0)
 
@@ -111,9 +114,11 @@ export default function DataPageView({
               variant="outlined"
               placeholder="Buscar por nombre..."
             ></TextField>
-            <Button variant="contained" color="primary">
-              {createButtonLabel}
-            </Button>
+            <Link href={pathname + '/create'}>
+              <Button variant="contained" color="primary">
+                {createButtonLabel}
+              </Button>
+            </Link>
           </Box>
 
           <TableContainer>
