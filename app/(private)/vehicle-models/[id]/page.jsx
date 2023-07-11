@@ -37,23 +37,21 @@ export default function ViewPage() {
       value: vehiclesModels.weight_in_kg,
     },
     {
-        label: 'Octanaje:',
-        value: vehiclesModels.octane_rating,
-      },
-      {
-        label: 'Tipo de aceite de la caja:',
-        value: vehiclesModels.gearbox_oil_type,
-      },
-      {
-        label: 'Tipo de aceite del motor:',
-        value: vehiclesModels.engine_oil_type,
-      },
-      {
-        label: 'Tipo de refrigerante:',
-        value: vehiclesModels.engine_coolant_type,
-      },
-      
-
+      label: 'Octanaje:',
+      value: vehiclesModels.octane_rating,
+    },
+    {
+      label: 'Tipo de aceite de la caja:',
+      value: vehiclesModels.gearbox_oil_type,
+    },
+    {
+      label: 'Tipo de aceite del motor:',
+      value: vehiclesModels.engine_oil_type,
+    },
+    {
+      label: 'Tipo de refrigerante:',
+      value: vehiclesModels.engine_coolant_type,
+    },
   ]
 
   const handleChange = event => {

@@ -23,8 +23,7 @@ export default function CreationPage({
   values,
   handleSubmit,
   handleChange,
-}) 
-{
+}) {
   const pathname = usePathname()
   return (
     <Box component="main" className="w-full h-full pt-9">
@@ -33,7 +32,7 @@ export default function CreationPage({
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box component="header" className="pb-4 w-full">
-          <Link href={ pathname.replace("/create","")}>
+          <Link href={pathname.replace('/create', '')}>
             <IconButton size="large" color="secondary">
               <ChevronLeftIcon size="large" />
             </IconButton>

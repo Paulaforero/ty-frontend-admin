@@ -55,6 +55,7 @@ export default function EditPage() {
       ],
       name: 'octane_rating',
       placeholder: 'Seleccione el octanaje',
+      required: true,
     },
     {
       label: 'Tipo de aceite de la caja:',
@@ -86,7 +87,7 @@ export default function EditPage() {
   return (
     <EditionPageView
       title="Editar modelo de vehículo"
-      submitLabel="Editar modelo de vehículo"
+      submitLabel="Guardar"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}

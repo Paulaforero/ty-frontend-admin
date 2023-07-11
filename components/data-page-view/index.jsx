@@ -126,7 +126,12 @@ export default function DataPageView({
               <TableHead>
                 <TableRow>
                   {columnsAttributes.map(attr => (
-                    <TableCell align="left" color="primary" key={attr} className='text-secondary'>
+                    <TableCell
+                      align="left"
+                      color="primary"
+                      key={attr}
+                      className="text-secondary"
+                    >
                       {columns[attr]}
                     </TableCell>
                   ))}
@@ -145,7 +150,11 @@ export default function DataPageView({
                 ).map((row, idx) => (
                   <TableRow key={idx}>
                     {columnsAttributes.map(attr => (
-                      <TableCell align="left" key={attr} className='text-secondary'>
+                      <TableCell
+                        align="left"
+                        key={attr}
+                        className="text-secondary"
+                      >
                         {row[attr]}
                       </TableCell>
                     ))}
