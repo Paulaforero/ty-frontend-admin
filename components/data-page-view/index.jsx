@@ -30,6 +30,7 @@ export default function DataPageView({
   columns,
   filters,
   createButtonLabel,
+  handleDelete,
 }) {
   const pathname = usePathname()
   const [rowsPerPage, setRowsPerPage] = useState(10)
@@ -54,7 +55,7 @@ export default function DataPageView({
           variant="elevation"
           className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10"
         >
-           <Box className="flex justify-between w-full">
+          <Box className="flex justify-between w-full">
             <Typography
               variant="h4"
               component="h2"
@@ -64,7 +65,7 @@ export default function DataPageView({
               {title}
             </Typography>
             <Link href={pathname + '/create'}>
-              <Button variant="contained" color="primary" className='pt-2 pb-2'>
+              <Button variant="contained" color="primary" className="pt-2 pb-2">
                 {createButtonLabel}
               </Button>
             </Link>
@@ -147,7 +148,7 @@ export default function DataPageView({
                       </TableCell>
                     ))}
                     <TableCell align="left">
-                      <IconMenu />
+                      <IconMenu handleDelete={handleDelete} />
                     </TableCell>
                   </TableRow>
                 ))}
