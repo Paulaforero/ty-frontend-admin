@@ -20,7 +20,9 @@ import {
   InputLabel,
 } from '@mui/material'
 import { useState } from 'react'
-import IconMenu from './menu'
+import IconMenu from '@/components/data-page-view/menu'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function DataPageView({
   title,
@@ -29,6 +31,7 @@ export default function DataPageView({
   filters,
   createButtonLabel,
 }) {
+  const pathname = usePathname()
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [page, setPage] = useState(0)
 
@@ -71,12 +74,12 @@ export default function DataPageView({
                   className="pb-2"
                   color="secondary"
                 >
-                  Filtros de busqueda
+                  Filtros de búsqueda
                 </Typography>
                 <Stack direction="row" spacing={1}>
                   {filters.map(filter => (
                     <FormControl fullWidth key={filter.label}>
-                      <InputLabel id={filter.label} color="secondary">
+                      <InputLabel id={filter.label} color="primary">
                         {filter.label}
                       </InputLabel>
                       <Select
@@ -111,9 +114,11 @@ export default function DataPageView({
               variant="outlined"
               placeholder="Buscar por nombre..."
             ></TextField>
-            <Button variant="contained" color="primary">
-              {createButtonLabel}
-            </Button>
+            <Link href={pathname + '/create'}>
+              <Button variant="contained" color="primary">
+                {createButtonLabel}
+              </Button>
+            </Link>
           </Box>
 
           <TableContainer>
@@ -121,7 +126,7 @@ export default function DataPageView({
               <TableHead>
                 <TableRow>
                   {columnsAttributes.map(attr => (
-                    <TableCell align="left" color="primary" key={attr}>
+                    <TableCell align="left" color="primary" key={attr} className='text-secondary'>
                       {columns[attr]}
                     </TableCell>
                   ))}
@@ -140,7 +145,7 @@ export default function DataPageView({
                 ).map((row, idx) => (
                   <TableRow key={idx}>
                     {columnsAttributes.map(attr => (
-                      <TableCell align="left" key={attr}>
+                      <TableCell align="left" key={attr} className='text-secondary'>
                         {row[attr]}
                       </TableCell>
                     ))}
