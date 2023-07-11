@@ -24,7 +24,6 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, handleDele
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
