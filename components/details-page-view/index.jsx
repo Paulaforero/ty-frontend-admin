@@ -14,7 +14,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export default function DetailsPage({ title, toEditButtonLabel, rows }) {
+export default function DetailsPage({ title, toEditButtonLabel, rows, handleDelete }) {
   const pathname = usePathname()
   const getPreviousPage = (splittedPathname) => {
     splittedPathname.pop()
@@ -73,7 +73,7 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
                   {toEditButtonLabel}
                 </Button>
               </Link>
-              <Button variant="contained" color="error">
+              <Button variant="contained" color="error" onClick={handleDelete}>
                 Eliminar
               </Button>
             </Box>
