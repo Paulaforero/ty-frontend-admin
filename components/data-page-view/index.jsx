@@ -22,7 +22,7 @@ import {
 import { useState } from 'react'
 import IconMenu from '@/components/data-page-view/menu'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function DataPageView({
   title,
@@ -32,6 +32,8 @@ export default function DataPageView({
   createButtonLabel,
   handleDelete,
 }) {
+  const router = useRouter()
+
   const pathname = usePathname()
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [page, setPage] = useState(0)
@@ -43,6 +45,13 @@ export default function DataPageView({
   const handleRowsPerPageChange = event => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
+  }
+
+  const createQueryParamsURLSection = idAttrs => {
+    const queryParams = Object.entries(idAttrs)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+    return `?${queryParams}`
   }
 
   return (
@@ -148,7 +157,23 @@ export default function DataPageView({
                       </TableCell>
                     ))}
                     <TableCell align="left">
-                      <IconMenu handleDelete={() => handleDelete(row.id)} />
+                      <IconMenu
+                        handleView={() =>
+                          router.push(
+                            `${pathname}/view${createQueryParamsURLSection(
+                              row.idAttrs
+                            )}`
+                          )
+                        }
+                        handleEdit={() =>
+                          router.push(
+                            `${pathname}/edit${createQueryParamsURLSection(
+                              row.idAttrs
+                            )}`
+                          )
+                        }
+                        handleDelete={() => handleDelete(row.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
