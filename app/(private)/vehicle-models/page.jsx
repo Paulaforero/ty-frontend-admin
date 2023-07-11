@@ -19,7 +19,6 @@ export default function VehicleModelsPage() {
       createButtonLabel="Agregar modelo"
       columns={columns}
       rows={VehicleModels}
-      filters={filters}
     />
   )
 }
