@@ -2,18 +2,20 @@
 
 import DetailsPageView from '@/components/details-page-view'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { Typography } from '@mui/material'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 
 export default function ViewPage() {
   const router = useRouter()
 
-  const { id } = useParams()
+  const searchParams = useSearchParams()
+
+  const id = searchParams.get('id')
 
   const [cityData, setCityData] = useState({
     id: '',
-    name: 'aaa',
+    name: '',
     stateId: '',
   })
   const [isLoading, setIsLoading] = useState(true)

@@ -3,14 +3,17 @@
 import EditionPageView from '@/components/edition-page-view'
 import { useCallback, useEffect, useState } from 'react'
 import { states } from '@/mock/cities'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
-import { Skeleton, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 
 export default function EditPage() {
-  const { id } = useParams()
   const router = useRouter()
+
+  const searchParams = useSearchParams()
+
+  const id = searchParams.get('id')
 
   const [formValues, setFormValues] = useState({
     id,
