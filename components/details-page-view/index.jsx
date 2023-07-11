@@ -67,7 +67,7 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, handleDele
               ))}
             </Stack>
 
-            <Box className="flex flex-row justify-center gap-2">
+            <Box className="flex flex-row justify-center gap-6">
               <Link href={pathname + '/edit'}>
                 <Button variant="contained" className="max-w-md">
                   {toEditButtonLabel}
