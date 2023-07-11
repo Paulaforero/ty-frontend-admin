@@ -20,6 +20,7 @@ export default function CreatePage() {
       type: 'text',
       name: 'name',
       placeholder: 'Ingrese el nombre',
+      required: true
     },
     {
       label: 'Cantidad de asientos:',
@@ -53,6 +54,7 @@ export default function CreatePage() {
       ],
       name: 'octane_rating',
       placeholder: 'Seleccione el octanaje',
+      required: true
     },
     {
       label: 'Tipo de aceite de la caja:',
