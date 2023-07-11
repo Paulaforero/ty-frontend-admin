@@ -11,7 +11,7 @@ export default function VehicleModelsPage() {
     octaneRating: 'Octanaje',
     seatCount: 'Cantidad asientos',
     engineOilType: 'Tipo aceite de motor',
-  } 
+  }
 
   return (
     <DataPageView

@@ -16,9 +16,9 @@ import { usePathname } from 'next/navigation'
 
 export default function DetailsPage({ title, toEditButtonLabel, rows }) {
   const pathname = usePathname()
-  const getPreviousPage = (splittedPathname) => {
+  const getPreviousPage = splittedPathname => {
     splittedPathname.pop()
-    return(splittedPathname.join('/')) 
+    return splittedPathname.join('/')
   }
 
   return (
@@ -36,16 +36,15 @@ export default function DetailsPage({ title, toEditButtonLabel, rows }) {
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
             <Box component="header" className=" flex pb-4 w-full">
-          <Link href={getPreviousPage(pathname.split('/'))}>
-          <IconButton size="large" color="secondary" className='mr-2'>
-            <ChevronLeftIcon size="large" />
-          </IconButton>
-          </Link>
-            <Typography variant="h4" align="left" className='text-secondary'>
-              {title}
-            </Typography>
+              <Link href={getPreviousPage(pathname.split('/'))}>
+                <IconButton size="large" color="secondary" className="mr-2">
+                  <ChevronLeftIcon size="large" />
+                </IconButton>
+              </Link>
+              <Typography variant="h4" align="left" className="text-secondary">
+                {title}
+              </Typography>
             </Box>
-
 
             <Stack className="w-full" margin={0} component="ul">
               {rows.map(row => (
