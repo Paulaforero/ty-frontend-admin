@@ -2,7 +2,7 @@
 
 import DetailsPageView from '@/components/details-page-view'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Typography } from '@mui/material'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 

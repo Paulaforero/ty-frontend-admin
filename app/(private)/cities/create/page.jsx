@@ -1,11 +1,7 @@
 'use client'
 
 import CreationPageView from '@/components/creation-page-view'
-import { useState } from 'react'
-import { states } from '@/mock/cities'
 import { Alert, Snackbar } from '@mui/material'
-import { useRouter } from 'next/navigation'
-import { BACKEND_URLS } from '@/utils/backend-urls'
 import useCityCreationPage from '@/components/cities/hooks/use-city-creation-page'
 
 export default function CreatePage() {
