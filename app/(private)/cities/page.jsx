@@ -41,6 +41,21 @@ export default function CitiesPage() {
     }
   }, [])
 
+  const handleDelete = async id => {
+    try {
+      const response = await fetch(`${BACKEND_URLS.cities}/${id}`, {
+        method: 'DELETE',
+        cache: 'no-store',
+      })
+
+      if (!response.ok) throw new Error()
+
+      fetchCities()
+    } catch (error) {
+      alert('ERROR')
+    }
+  }
+
   useEffect(() => {
     fetchCities()
   }, [fetchCities])
@@ -52,6 +67,7 @@ export default function CitiesPage() {
       columns={columns}
       rows={cities}
       filters={filters}
+      handleDelete={handleDelete}
     />
   )
 }
