@@ -13,6 +13,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import TextInputListItem from '../form-list-items/text-input-list-item'
 import SelectInputListItem from '../form-list-items/select-input-list-item'
 import NumberInputListItem from '../form-list-items/number-input-list-item'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function CreationPage({
   title,
@@ -21,7 +23,9 @@ export default function CreationPage({
   values,
   handleSubmit,
   handleChange,
-}) {
+}) 
+{
+  const pathname = usePathname()
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
@@ -29,9 +33,11 @@ export default function CreationPage({
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box component="header" className="pb-4 w-full">
-          <IconButton size="large" color="secondary">
-            <ChevronLeftIcon size="large" />
-          </IconButton>
+          <Link href={ pathname.replace("/create","")}>
+            <IconButton size="large" color="secondary">
+              <ChevronLeftIcon size="large" />
+            </IconButton>
+          </Link>
         </Box>
 
         <Box
