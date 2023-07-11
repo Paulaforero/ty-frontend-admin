@@ -32,14 +32,6 @@ export default function CreationPage({
         component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
-        <Box component="header" className="pb-4 w-full">
-          <Link href={ pathname.replace("/create","")}>
-            <IconButton size="large" color="secondary">
-              <ChevronLeftIcon size="large" />
-            </IconButton>
-          </Link>
-        </Box>
-
         <Box
           component="section"
           className="flex flex-row flex-grow gap-4 w-full"
@@ -48,9 +40,16 @@ export default function CreationPage({
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Typography variant="h4" align="left" className="text-secondary">
-              {title}
-            </Typography>
+            <Box component="header" className="flex pb-4 w-full">
+              <Link href={pathname.replace('/create', '')}>
+                <IconButton size="large" color="secondary" className="mr-2">
+                  <ChevronLeftIcon size="large" />
+                </IconButton>
+              </Link>
+              <Typography variant="h4" align="left" className="text-secondary">
+                {title}
+              </Typography>
+            </Box>
             <form onSubmit={handleSubmit}>
               {inputs.map(input =>
                 input.type === 'text' ? (
