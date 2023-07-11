@@ -25,8 +25,8 @@ export default function CitiesPage() {
 
   return (
     <DataPageView
-      title="Modelos de vehiculos"
-      createButtonLabel="Agregar modelo"
+      title="Ciudades"
+      createButtonLabel="Agregar ciudad"
       columns={columns}
       rows={cities}
       filters={filters}
