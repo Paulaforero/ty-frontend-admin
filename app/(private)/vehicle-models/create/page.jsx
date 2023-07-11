@@ -17,32 +17,28 @@ export default function CreatePage() {
 
   const inputs = [
     {
-      label: 'Nombre:',
       type: 'text',
       name: 'name',
-      placeholder: 'Ingrese el nombre',
+      placeholder: 'Nombre',
       required: true,
     },
     {
-      label: 'Cantidad de asientos:',
       type: 'number',
       name: 'seatCount',
-      placeholder: 'Ingrese la cantidad de asientos',
+      placeholder: 'Cantidad de asientos',
       min: 2,
       max: 8,
       required: true,
     },
     {
-      label: 'Peso en Kg:',
       type: 'number',
       name: 'weightInKg',
-      placeholder: 'Ingrese el peso',
+      placeholder: 'Peso',
       min: 100,
       required: true,
       adornment: 'Kg',
     },
     {
-      label: 'Octanaje:',
       type: 'select',
       options: [
         {
@@ -55,28 +51,25 @@ export default function CreatePage() {
         },
       ],
       name: 'octaneRating',
-      placeholder: 'Seleccione el octanaje',
+      placeholder: 'Octanaje',
       required: true,
     },
     {
-      label: 'Tipo de aceite de la caja:',
       type: 'text',
       name: 'gearboxOilType',
-      placeholder: 'Ingrese el tipo de aceite de la caja',
+      placeholder: 'Tipo aceite de caja',
       required: true,
     },
     {
-      label: 'Tipo de aceite del motor:',
       type: 'text',
       name: 'engineOilType',
-      placeholder: 'Ingrese el tipo de aceite del motor',
+      placeholder: 'Tipo aceite de motor',
       required: true,
     },
     {
-      label: 'Tipo de refrigerante:',
       type: 'text',
       name: 'engineCoolantType',
-      placeholder: 'Ingrese el tipo de refrigerante',
+      placeholder: 'Tipo refrigerante',
       required: true,
     },
   ]
@@ -91,8 +84,8 @@ export default function CreatePage() {
 
   return (
     <CreationPageView
-      title="Crear modelo de vehículo"
-      submitLabel="Crear"
+      title="Modelo de vehículo"
+      submitLabel="Crear modelo de vehículo"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}
