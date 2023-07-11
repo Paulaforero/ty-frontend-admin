@@ -76,7 +76,7 @@ export default function DataPageView({
                 <Stack direction="row" spacing={1}>
                   {filters.map(filter => (
                     <FormControl fullWidth key={filter.label}>
-                      <InputLabel id={filter.label} color="secondary">
+                      <InputLabel id={filter.label} color="primary">
                         {filter.label}
                       </InputLabel>
                       <Select
@@ -121,7 +121,7 @@ export default function DataPageView({
               <TableHead>
                 <TableRow>
                   {columnsAttributes.map(attr => (
-                    <TableCell align="left" color="primary" key={attr}>
+                    <TableCell align="left" color="primary" key={attr} className='text-secondary'>
                       {columns[attr]}
                     </TableCell>
                   ))}
@@ -140,7 +140,7 @@ export default function DataPageView({
                 ).map((row, idx) => (
                   <TableRow key={idx}>
                     {columnsAttributes.map(attr => (
-                      <TableCell align="left" key={attr}>
+                      <TableCell align="left" key={attr} className='text-secondary'>
                         {row[attr]}
                       </TableCell>
                     ))}
