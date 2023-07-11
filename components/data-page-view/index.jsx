@@ -148,7 +148,7 @@ export default function DataPageView({
                       </TableCell>
                     ))}
                     <TableCell align="left">
-                      <IconMenu handleDelete={handleDelete} />
+                      <IconMenu handleDelete={() => handleDelete(row.id)} />
                     </TableCell>
                   </TableRow>
                 ))}
