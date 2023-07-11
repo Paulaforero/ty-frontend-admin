@@ -110,10 +110,6 @@ export default function DataPageView({
             component="section"
             className="flex flex-nowrap gap-2 justify-end mt-2"
           >
-            <TextField
-              variant="outlined"
-              placeholder="Buscar por nombre..."
-            ></TextField>
             <Link href={pathname + '/create'}>
               <Button variant="contained" color="primary">
                 {createButtonLabel}
