@@ -60,7 +60,8 @@ export default function ViewPage() {
 
   return (
     <DetailsPageView
-      title={`Modelo de vehículo #${id}`}
+      title='Modelo de vehículo'
+      id={`#${id}`}
       toEditButtonLabel="Editar"
       rows={rows}
       values={formValues}
