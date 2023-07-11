@@ -26,6 +26,11 @@ export default function CitiesPage() {
     },
   ]
 
+  const addIdAttrsObject = rows =>
+    rows.map(row => {
+      return { ...row, idAttrs: { id: row.id } }
+    })
+
   const fetchCities = useCallback(async () => {
     try {
       const response = await fetch(BACKEND_URLS.cities, {
@@ -34,8 +39,9 @@ export default function CitiesPage() {
       })
 
       const fetchedCities = await response.json()
+      const formattedCities = addIdAttrsObject(fetchedCities)
 
-      setCities(fetchedCities)
+      setCities(formattedCities)
     } catch (error) {
       alert('ERROR')
     }
