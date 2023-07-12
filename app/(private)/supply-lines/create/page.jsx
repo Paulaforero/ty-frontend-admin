@@ -1,30 +1,11 @@
 'use client'
 
 import CreationPageView from '@/components/creation-page-view'
-import { useState } from 'react'
+import useSupplyLineCreationPage from '@/components/supply-lines/hooks/use-supply-line-creation-page'
 
 export default function CreatePage() {
-  const [formValues, setFormValues] = useState({
-    name: '',
-  })
-
-  const inputs = [
-    {
-      label: 'Nombre:',
-      type: 'text',
-      name: 'name',
-      placeholder: 'Ingrese el nombre',
-      required: true,
-    },
-  ]
-
-  const handleChange = event => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-  }
+  const { inputs, formValues, handleChange, handleSubmit } =
+    useSupplyLineCreationPage()
 
   return (
     <CreationPageView

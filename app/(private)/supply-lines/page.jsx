@@ -1,26 +1,10 @@
 'use client'
 
 import DataPageView from '@/components/data-page-view'
-import { supplyLines } from '@/mock/supply-lines'
+import useCitiesDataPage from '@/components/supply-lines/hooks/use-supply-lines-data-page'
 
 export default function SupplyLinesPage() {
-  const columns = {
-    id: 'ID',
-    name: 'Nombre',
-  }
-
-  const filters = [
-    {
-      label: 'Filtar por estado',
-      options: [
-        { label: 'uno', value: 1 },
-        { label: 'dos', value: 2 },
-        { label: 'tres', value: 3 },
-        { label: 'cuatro', value: 4 },
-        { label: 'cinco', value: 5 },
-      ],
-    },
-  ]
+  const {supplyLines, columns, handleDelete} = useCitiesDataPage()
 
   return (
     <DataPageView
@@ -28,7 +12,7 @@ export default function SupplyLinesPage() {
       createButtonLabel="Agregar linea de suministro"
       columns={columns}
       rows={supplyLines}
-      filters={filters}
+      handleDelete={handleDelete}
     />
   )
 }
