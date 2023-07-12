@@ -1,6 +1,6 @@
 import { Alert, Snackbar } from '@mui/material'
 
-const { createContext, useState } = require('react')
+const { createContext, useState, useCallback } = require('react')
 
 export const SnackbarContext = createContext(null)
 
@@ -12,22 +12,22 @@ export function SnackbarProvider({ children }) {
     autoHideDuration: 3000,
   })
 
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
     setIsOpen(true)
-  }
+  }, [])
 
   const handleClose = () => {
     setIsOpen(false)
   }
 
-  const updateSnackbarParams = newParams => {
+  const updateSnackbarParams = useCallback(newParams => {
     setSnackbarParams({
       message: newParams?.message || snackbarParams.message,
       severity: newParams?.severity || snackbarParams.severity,
       autoHideDuration:
         newParams?.autoHideDuration || snackbarParams.autoHideDuration,
     })
-  }
+  }, [snackbarParams])
 
   return (
     <SnackbarContext.Provider
