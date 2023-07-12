@@ -50,13 +50,13 @@ export default function CreationPage({
             <Typography variant="h4" align="left" className="text-secondary">
               {title}
             </Typography>
-            <form onSubmit={handleSubmit}>
+            <Box className='flex border-2 border-solid border-gray-500/[10] rounded-lg  w-[35%] h-[110%] absolute left-1/2 transform -translate-x-1/2 ml-[53px] mt-9'/>
+            <form onSubmit={handleSubmit} className='flex flex-col items-center relative'>
               {inputs.map(input =>
                 input.type === 'text' ? (
-                  <FormControl key={input.name} fullWidth margin="normal">
+                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
                     <TextInputListItem
                       key={input.name}
-                      label={input.label}
                       name={input.name}
                       placeholder={input.placeholder}
                       handleChange={handleChange}
@@ -66,7 +66,7 @@ export default function CreationPage({
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
-                  <FormControl key={input.name} fullWidth margin="normal">
+                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
                     <NumberInputListItem
                       key={input.name}
                       label={input.label}
@@ -83,7 +83,7 @@ export default function CreationPage({
                     />
                   </FormControl>
                 ) : (
-                  <FormControl key={input.name} fullWidth margin="normal">
+                  <FormControl key={input.name} className= 'w-[35%] mb-[0.15rem]'>
                     <SelectInputListItem
                       key={input.name}
                       label={input.label}
