@@ -1,15 +1,15 @@
 'use client'
 
-import EditionPageView from '@/components/edition-page-view'
 import { useCallback, useEffect, useState } from 'react'
 import { states } from '@/mock/cities'
 import { useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
-import { Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
+import useSnackbar from '@/hooks/use-snackbar'
 
 export default function useCitiesEditionPage() {
   const router = useRouter()
+  const notify = useSnackbar()
 
   const searchParams = useSearchParams()
 
@@ -60,7 +60,10 @@ export default function useCitiesEditionPage() {
 
       setFormValues(fetchedCityData)
     } catch (error) {
-      alert('ERROR')
+      notify({
+        message: 'Error al obtenter los datos de la ciudad.',
+        severity: 'error',
+      })
     } finally {
       setIsLoading(false)
     }
@@ -79,10 +82,17 @@ export default function useCitiesEditionPage() {
 
       if (!response.ok) throw new Error()
 
+      notify({
+        message: '¡Se ha editado la ciudad exitosamente!',
+        severity: 'success',
+      })
+
       router.push('/cities')
     } catch (error) {
-      console.log(error)
-      alert('ERROR')
+      notify({
+        message: 'Error al intentar editar la ciudad.',
+        severity: 'error',
+      })
     }
   }
 

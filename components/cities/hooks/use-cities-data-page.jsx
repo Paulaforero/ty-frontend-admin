@@ -1,7 +1,10 @@
 import { useState, useCallback, useEffect } from 'react'
 import { BACKEND_URLS } from '@/utils/backend-urls'
+import useSnackbar from '@/hooks/use-snackbar'
 
 export default function useCitiesDataPage() {
+  const notify = useSnackbar()
+
   const [cities, setCities] = useState([])
 
   const columns = {
@@ -40,9 +43,12 @@ export default function useCitiesDataPage() {
 
       setCities(formattedCities)
     } catch (error) {
-      alert('ERROR')
+      notify({
+        message: 'Error obteniendo las ciudades.',
+        severity: 'error',
+      })
     }
-  }, [])
+  }, [notify])
 
   const handleDelete = async id => {
     try {
@@ -53,9 +59,17 @@ export default function useCitiesDataPage() {
 
       if (!response.ok) throw new Error()
 
+      notify({
+        message: '¡Se ha eliminado la ciudad exitosamente!',
+        severity: 'success',
+      })
+
       fetchCities()
     } catch (error) {
-      alert('ERROR')
+      notify({
+        message: 'Error al intentar eliminar la ciudad.',
+        severity: 'error',
+      })
     }
   }
 

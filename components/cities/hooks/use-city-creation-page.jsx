@@ -1,20 +1,14 @@
 'use client'
 
-import CreationPageView from '@/components/creation-page-view'
 import { useState } from 'react'
 import { states } from '@/mock/cities'
-import { Alert, Snackbar } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
+import useSnackbar from '@/hooks/use-snackbar'
 
 export default function useCityCreationPage() {
   const router = useRouter()
-
-  const [snackbarData, setSnackbarData] = useState({
-    isOpen: false,
-    severity: '',
-    message: '',
-  })
+  const notify = useSnackbar()
 
   const [formValues, setFormValues] = useState({
     name: '',
@@ -36,16 +30,14 @@ export default function useCityCreationPage() {
 
       router.push('/cities')
 
-      setSnackbarData({
-        isOpen: true,
-        severity: 'success',
+      notify({
         message: '!Ciudad creada con éxito!',
+        severity: 'success',
       })
     } catch (error) {
-      setSnackbarData({
-        isOpen: true,
-        severity: 'error',
+      notify({
         message: 'Error al crear la ciudad...',
+        severity: 'error',
       })
     }
   }
@@ -80,16 +72,10 @@ export default function useCityCreationPage() {
     createCity()
   }
 
-  const handleSnackbarClose = () => {
-    setSnackbarData({ ...snackbarData, isOpen: false })
-  }
-
   return {
     inputs,
     formValues,
     handleChange,
     handleSubmit,
-    snackbarData,
-    handleSnackbarClose,
   }
 }
