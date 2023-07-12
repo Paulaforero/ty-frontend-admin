@@ -1,13 +1,13 @@
 import { SnackbarContext } from '@/contexts/snackbar'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 
 export default function useSnackbar() {
   const { openSnackbar, updateSnackbarParams } = useContext(SnackbarContext)
 
-  const handleNotification = snackbarParams => {
+  const handleNotification = useCallback(snackbarParams => {
     updateSnackbarParams(snackbarParams)
     openSnackbar()
-  }
+  },[openSnackbar, updateSnackbarParams])
 
   return handleNotification
 }
