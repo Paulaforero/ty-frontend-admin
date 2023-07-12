@@ -4,12 +4,10 @@ import {
   ListItem,
   MenuItem,
   Select,
-  Typography,
 } from '@mui/material'
 
 export default function SelectInputListItem({
   label,
-  placeholder,
   value,
   options,
   required,
@@ -18,7 +16,7 @@ export default function SelectInputListItem({
 }) {
   return (
     <ListItem className="flex flex-row w-full">
-      <FormControl className='w-full m-1'>
+      <FormControl className='m-1 w-full'>
         <InputLabel
           id={`${name}-select`}
           className="items-center  w-full"
@@ -28,14 +26,14 @@ export default function SelectInputListItem({
         <Select
           id={`${name}-select`}
           value={value}
-          label={placeholder}
+          label={label}
           name={name}
           required={required}
           className=" w-full text-secondary"
           onChange={handleChange}
         >
           <MenuItem value="" className="text-secondary">
-            {placeholder}
+            {label}
           </MenuItem>
           {options.map(option => (
             <MenuItem

@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 
 export default function TextInputListItem({
-  placeholder,
+  label,
   name,
   value,
   required,
@@ -17,7 +17,7 @@ export default function TextInputListItem({
   return (
     <ListItem className="flex flex-row w-full justify-center">
       <FormControl className='m-1 w-full'>
-        <InputLabel htmlFor="outlined-adornment-text">{placeholder}</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-text">{label}</InputLabel>
           <OutlinedInput
             required={required ? required : false}
             className="text-secondary"
@@ -31,7 +31,7 @@ export default function TextInputListItem({
                 ' '
               )
             }
-            label={placeholder}
+            label={label}
           />
       </FormControl>
     </ListItem>
