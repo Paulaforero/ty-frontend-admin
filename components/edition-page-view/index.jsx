@@ -13,8 +13,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import TextInputListItem from '../form-list-items/text-input-list-item'
 import SelectInputListItem from '../form-list-items/select-input-list-item'
 import NumberInputListItem from '../form-list-items/number-input-list-item'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function EditionPage({
   title,
@@ -25,11 +25,6 @@ export default function EditionPage({
   handleChange,
 }) {
   const pathname = usePathname()
-  const getPreviousPage = splittedPathname => {
-    splittedPathname.pop()
-    splittedPathname.pop()
-    return splittedPathname.join('/')
-  }
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
@@ -44,8 +39,8 @@ export default function EditionPage({
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Box component="header" className="flex pb-4 w-full">
-              <Link href={getPreviousPage(pathname.split('/'))}>
+            <Box component="header" className="flex pb-4 w-full mb-11">
+              <Link href={pathname.replace('/create', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
                 </IconButton>
@@ -54,15 +49,14 @@ export default function EditionPage({
                 {title}
               </Typography>
             </Box>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='flex flex-col items-center relative mb-8'>
               {inputs.map(input =>
                 input.type === 'text' ? (
-                  <FormControl key={input.name} fullWidth margin="normal">
+                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
                     <TextInputListItem
                       key={input.name}
-                      label={input.label}
                       name={input.name}
-                      placeholder={input.placeholder}
+                      label={input.label}
                       handleChange={handleChange}
                       value={values[input.name]}
                       required={input.required}
@@ -70,12 +64,11 @@ export default function EditionPage({
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
-                  <FormControl key={input.name} fullWidth margin="normal">
+                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
                     <NumberInputListItem
                       key={input.name}
                       label={input.label}
                       name={input.name}
-                      placeholder={input.placeholder}
                       handleChange={handleChange}
                       value={values[input.name]}
                       required={input.required}
@@ -87,11 +80,10 @@ export default function EditionPage({
                     />
                   </FormControl>
                 ) : (
-                  <FormControl key={input.name} fullWidth margin="normal">
+                  <FormControl key={input.name} className= 'w-[35%] mb-[0.15rem]'>
                     <SelectInputListItem
                       key={input.name}
                       label={input.label}
-                      placeholder={input.placeholder}
                       handleChange={handleChange}
                       options={input.options}
                       value={values[input.name]}
@@ -102,16 +94,9 @@ export default function EditionPage({
                 )
               )}
 
-              <Box
-                textAlign="center"
-                mt={4}
-                className="flex flex-row justify-center gap-6"
-              >
+              <Box textAlign="center" mt={4} className="mx-auto">
                 <Button variant="contained" className="max-w-md" type="submit">
                   {submitLabel}
-                </Button>
-                <Button variant="contained" color="error">
-                  Cancelar
                 </Button>
               </Box>
             </form>
