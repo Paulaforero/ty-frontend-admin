@@ -18,32 +18,28 @@ export default function EditPage() {
 
   const inputs = [
     {
-      label: 'Nombre:',
       type: 'text',
       name: 'name',
-      placeholder: 'Ingrese el nombre',
+      label: 'Nombre',
       required: true,
     },
     {
-      label: 'Cantidad de asientos:',
       type: 'number',
       name: 'seatCount',
-      placeholder: 'Ingrese la cantidad de asientos',
+      label: 'Cantidad de asientos',
       min: 2,
       max: 8,
       required: true,
     },
     {
-      label: 'Peso en Kg:',
       type: 'number',
       name: 'weightInKg',
-      placeholder: 'Ingrese el peso',
+      label: 'Peso',
       min: 100,
       required: true,
       adornment: 'Kg',
     },
     {
-      label: 'Octanaje:',
       type: 'select',
       options: [
         {
@@ -56,28 +52,25 @@ export default function EditPage() {
         },
       ],
       name: 'octaneRating',
-      placeholder: 'Seleccione el octanaje',
+      label: 'Octanaje',
       required: true,
     },
     {
-      label: 'Tipo de aceite de la caja:',
       type: 'text',
       name: 'gearboxOilType',
-      placeholder: 'Ingrese el tipo de aceite de la caja',
+      label: 'Tipo de aceite de caja',
       required: true,
     },
     {
-      label: 'Tipo de aceite del motor:',
       type: 'text',
       name: 'engineOilType',
-      placeholder: 'Ingrese el tipo de aceite del motor',
+      label: 'Tipo de aceite de motor',
       required: true,
     },
     {
-      label: 'Tipo de refrigerante:',
       type: 'text',
       name: 'engineCoolantType',
-      placeholder: 'Ingrese el tipo de refrigerante',
+      label: 'Tipo de refrigerante',
       required: true,
     },
   ]
@@ -88,8 +81,8 @@ export default function EditPage() {
 
   return (
     <EditionPageView
-      title="Editar modelo de vehículo"
-      submitLabel="Guardar"
+      title="Modelo de vehículo"
+      submitLabel="Guardar modelo de vehículo"
       inputs={inputs}
       values={formValues}
       handleChange={handleChange}
