@@ -5,18 +5,39 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import DeleteIcon from '@mui/icons-material/Delete'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import EditIcon from '@mui/icons-material/Edit'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 import { MoreVertOutlined } from '@mui/icons-material'
 import { Button, Menu } from '@mui/material'
-import { useState } from 'react'
+import { useState, forwardRef } from 'react'
 
-export default function IconMenu() {
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+})
+
+export default function IconMenu({ handleView, handleEdit, handleDelete }) {
   const [anchorEl, setAnchorEl] = useState(null)
+  const [openDelete, setOpenDelete] = useState(false)
   const open = Boolean(anchorEl)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
+
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleClickDelete = () => {
+    handleDelete()
+    setAnchorEl(null)
+    setOpenDelete(true)
+  }
+
+  const handleCloseDelete = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setOpenDelete(false)
   }
 
   return (
@@ -40,25 +61,38 @@ export default function IconMenu() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem>
+          <MenuItem onClick={handleView}>
             <ListItemIcon>
               <VisibilityIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Ver</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleEdit}>
             <ListItemIcon>
               <EditIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Editar</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleClickDelete}>
             <ListItemIcon>
               <DeleteIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Eliminar</ListItemText>
           </MenuItem>
         </Menu>
+        <Snackbar
+          open={openDelete}
+          autoHideDuration={5000}
+          onClose={handleCloseDelete}
+        >
+          <Alert
+            onClose={handleCloseDelete}
+            severity="success"
+            sx={{ width: '100%' }}
+          >
+            Se eliminó con éxito!
+          </Alert>
+        </Snackbar>
       </Paper>
     </>
   )
