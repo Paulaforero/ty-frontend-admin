@@ -2,8 +2,12 @@
 
 import EditionPageView from '@/components/edition-page-view'
 import { useState } from 'react'
+import { useParams } from 'next/navigation'
+
 
 export default function EditPage() {
+  const { id } = useParams()
+
   const vehicleModels = {
     id: 1,
     name: 'Toyota Camry',
@@ -82,6 +86,7 @@ export default function EditPage() {
   return (
     <EditionPageView
       title="Modelo de vehículo"
+      id={`#${id}`}
       submitLabel="Guardar modelo de vehículo"
       inputs={inputs}
       values={formValues}
