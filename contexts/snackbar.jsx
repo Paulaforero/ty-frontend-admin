@@ -20,14 +20,14 @@ export function SnackbarProvider({ children }) {
     setIsOpen(false)
   }
 
-  const updateSnackbarParams = newParams => {
-    setSnackbarParams({
-      message: newParams?.message || snackbarParams.message,
-      severity: newParams?.severity || snackbarParams.severity,
+  const updateSnackbarParams = useCallback(newParams => {
+    setSnackbarParams(prevSnackbarParams => ({
+      message: newParams?.message || prevSnackbarParams.message,
+      severity: newParams?.severity || prevSnackbarParams.severity,
       autoHideDuration:
-        newParams?.autoHideDuration || snackbarParams.autoHideDuration,
-    })
-  }
+        newParams?.autoHideDuration || prevSnackbarParams.autoHideDuration,
+    }))
+  }, [])
 
   return (
     <SnackbarContext.Provider
