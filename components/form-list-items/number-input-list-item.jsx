@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 
 export default function NumberInputListItem({
-  placeholder,
+  label,
   name,
   value,
   required,
@@ -19,13 +19,13 @@ export default function NumberInputListItem({
   return (
     <ListItem className="flex flex-row w-full justify-center">
       <FormControl className='m-1 w-full'>
-        <InputLabel htmlFor="standard-adornment-number">{placeholder}</InputLabel>
+        <InputLabel htmlFor="standard-adornment-number">{label}</InputLabel>
         <OutlinedInput
           required={required}
           className="text-secondary"
           name={name}
           value={value}
-          label={placeholder}
+          label={label}
           type="number"
           inputProps={{
             min: min,

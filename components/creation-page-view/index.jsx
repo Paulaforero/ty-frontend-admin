@@ -56,7 +56,7 @@ export default function CreationPage({
                     <TextInputListItem
                       key={input.name}
                       name={input.name}
-                      placeholder={input.placeholder}
+                      label={input.label}
                       handleChange={handleChange}
                       value={values[input.name]}
                       required={input.required}
@@ -69,7 +69,6 @@ export default function CreationPage({
                       key={input.name}
                       label={input.label}
                       name={input.name}
-                      placeholder={input.placeholder}
                       handleChange={handleChange}
                       value={values[input.name]}
                       required={input.required}
@@ -85,7 +84,6 @@ export default function CreationPage({
                     <SelectInputListItem
                       key={input.name}
                       label={input.label}
-                      placeholder={input.placeholder}
                       handleChange={handleChange}
                       options={input.options}
                       value={values[input.name]}

@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 
 export default function SelectInputListItem({
-  placeholder,
+  label,
   value,
   options,
   required,
@@ -26,14 +26,14 @@ export default function SelectInputListItem({
         <Select
           id={`${name}-select`}
           value={value}
-          label={placeholder}
+          label={label}
           name={name}
           required={required}
           className=" w-full text-secondary"
           onChange={handleChange}
         >
           <MenuItem value="" className="text-secondary">
-            {placeholder}
+            {label}
           </MenuItem>
           {options.map(option => (
             <MenuItem
