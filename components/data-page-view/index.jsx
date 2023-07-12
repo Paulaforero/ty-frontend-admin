@@ -57,7 +57,6 @@ export default function DataPageView({
   return (
     <Box component="main" className="w-full h-full pt-9">
       <Container
-        component="container"
         className="flex flex-col justify-center items-center w-full mb-5"
       >
         <Card
