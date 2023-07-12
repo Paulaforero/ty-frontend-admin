@@ -1,15 +1,13 @@
 import {
   FormControl,
-  Input,
   InputAdornment,
   InputLabel,
   ListItem,
-  Typography,
+  OutlinedInput,
 } from '@mui/material'
 
 export default function NumberInputListItem({
   label,
-  placeholder,
   name,
   value,
   required,
@@ -20,22 +18,14 @@ export default function NumberInputListItem({
   const { min, max } = inputProps
   return (
     <ListItem className="flex flex-row w-full justify-center">
-      <Typography
-        variant="p"
-        align="left"
-        className="font-bold w-[15%] text-secondary"
-      >
-        {label}
-      </Typography>
-      <FormControl className="ml-5 w-[85%] flex-grow" variant="standard">
-        <InputLabel htmlFor="standard-adornment-password">
-          {placeholder}
-        </InputLabel>
-        <Input
+      <FormControl className='m-1 w-full'>
+        <InputLabel htmlFor="standard-adornment-number">{label}</InputLabel>
+        <OutlinedInput
           required={required}
           className="text-secondary"
           name={name}
           value={value}
+          label={label}
           type="number"
           inputProps={{
             min: min,
@@ -46,7 +36,7 @@ export default function NumberInputListItem({
             adornment ? (
               <InputAdornment position="start">{adornment}</InputAdornment>
             ) : (
-              false
+              ' '
             )
           }
         />
