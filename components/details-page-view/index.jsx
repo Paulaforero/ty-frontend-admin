@@ -16,15 +16,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export default function DetailsPage({ title, toEditButtonLabel, rows, id }) {
+export default function DetailsPage({ title, toEditButtonLabel, rows, id, handleDelete }) {
   const pathname = usePathname()
   const getPreviousPage = (splittedPathname) => {
     splittedPathname.pop()
     return(splittedPathname.join('/')) 
-  }
-
-  const handleDelete = () =>{
-    console.log('hello');
   }
 
   return (
