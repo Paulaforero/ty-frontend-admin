@@ -21,7 +21,7 @@ export default function SelectInputListItem({
           id={`${name}-select`}
           className="items-center  w-full"
         >
-          {placeholder}
+          {label}
         </InputLabel>
         <Select
           id={`${name}-select`}
