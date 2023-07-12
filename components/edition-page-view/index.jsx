@@ -17,6 +17,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 export default function EditionPage({
+  id,
   title,
   submitLabel,
   inputs,
@@ -39,14 +40,17 @@ export default function EditionPage({
             variant="elevation"
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
           >
-            <Box component="header" className="flex pb-4 w-full mb-11">
+            <Box component="header" className="flex pb-0 w-full mb-11">
               <Link href={pathname.replace('/create', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
                 </IconButton>
               </Link>
-              <Typography variant="h4" align="left" className="text-secondary">
+              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
                 {title}
+              </Typography>
+              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
+                  {id}
               </Typography>
             </Box>
             <form onSubmit={handleSubmit} className='flex flex-col items-center relative mb-8'>
