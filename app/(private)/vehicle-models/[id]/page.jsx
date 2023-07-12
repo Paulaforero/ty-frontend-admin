@@ -21,10 +21,6 @@ export default function ViewPage() {
 
   const rows = [
     {
-      label: 'ID:',
-      value: vehiclesModels.id,
-    },
-    {
       label: 'Nombre:',
       value: vehiclesModels.name,
     },
@@ -62,7 +58,7 @@ export default function ViewPage() {
     <DetailsPageView
       title='Modelo de vehículo'
       id={`#${id}`}
-      toEditButtonLabel="Editar"
+      toEditButtonLabel="Editar modelo de vehículo"
       rows={rows}
       values={formValues}
       handleChange={handleChange}
