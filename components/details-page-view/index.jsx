@@ -53,26 +53,23 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id }) {
                   {id}
               </Typography>
             </Box>
-            <Divider variant='middle'/>
-            <Stack className="w-full" margin={0} component="ul">
               {rows.map(row => (
-                <ListItem
+                <Box
                   key={row.label}
-                  className="flex flex-row w-full justify-center text-secondary"
+                  className=" text-secondary"
                 >
                   <Typography
-                    variant="p"
-                    align="left"
-                    className="font-bold w-[15%]"
+                    variant="h6"
+                    className="font-bold  text-secondary"
                   >
                     {row.label}
                   </Typography>
-                  <Typography className="ml-5 w-[85%] flex-grow">
+                  <Divider variant='fullWidth'/>
+                  <Typography className="text-secondary" variant='p'>
                     {row.value}
                   </Typography>
-                </ListItem>
+                </Box>
               ))}
-            </Stack>
 
             <Box className="flex flex-row justify-center gap-6">
               <Link href={pathname + '/edit'}>
