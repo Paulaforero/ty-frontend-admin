@@ -5,7 +5,7 @@ import { Typography } from '@mui/material'
 import useCityDetailsPage from '@/components/cities/hooks/use-citiy-details-page'
 
 export default function ViewPage() {
-  const { rows, cityData, handleChange, handleSubmit, handleDelete, isLoading } = useCityDetailsPage()
+  const { rows, cityData, handleChange, handleSubmit, handleDelete, isLoading, id } = useCityDetailsPage()
 
   return (
     <>

@@ -115,5 +115,5 @@ export default function useCityDetailsPage() {
     fetchCityData()
   }, [fetchCityData])
 
-  return { rows, cityData, handleChange, handleSubmit, handleDelete, isLoading }
+  return { rows, cityData, handleChange, handleSubmit, handleDelete, isLoading, id }
 }
