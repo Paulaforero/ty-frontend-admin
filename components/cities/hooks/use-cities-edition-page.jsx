@@ -67,7 +67,7 @@ export default function useCitiesEditionPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [id])
+  }, [id, notify])
 
   const editCity = async () => {
     try {
