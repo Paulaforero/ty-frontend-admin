@@ -14,6 +14,7 @@ import TextInputListItem from '../form-list-items/text-input-list-item'
 import SelectInputListItem from '../form-list-items/select-input-list-item'
 import NumberInputListItem from '../form-list-items/number-input-list-item'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function CreationPage({
   title,
@@ -29,12 +30,11 @@ export default function CreationPage({
       component="main"
       className="w-full h-full pt-9"
       style={{
-        backgroundImage: 'url(/img/background.png)',
+        backgroundImage: 'url(/images/background.png)',
         backgroundSize: 'cover',
       }}
     >
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
