@@ -56,7 +56,7 @@ export default function ViewPage() {
 
   return (
     <DetailsPageView
-      title='Modelo de vehículo'
+      title="Modelo de vehículo"
       id={`#${id}`}
       toEditButtonLabel="Editar modelo de vehículo"
       rows={rows}

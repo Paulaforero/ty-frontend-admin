@@ -23,15 +23,13 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id }) {
     return splittedPathname.join('/')
   }
 
-  const handleDelete = () =>{
-    console.log('hello');
+  const handleDelete = () => {
+    console.log('hello')
   }
 
   return (
     <Box component="main" className="w-full h-full pt-9">
-      <Container
-        className="flex flex-col justify-center items-center h-full w-full mb-5"
-      >
+      <Container className="flex flex-col justify-center items-center h-full w-full mb-5">
         <Box
           component="section"
           className="flex flex-row flex-grow gap-4 w-full"
@@ -46,30 +44,33 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id }) {
                   <ChevronLeftIcon size="large" />
                 </IconButton>
               </Link>
-              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
+              <Typography
+                variant="h4"
+                align="left"
+                className="text-secondary flex-shrink-0"
+              >
                 {title}
               </Typography>
-              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
-                  {id}
+              <Typography
+                variant="h4"
+                align="right"
+                className="text-secondary flex-1"
+                style={{ wordBreak: 'break-word' }}
+              >
+                {id}
               </Typography>
             </Box>
-              {rows.map(row => (
-                <Box
-                  key={row.label}
-                  className=" text-secondary"
-                >
-                  <Typography
-                    variant="h6"
-                    className="font-bold  text-secondary"
-                  >
-                    {row.label}
-                  </Typography>
-                  <Divider variant='fullWidth'/>
-                  <Typography className="text-secondary" variant='p'>
-                    {row.value}
-                  </Typography>
-                </Box>
-              ))}
+            {rows.map(row => (
+              <Box key={row.label} className=" text-secondary">
+                <Typography variant="h6" className="font-bold  text-secondary">
+                  {row.label}
+                </Typography>
+                <Divider variant="fullWidth" />
+                <Typography className="text-secondary" variant="p">
+                  {row.value}
+                </Typography>
+              </Box>
+            ))}
 
             <Box className="flex flex-row justify-center gap-6">
               <Link href={pathname + '/edit'}>

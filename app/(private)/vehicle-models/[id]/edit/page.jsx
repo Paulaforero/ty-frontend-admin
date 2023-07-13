@@ -4,7 +4,6 @@ import EditionPageView from '@/components/edition-page-view'
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
 
-
 export default function EditPage() {
   const { id } = useParams()
 

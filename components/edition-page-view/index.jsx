@@ -46,17 +46,32 @@ export default function EditionPage({
                   <ChevronLeftIcon size="large" />
                 </IconButton>
               </Link>
-              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
+              <Typography
+                variant="h4"
+                align="left"
+                className="text-secondary flex-shrink-0"
+              >
                 {title}
               </Typography>
-              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
-                  {id}
+              <Typography
+                variant="h4"
+                align="right"
+                className="text-secondary flex-1"
+                style={{ wordBreak: 'break-word' }}
+              >
+                {id}
               </Typography>
             </Box>
-            <form onSubmit={handleSubmit} className='flex flex-col items-center relative mb-8'>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col items-center relative mb-8"
+            >
               {inputs.map(input =>
                 input.type === 'text' ? (
-                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[35%] mb-[0.25rem]"
+                  >
                     <TextInputListItem
                       key={input.name}
                       name={input.name}
@@ -68,7 +83,10 @@ export default function EditionPage({
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
-                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[35%] mb-[0.25rem]"
+                  >
                     <NumberInputListItem
                       key={input.name}
                       label={input.label}
@@ -84,7 +102,10 @@ export default function EditionPage({
                     />
                   </FormControl>
                 ) : (
-                  <FormControl key={input.name} className= 'w-[35%] mb-[0.15rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[35%] mb-[0.15rem]"
+                  >
                     <SelectInputListItem
                       key={input.name}
                       label={input.label}
