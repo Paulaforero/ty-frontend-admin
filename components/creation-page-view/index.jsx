@@ -72,6 +72,7 @@ export default function CreationPage({
                       value={values[input.name]}
                       required={input.required}
                       adornment={input.adornment}
+                      type={input.type}
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
@@ -84,6 +85,26 @@ export default function CreationPage({
                       label={input.label}
                       name={input.name}
                       handleChange={handleChange}
+                      value={values[input.name]}
+                      required={input.required}
+                      adornment={input.adornment}
+                      inputProps={{
+                        min: input.min,
+                        max: input.max,
+                      }}
+                    />
+                  </FormControl>
+                ) : input.type === 'email' ? (
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
+                    <TextInputListItem
+                      key={input.name}
+                      label={input.label}
+                      name={input.name}
+                      handleChange={handleChange}
+                      type={input.type}
                       value={values[input.name]}
                       required={input.required}
                       adornment={input.adornment}
@@ -108,7 +129,7 @@ export default function CreationPage({
                       required={input.required}
                     />
                   </FormControl>
-                )
+                ) 
               )}
 
               <Box textAlign="center" mt={4} className="mx-auto">
