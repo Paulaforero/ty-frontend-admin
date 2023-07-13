@@ -27,20 +27,25 @@ export default function EditionPage({
 }) {
   const pathname = usePathname()
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box 
+    component="main"
+    className="w-full h-full pt-9"
+    style={{
+      backgroundImage: 'url(/img/background.png)',
+      backgroundSize: 'cover',
+    }}>
       <Container
         component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
           component="section"
-          className="flex flex-row flex-grow gap-4 w-full"
+          className="flex flex-row flex-grow gap-4 w-[70%]"
         >
           <Card
-            variant="elevation"
-            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
+            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
-            <Box component="header" className="flex pb-0 w-full mb-11">
+            <Box component="header" className="flex pb-0 w-full mb-7 mt-4">
               <Link href={pathname.replace('/create', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
@@ -70,7 +75,7 @@ export default function EditionPage({
                 input.type === 'text' ? (
                   <FormControl
                     key={input.name}
-                    className="w-[35%] mb-[0.25rem]"
+                    className="w-[45%] mb-[0.25rem]"
                   >
                     <TextInputListItem
                       key={input.name}
@@ -85,7 +90,7 @@ export default function EditionPage({
                 ) : input.type === 'number' ? (
                   <FormControl
                     key={input.name}
-                    className="w-[35%] mb-[0.25rem]"
+                    className="w-[45%] mb-[0.25rem]"
                   >
                     <NumberInputListItem
                       key={input.name}
@@ -104,7 +109,7 @@ export default function EditionPage({
                 ) : (
                   <FormControl
                     key={input.name}
-                    className="w-[35%] mb-[0.15rem]"
+                    className="w-[45%] mb-[0.15rem]"
                   >
                     <SelectInputListItem
                       key={input.name}
