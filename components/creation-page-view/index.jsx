@@ -14,6 +14,7 @@ import TextInputListItem from '../form-list-items/text-input-list-item'
 import SelectInputListItem from '../form-list-items/select-input-list-item'
 import NumberInputListItem from '../form-list-items/number-input-list-item'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function CreationPage({
   title,
@@ -44,7 +45,7 @@ export default function CreationPage({
           <Card
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
-            <Box component="header" className="flex pb-4 w-full mb-11">
+            <Box component="header" className="flex pb-4 w-full mb-7 mt-4">
               <Link href={pathname.replace('/create', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
