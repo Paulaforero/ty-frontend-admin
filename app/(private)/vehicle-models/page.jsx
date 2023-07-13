@@ -15,7 +15,7 @@ export default function VehicleModelsPage() {
 
   return (
     <DataPageView
-      title="Modelos de vehiculos"
+      title="Modelos de vehículos"
       createButtonLabel="Agregar modelo"
       columns={columns}
       rows={VehicleModels}
