@@ -35,7 +35,6 @@ export default function EditionPage({
       backgroundSize: 'cover',
     }}>
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
