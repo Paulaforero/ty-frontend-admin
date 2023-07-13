@@ -75,7 +75,7 @@ export default function CreatePage() {
   ]
 
   const handleChange = event => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
+    setFormValues({ ...formValues, [event.target.name]: event.target.value.trim() })
   }
 
   const handleSubmit = e => {
