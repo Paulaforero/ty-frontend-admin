@@ -2,7 +2,6 @@ import {
   Button,
   Select,
   Table,
-  TextField,
   Divider,
   Stack,
   Card,
@@ -22,7 +21,7 @@ import {
 import { useState } from 'react'
 import IconMenu from '@/components/data-page-view/menu'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function DataPageView({
   title,
@@ -32,6 +31,8 @@ export default function DataPageView({
   createButtonLabel,
   handleDelete,
 }) {
+  const router = useRouter()
+
   const pathname = usePathname()
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [page, setPage] = useState(0)
@@ -45,15 +46,24 @@ export default function DataPageView({
     setPage(0)
   }
 
+  const createQueryParamsURLSection = idAttrs => {
+    const queryParams = Object.entries(idAttrs)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+    return `?${queryParams}`
+  }
+
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box component="main" className="w-full h-full pt-9" style={{
+      backgroundImage: 'url(/images/background.png)',
+      backgroundSize: 'cover',
+    }}>
       <Container
-        component="container"
         className="flex flex-col justify-center items-center w-full mb-5"
       >
         <Card
           variant="elevation"
-          className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10"
+          className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10 rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
         >
           <Box className="flex justify-between w-full">
             <Typography
@@ -148,7 +158,23 @@ export default function DataPageView({
                       </TableCell>
                     ))}
                     <TableCell align="left">
-                      <IconMenu handleDelete={handleDelete} />
+                      <IconMenu
+                        handleView={() =>
+                          router.push(
+                            `${pathname}/view${createQueryParamsURLSection(
+                              row.idAttrs
+                            )}`
+                          )
+                        }
+                        handleEdit={() =>
+                          router.push(
+                            `${pathname}/edit${createQueryParamsURLSection(
+                              row.idAttrs
+                            )}`
+                          )
+                        }
+                        handleDelete={() => handleDelete(row.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}

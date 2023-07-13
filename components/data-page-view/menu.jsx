@@ -15,7 +15,7 @@ const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
-export default function IconMenu({ handleDelete }) {
+export default function IconMenu({ handleView, handleEdit, handleDelete }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [openDelete, setOpenDelete] = useState(false)
   const open = Boolean(anchorEl)
@@ -39,6 +39,7 @@ export default function IconMenu({ handleDelete }) {
     }
     setOpenDelete(false)
   }
+
   return (
     <>
       <Button
@@ -60,13 +61,13 @@ export default function IconMenu({ handleDelete }) {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem>
+          <MenuItem onClick={handleView}>
             <ListItemIcon>
               <VisibilityIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Ver</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleEdit}>
             <ListItemIcon>
               <EditIcon fontSize="small" />
             </ListItemIcon>
