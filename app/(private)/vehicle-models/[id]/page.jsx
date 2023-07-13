@@ -21,31 +21,31 @@ export default function ViewPage() {
 
   const rows = [
     {
-      label: 'Nombre:',
+      label: 'Nombre',
       value: vehiclesModels.name,
     },
     {
-      label: 'Cantidad de asientos:',
+      label: 'Cantidad de asientos',
       value: vehiclesModels.seatCount,
     },
     {
-      label: 'Peso en kg:',
+      label: 'Peso en kg',
       value: vehiclesModels.weightInKg,
     },
     {
-      label: 'Octanaje:',
+      label: 'Octanaje',
       value: vehiclesModels.octaneRating,
     },
     {
-      label: 'Tipo de aceite de la caja:',
+      label: 'Tipo de aceite de la caja',
       value: vehiclesModels.gearboxOilType,
     },
     {
-      label: 'Tipo de aceite del motor:',
+      label: 'Tipo de aceite del motor',
       value: vehiclesModels.engineOilType,
     },
     {
-      label: 'Tipo de refrigerante:',
+      label: 'Tipo de refrigerante',
       value: vehiclesModels.engineCoolantType,
     },
   ]
