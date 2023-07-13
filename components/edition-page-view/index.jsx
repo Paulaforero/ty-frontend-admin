@@ -31,7 +31,7 @@ export default function EditionPage({
     component="main"
     className="w-full h-full pt-9"
     style={{
-      backgroundImage: 'url(/img/background.png)',
+      backgroundImage: 'url(/images/background.png)',
       backgroundSize: 'cover',
     }}>
       <Container
@@ -68,7 +68,7 @@ export default function EditionPage({
             </Box>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col items-center relative mb-8"
+              className="flex flex-col items-center mb-8"
             >
               {inputs.map(input =>
                 input.type === 'text' ? (
