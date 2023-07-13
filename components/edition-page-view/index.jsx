@@ -27,36 +27,56 @@ export default function EditionPage({
 }) {
   const pathname = usePathname()
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box 
+    component="main"
+    className="w-full h-full pt-9"
+    style={{
+      backgroundImage: 'url(/img/background.png)',
+      backgroundSize: 'cover',
+    }}>
       <Container
         component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
           component="section"
-          className="flex flex-row flex-grow gap-4 w-full"
+          className="flex flex-row flex-grow gap-4 w-[70%]"
         >
           <Card
-            variant="elevation"
-            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
+            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
-            <Box component="header" className="flex pb-0 w-full mb-11">
+            <Box component="header" className="flex pb-0 w-full mb-7 mt-4">
               <Link href={pathname.replace('/create', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
                 </IconButton>
               </Link>
-              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
+              <Typography
+                variant="h4"
+                align="left"
+                className="text-secondary flex-shrink-0"
+              >
                 {title}
               </Typography>
-              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
-                  {id}
+              <Typography
+                variant="h4"
+                align="right"
+                className="text-secondary flex-1"
+                style={{ wordBreak: 'break-word' }}
+              >
+                {id}
               </Typography>
             </Box>
-            <form onSubmit={handleSubmit} className='flex flex-col items-center relative mb-8'>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col items-center relative mb-8"
+            >
               {inputs.map(input =>
                 input.type === 'text' ? (
-                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
                     <TextInputListItem
                       key={input.name}
                       name={input.name}
@@ -68,7 +88,10 @@ export default function EditionPage({
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
-                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
                     <NumberInputListItem
                       key={input.name}
                       label={input.label}
@@ -84,7 +107,10 @@ export default function EditionPage({
                     />
                   </FormControl>
                 ) : (
-                  <FormControl key={input.name} className= 'w-[35%] mb-[0.15rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.15rem]"
+                  >
                     <SelectInputListItem
                       key={input.name}
                       label={input.label}
