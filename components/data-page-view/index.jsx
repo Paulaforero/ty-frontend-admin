@@ -2,7 +2,6 @@ import {
   Button,
   Select,
   Table,
-  TextField,
   Divider,
   Stack,
   Card,
@@ -55,13 +54,16 @@ export default function DataPageView({
   }
 
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box component="main" className="w-full h-full pt-9" style={{
+      backgroundImage: 'url(/images/background.png)',
+      backgroundSize: 'cover',
+    }}>
       <Container
         className="flex flex-col justify-center items-center w-full mb-5"
       >
         <Card
           variant="elevation"
-          className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10"
+          className="flex flex-col gap-5 px-10 py-6 w-full h-full mx-2 mb-10 rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
         >
           <Box className="flex justify-between w-full">
             <Typography
