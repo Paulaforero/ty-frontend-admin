@@ -24,17 +24,21 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id, handle
   }
 
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box component="main"
+    className="w-full h-full pt-9"
+    style={{
+      backgroundImage: 'url(/images/background.png)',
+      backgroundSize: 'cover',
+    }}>
       <Container
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
           component="section"
-          className="flex flex-row flex-grow gap-4 w-full"
+          className="flex flex-row flex-grow gap-4 w-[70%]"
         >
           <Card
-            variant="elevation"
-            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
+            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
             <Box component="header" className="flex pb-0 w-full">
               <Link href={getPreviousPage(pathname.split('/'))}>
@@ -50,9 +54,10 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id, handle
               </Typography>
             </Box>
               {rows.map(row => (
-                <Box
+                <Stack
                   key={row.label}
                   className=" text-secondary"
+                  direction="column"
                 >
                   <Typography
                     variant="h6"
@@ -64,16 +69,16 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id, handle
                   <Typography className="text-secondary" variant='p'>
                     {row.value}
                   </Typography>
-                </Box>
+                </Stack>
               ))}
 
             <Box className="flex flex-row justify-center gap-6">
               <Link href={pathname + '/edit'}>
-                <Button variant="contained" className="max-w-md">
+                <Button variant="contained" className="max-w-md mt-6">
                   {toEditButtonLabel}
                 </Button>
               </Link>
-              <Button variant="contained" color="error" onClick={handleDelete}>
+              <Button variant="contained" color="error" onClick={handleDelete} className='mt-6'>
                 Eliminar
               </Button>
             </Box>
