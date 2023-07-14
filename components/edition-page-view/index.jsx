@@ -105,6 +105,26 @@ export default function EditionPage({
                       }}
                     />
                   </FormControl>
+                ) : input.type === 'email' ? (
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
+                    <TextInputListItem
+                      key={input.name}
+                      label={input.label}
+                      name={input.name}
+                      handleChange={handleChange}
+                      type={input.type}
+                      value={values[input.name]}
+                      required={input.required}
+                      adornment={input.adornment}
+                      inputProps={{
+                        min: input.min,
+                        max: input.max,
+                      }}
+                    />
+                  </FormControl>
                 ) : (
                   <FormControl
                     key={input.name}
@@ -120,7 +140,7 @@ export default function EditionPage({
                       required={input.required}
                     />
                   </FormControl>
-                )
+                ) 
               )}
 
               <Box textAlign="center" mt={4} className="mx-auto">
