@@ -1,24 +1,18 @@
 'use client'
 
 import DataPageView from '@/components/data-page-view'
-import { VehicleModels } from '@/mock/vehicle-models'
+import useVehicleModelsDataPage from '@/components/vehicle-models/hooks/use-vehicle-models-data-page'
 
 export default function VehicleModelsPage() {
-  const columns = {
-    id: 'ID',
-    name: 'Nombre',
-    weightInKg: 'Peso (Kg)',
-    octaneRating: 'Octanaje',
-    seatCount: 'Cantidad asientos',
-    engineOilType: 'Tipo aceite de motor',
-  }
+
+  const { columns, vehicleModels } = useVehicleModelsDataPage()
 
   return (
     <DataPageView
       title="Modelos de vehículos"
-      createButtonLabel="Agregar modelo"
+      createButtonLabel="Agregar modelo de vehículo"
+      rows={vehicleModels}
       columns={columns}
-      rows={VehicleModels}
     />
   )
 }

@@ -1,4 +1,4 @@
-export const VehicleModels = [
+export const vehicleModels = [
   {
     id: 1,
     name: 'Toyota Camry',
