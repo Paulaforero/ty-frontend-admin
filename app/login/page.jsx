@@ -1,4 +1,5 @@
 'use client'
+
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import {
   Grid,
@@ -19,8 +20,14 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import WaveSVG from '@/components/svgs/wave'
 import BlobSVG from '@/components/svgs/blob'
+import registeredUsers from '@/data/registered-users'
+import { useRouter } from 'next/navigation'
+import useSnackbar from '@/hooks/use-snackbar'
 
 export default function LoginPage() {
+  const router = useRouter()
+  const notify = useSnackbar()
+
   const [showPassword, setShowPassword] = useState(false)
 
   const [loading, setLoading] = useState(false)
@@ -29,21 +36,41 @@ export default function LoginPage() {
     document.body.style.overflow = 'hidden'
   }, [])
 
-  const [user, setUser] = useState({
-    user: '',
+  const [userData, setUserData] = useState({
+    username: '',
     password: '',
   })
+
   const handleClickShowPassword = () => setShowPassword(show => !show)
 
   const handleMouseDownPassword = event => {
     event.preventDefault()
   }
+
   const handleChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value })
+    setUserData({ ...userData, [e.target.name]: e.target.value })
   }
+
   const handleSubmit = e => {
-    e.preventDefault
+    e.preventDefault()
     setLoading(true)
+    setTimeout(() => {
+      if (
+        registeredUsers.reduce(
+          (bUser, user) =>
+            bUser || JSON.stringify(user) === JSON.stringify(userData),
+          false
+        )
+      )
+        router.push('/dashboard')
+      else {
+        setLoading(false)
+        notify({
+          message: 'Usuario o contraseña inválidos.',
+          severity: 'error',
+        })
+      }
+    }, 2000)
   }
 
   return (
@@ -88,7 +115,7 @@ export default function LoginPage() {
                   variant="standard"
                   className="mb-14 mt-8"
                   color="white"
-                  name="user"
+                  name="username"
                   onChange={handleChange}
                 />
                 <FormControl variant="filled" color="white">
