@@ -9,13 +9,16 @@ import {
   IconButton,
   InputLabel,
   FormControl,
-  Box,
   Container,
+  Card,
 } from '@mui/material'
 import { useState } from 'react'
-import Image from 'next/image'
 import { useEffect } from 'react'
 import { TyButton } from '@/components/shared/button'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import WaveSVG from '@/components/svgs/wave'
+import BlobSVG from '@/components/svgs/blob'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -25,6 +28,7 @@ export default function LoginPage() {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
   }, [])
+
   const [user, setUser] = useState({
     user: '',
     password: '',
@@ -43,92 +47,133 @@ export default function LoginPage() {
   }
 
   return (
-    <Container className="h-full w-full flex flex-col justify-center items-center">
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        className='pb-14'
+    <Container className="h-full w-full flex flex-col justify-center items-center p-0">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
       >
-        <Typography
-          className=" text-secondary mb-5 mt-3"
-          variant="h4"
-          textAlign="center"
-        >
-          T&Y
-        </Typography>
-        <Typography
-          className="text-secondary mb-7"
-          variant="h5"
-          textAlign="center"
-        >
-          &ldquo;Comprometidos con el ambiente&rdquo;
-        </Typography>
-        <form onSubmit={handleSubmit}>
+        <Card className="p-8 px-14 rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30">
           <Grid
             container
             direction="column"
-            justifyContent="space-between"
-            alignContent="center"
+            justifyContent="center"
+            alignItems="center"
+            className="pb-14"
           >
-            <TextField
-              id="standard-user-input"
-              label="Usuario"
-              variant="standard"
-              className="mb-14 mt-8"
-              color="secondary"
-              name="user"
-              onChange={handleChange}
-            />
-            <FormControl variant="standard">
-              <InputLabel
-                htmlFor="standard-adornment-password"
-                color="secondary"
+            <Typography
+              className=" text-white mb-5 mt-3"
+              variant="h4"
+              textAlign="center"
+            >
+              T&Y
+            </Typography>
+            <Typography
+              className="text-white mb-7"
+              variant="h5"
+              textAlign="center"
+            >
+              &ldquo;Comprometidos con el ambiente&rdquo;
+            </Typography>
+            <form onSubmit={handleSubmit} className="text-white">
+              <Grid
+                container
+                direction="column"
+                justifyContent="space-between"
+                alignContent="center"
               >
-                Contraseña
-              </InputLabel>
-              <Input
-                id="standard-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                color="secondary"
-                onChange={handleChange}
-                name="password"
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      color="secondary"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-            <TyButton
-              type="submit"
-              className="mx-12 mt-[90px]"
-              disabled={loading === true}
-              label="Iniciar Sesión"
-              size="medium"
-              loading={loading}
-            ></TyButton>
+                <TextField
+                  id="standard-user-input"
+                  label="Usuario"
+                  variant="standard"
+                  className="mb-14 mt-8"
+                  color="white"
+                  name="user"
+                  onChange={handleChange}
+                />
+                <FormControl variant="filled" color="white">
+                  <InputLabel
+                    htmlFor="standard-adornment-password"
+                    color="white"
+                    className="text-white"
+                  >
+                    Contraseña
+                  </InputLabel>
+                  <Input
+                    id="standard-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    color="white"
+                    onChange={handleChange}
+                    name="password"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          color="white"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <TyButton
+                  type="submit"
+                  className="mx-12 mt-[90px]"
+                  disabled={loading === true}
+                  label="Iniciar Sesión"
+                  size="medium"
+                  loading={loading}
+                ></TyButton>
+              </Grid>
+            </form>
           </Grid>
-        </form>
-      </Grid>
+        </Card>
+      </motion.div>
 
-      <Box className="rounded-e-full	w-[358px] h-48 fixed left-0 bottom-5 bg-primary -z-10">
+      <motion.div
+        className="w-[358px] h-48 fixed left-0 bottom-5 z-10"
+        initial={{ x: -500 }}
+        animate={{ x: 0 }}
+        transition={{ delay: 1.3 }}
+      >
         <Image
           src="/images/image_car_1.png"
           width={380}
           height={290}
           alt="car_1"
-          className="absolute left-5 border-solid"
+          className="relative left-5 border-solid"
         />
-      </Box>
+      </motion.div>
+
+      <motion.div
+        className="fixed w-full -bottom-3 p-0 m-0 -z-20"
+        initial={{ y: 200 }}
+        animate={{ y: 0 }}
+        transition={{ bounce: false, duration: 1.3 }}
+      >
+        <WaveSVG />
+      </motion.div>
+
+      <motion.div className="absolute w-screen h-screen -z-30 opacity-60">
+        <Image
+          src="/images/background1.png"
+          fill={true}
+          quality={100}
+          alt="background"
+        />
+      </motion.div>
+
+      <motion.div
+        className="fixed w-[1000px] h-[700px] top-48 -bottom-52 -mt-44 -z-10"
+        initial={{ scale: 0, rotate: 100 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ duration: 1.3, delay: 1.3, type: 'spring' }}
+      >
+        <BlobSVG />
+      </motion.div>
     </Container>
   )
 }
