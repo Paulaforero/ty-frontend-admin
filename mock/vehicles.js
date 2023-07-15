@@ -2,21 +2,21 @@ export const vehicles = [
     {
       plate: 'ABC123',
       brand: 'Toyota',
-      model_id: 1,
-      serial_no: '12345',
-      engine_serial_no: '6789',
+      modelId: 1,
+      serialNo: '12345',
+      engineSerialNo: '6789',
       color: 'Red',
-      purchase_date: '2020-01-01',
-      additional_info: 'Some additional information about the vehicle',
-      maintenance_summary: 'Summary of the vehicle maintenance',
-      owner_national_id: '1234567890'
+      purchaseDate: '2020-01-01',
+      additionalInfo: 'Some additional information about the vehicle',
+      maintenanceSummary: 'Summary of the vehicle maintenance',
+      ownerNationalId: '1234567890'
     },
     {
       plate: 'DEF456',
       brand: 'Honda',
-      model_id: 2,
-      serial_no: '54321',
-      engine_serial_no: '9876',
+      modelId: 2,
+      serialNo: '54321',
+      engineSerialNo: '9876',
       color: 'Blue',
       purchase_date: '2019-06-15',
       additional_info: 'Some additional information about the vehicle',
@@ -26,9 +26,9 @@ export const vehicles = [
     {
       plate: 'GHI789',
       brand: 'Ford',
-      model_id: 3,
-      serial_no: '67890',
-      engine_serial_no: '5432',
+      modelId: 3,
+      serialNo: '67890',
+      engineSerialNo: '5432',
       color: 'Green',
       purchase_date: '2021-03-10',
       additional_info: 'Some additional information about the vehicle',
@@ -38,9 +38,9 @@ export const vehicles = [
     {
         plate: 'JKL012',
         brand: 'Nissan',
-        model_id: 4,
-        serial_no: '09876',
-        engine_serial_no: '4321',
+        modelId: 4,
+        serialNo: '09876',
+        engineSerialNo: '4321',
         color: 'Black',
         purchase_date: '2022-01-05',
         additional_info: 'Some additional information about the vehicle',
@@ -50,11 +50,11 @@ export const vehicles = [
       {
         plate: 'MNO345',
         brand: 'Chevrolet',
-        model_id: 5,
-        serial_no: '24680',
-        engine_serial_no: '1357',
+        modelId: 5,
+        serialNo: '24680',
+        engineSerialNo: '1357',
         color: 'Silver',
-        purchase_date: '2021-02-22',
+        purchaseDate: '2021-02-22',
         additional_info: 'Some additional information about the vehicle',
         maintenance_summary: 'Summary of the vehicle maintenance',
         owner_national_id: '9876543210'
@@ -62,9 +62,9 @@ export const vehicles = [
       {
         plate: 'PQR678',
         brand: 'Volkswagen',
-        model_id: 6,
-        serial_no: '01234',
-        engine_serial_no: '5678',
+        modelId: 6,
+        serialNo: '01234',
+        engine_serialNo: '5678',
         color: 'White',
         purchase_date: '2022-06-30',
         additional_info: 'Some additional information about the vehicle',
@@ -74,9 +74,9 @@ export const vehicles = [
       {
         plate: 'STU901',
         brand: 'BMW',
-        model_id: 7,
-        serial_no: '34567',
-        engine_serial_no: '8901',
+        modelId: 7,
+        serialNo: '34567',
+        engine_serialNo: '8901',
         color: 'Blue',
         purchase_date: '2020-11-11',
         additional_info: 'Some additional information about the vehicle',
@@ -86,9 +86,9 @@ export const vehicles = [
       {
         plate: 'VWX234',
         brand: 'Mercedes-Benz',
-        model_id: 8,
-        serial_no: '67890',
-        engine_serial_no: '1234',
+        modelId: 8,
+        serialNo: '67890',
+        engine_serialNo: '1234',
         color: 'Gray',
         purchase_date: '2019-07-01',
         additional_info: 'Some additional information about the vehicle',
@@ -96,3 +96,14 @@ export const vehicles = [
         owner_national_id: '4321098765'
       }
   ]
+
+ export const clients = [
+  {
+    nationalId: '30109865',
+    fullname: 'maria'
+  },
+  {
+    nationalId: '30104521',
+    fullname:'paula'
+  },
+]
