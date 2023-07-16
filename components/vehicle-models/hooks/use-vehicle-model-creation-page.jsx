@@ -1,10 +1,11 @@
-'use client'
-
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
 
-export default function useVehicleModelCreationPage() {
-  
+export default function useVehicleCreationPage() {
+  const router = useRouter()
+  const notify = useSnackbar()
 
   const [formValues, setFormValues] = useState({
     name: '',
@@ -16,6 +17,33 @@ export default function useVehicleModelCreationPage() {
     engineCoolantType: '',
   })
 
+  const createVehicle = async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.vehicleModels, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+        cache: 'no-store',
+      })
+
+      if (!response.ok) throw new Error()
+
+      router.push('/vehicle-models')
+
+      notify({
+        message: '¡Modelo de Vehículo creado con éxito!',
+        severity: 'success',
+      })
+    } catch (error) {
+      notify({
+        message: 'Error al crear el modelo de vehículo...',
+        severity: 'error',
+      })
+    }
+  }
+  
   const inputs = [
     {
         label: 'Nombre',
@@ -76,6 +104,7 @@ export default function useVehicleModelCreationPage() {
     inputs,
     formValues,
     handleChange,
+    handleSubmit,
   }
 }
 
