@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { states } from '@/mock/cities'
 import { useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
@@ -23,6 +23,11 @@ export default function useCitiesEditionPage() {
   })
 
   const [isLoading, setIsLoading] = useState(true)
+
+  const id = useMemo(
+    () => `${formValues.stateId}/${formValues.cityNumber}`,
+    [formValues]
+  )
 
   const inputs = [
     {
@@ -93,9 +98,6 @@ export default function useCitiesEditionPage() {
         }
       )
 
-      const responseData = await response.json()
-      console.log(responseData)
-
       if (!response.ok) throw new Error()
 
       notify({
@@ -121,5 +123,5 @@ export default function useCitiesEditionPage() {
     fetchCityData()
   }, [fetchCityData])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading }
+  return { inputs, formValues, handleChange, handleSubmit, isLoading, id }
 }

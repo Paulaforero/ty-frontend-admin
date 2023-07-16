@@ -22,6 +22,11 @@ export default function useCityDetailsPage() {
 
   const [isLoading, setIsLoading] = useState(true)
 
+  const id = useMemo(
+    () => `${cityData.stateId}/${cityData.cityNumber}`,
+    [cityData]
+  )
+
   const rows = useMemo(
     () => [
       {
@@ -47,10 +52,13 @@ export default function useCityDetailsPage() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.cities}?city-number=${cityNumber}&state-id=${stateId}`, {
-        method: 'DELETE',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.cities}?city-number=${cityNumber}&state-id=${stateId}`,
+        {
+          method: 'DELETE',
+          cache: 'no-store',
+        }
+      )
 
       if (!response.ok) throw new Error()
 
@@ -101,7 +109,6 @@ export default function useCityDetailsPage() {
     cityData,
     handleDelete,
     isLoading,
-    name: cityData.name,
-    cityNumber: cityData.cityNumber,
+    id,
   }
 }

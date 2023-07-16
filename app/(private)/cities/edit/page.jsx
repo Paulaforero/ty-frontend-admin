@@ -5,7 +5,7 @@ import { Typography } from '@mui/material'
 import useCitiesEditionPage from '@/components/cities/hooks/use-cities-edition-page'
 
 export default function EditPage() {
-  const { inputs, formValues, handleChange, handleSubmit, isLoading } = useCitiesEditionPage()
+  const { inputs, formValues, handleChange, handleSubmit, isLoading, id } = useCitiesEditionPage()
 
   return (
     <>
@@ -14,6 +14,7 @@ export default function EditPage() {
           title="Editar ciudad"
           submitLabel="Guardar"
           inputs={inputs}
+          id={id}
           values={formValues}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
