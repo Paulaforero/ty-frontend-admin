@@ -6,27 +6,32 @@ import {
   OutlinedInput,
 } from '@mui/material'
 
-export default function TextInputListItem({
+export default function NumberInputListItem({
   label,
   name,
   value,
   required,
   adornment,
-  type,
+  inputProps,
   handleChange,
 }) {
-
+  const { min, max } = inputProps
   return (
     <ListItem className="flex flex-row w-full justify-center">
       <FormControl className='m-1 w-full'>
-        <InputLabel htmlFor="outlined-adornment-text">{label}</InputLabel>
+        <InputLabel htmlFor="standard-adornment-number">{label}</InputLabel>
         <OutlinedInput
-          required={required ? required : false}
+          required={required}
           className="text-secondary"
           name={name}
           value={value}
+          label={label}
+          type="number"
+          inputProps={{
+            min: min,
+            max: max,
+          }}
           onChange={handleChange}
-          type={type}
           startAdornment={
             adornment ? (
               <InputAdornment position="start">{adornment}</InputAdornment>
@@ -34,7 +39,6 @@ export default function TextInputListItem({
               ' '
             )
           }
-          label={label}
         />
       </FormControl>
     </ListItem>

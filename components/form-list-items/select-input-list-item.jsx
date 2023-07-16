@@ -4,42 +4,43 @@ import {
   ListItem,
   MenuItem,
   Select,
-  Typography,
 } from '@mui/material'
 
 export default function SelectInputListItem({
   label,
-  placeholder,
   value,
   options,
+  required,
   name,
   handleChange,
 }) {
   return (
-    <ListItem className="flex flex-row">
-      <Typography variant="p" align="left" className="font-bold w-[15%]">
-        {label}
-      </Typography>
-      <FormControl fullWidth>
+    <ListItem className="flex flex-row w-full">
+      <FormControl className='m-1 w-full'>
         <InputLabel
           id={`${name}-select`}
-          size="small"
-          className="items-center ml-7 lg:ml-9 w-[95%]"
+          className="items-center  w-full"
         >
-          {placeholder}
+          {label}
         </InputLabel>
         <Select
           id={`${name}-select`}
-          size="small"
           value={value}
-          label={placeholder}
+          label={label}
           name={name}
-          className="ml-7 lg:ml-9 w-[95%]"
+          required={required}
+          className=" w-full text-secondary"
           onChange={handleChange}
         >
-          <MenuItem value="">{placeholder}</MenuItem>
+          <MenuItem value="" className="text-secondary">
+            {label}
+          </MenuItem>
           {options.map(option => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+              className="text-secondary"
+            >
               {option.label}
             </MenuItem>
           ))}
