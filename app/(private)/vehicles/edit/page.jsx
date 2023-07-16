@@ -5,7 +5,7 @@ import { Typography } from '@mui/material'
 import useVehicleEditionPage from '@/components/vehicles/hooks/use-vehicle-edition-page'
 
 export default function EditPage() {
-  const { inputs, formValues, handleChange, isLoading, id} = useVehicleEditionPage()
+  const { inputs, formValues, handleChange, handleSubmit, isLoading, plate } = useVehicleEditionPage()
 
   return (
     <>
@@ -13,10 +13,11 @@ export default function EditPage() {
         <EditionPageView
           title="Vehículo"
           submitLabel="Guardar Vehículo"
-          id={`#${id}`}
+          id={`#${plate}`}
           inputs={inputs}
           values={formValues}
           handleChange={handleChange}
+          handleSubmit={handleSubmit}
         />
       ) : (
         <Typography align="center">Loading...</Typography>
