@@ -26,18 +26,23 @@ export default function CreationPage({
 }) {
   const pathname = usePathname()
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box
+      component="main"
+      className="w-full h-full pt-9"
+      style={{
+        backgroundImage: 'url(/images/background.png)',
+        backgroundSize: 'cover',
+      }}
+    >
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
           component="section"
-          className="flex flex-row flex-grow gap-4 w-full"
+          className="flex flex-row flex-grow gap-4 w-[70%]"
         >
           <Card
-            variant="elevation"
-            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
+            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
             <Box component="header" className="flex pb-4 w-full mb-11">
               <Link href={pathname.replace('/create', '')}>
@@ -49,10 +54,16 @@ export default function CreationPage({
                 {title}
               </Typography>
             </Box>
-            <form onSubmit={handleSubmit} className='flex flex-col items-center relative mb-8'>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col items-center relative mb-8"
+            >
               {inputs.map(input =>
                 input.type === 'text' ? (
-                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
                     <TextInputListItem
                       key={input.name}
                       name={input.name}
@@ -61,10 +72,14 @@ export default function CreationPage({
                       value={values[input.name]}
                       required={input.required}
                       adornment={input.adornment}
+                      type={input.type}
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
-                  <FormControl key={input.name} className='w-[35%] mb-[0.25rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
                     <NumberInputListItem
                       key={input.name}
                       label={input.label}
@@ -79,8 +94,31 @@ export default function CreationPage({
                       }}
                     />
                   </FormControl>
+                ) : input.type === 'email' ? (
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
+                    <TextInputListItem
+                      key={input.name}
+                      label={input.label}
+                      name={input.name}
+                      handleChange={handleChange}
+                      type={input.type}
+                      value={values[input.name]}
+                      required={input.required}
+                      adornment={input.adornment}
+                      inputProps={{
+                        min: input.min,
+                        max: input.max,
+                      }}
+                    />
+                  </FormControl>
                 ) : (
-                  <FormControl key={input.name} className= 'w-[35%] mb-[0.15rem]'>
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.15rem]"
+                  >
                     <SelectInputListItem
                       key={input.name}
                       label={input.label}
@@ -91,7 +129,7 @@ export default function CreationPage({
                       required={input.required}
                     />
                   </FormControl>
-                )
+                ) 
               )}
 
               <Box textAlign="center" mt={4} className="mx-auto">
