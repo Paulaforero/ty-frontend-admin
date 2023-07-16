@@ -152,5 +152,6 @@ export default function useVehicleModelEditionPage() {
     fetchVehicleModelData()
   }, [fetchVehicleModelData])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading, id }
+  return { inputs, formValues, handleChange, handleSubmit, isLoading, id: vehicleModelData.id,
+  }
 }
