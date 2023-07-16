@@ -2,14 +2,17 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { BACKEND_URLS } from '@/utils/backend-urls'
 import { useRouter } from 'next/navigation'
 import useSnackbar from '@/hooks/use-snackbar'
 
 export default function useVehicleEditionPage() {
+  const router = useRouter()
+  const notify = useSnackbar()
 
   const searchParams = useSearchParams()
 
-  const id = searchParams.get('id')
+  const plate = searchParams.get('plate')
 
   const [formValues, setFormValues] = useState({
     plate: '',
@@ -27,12 +30,6 @@ export default function useVehicleEditionPage() {
   const [isLoading, setIsLoading] = useState(false)
 
   const inputs = [
-    {
-        label: 'Placa',
-        type: 'text',
-        name: 'plate',
-        required: true,
-      },
       {
         label: 'Marca',
         type: 'text',
@@ -94,11 +91,78 @@ export default function useVehicleEditionPage() {
           required: true,
         },
   ]
-
   const handleChange = event => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
+  const fetchVehicleData = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const response = await fetch(
+        `${BACKEND_URLS.vehicles}/view?plate=${plate}`,
+        {
+          method: 'GET',
+          cache: 'no-store',
+        }
+      )
 
-  return { inputs, formValues, handleChange, isLoading, id }
+      const responseData = await response.json()
+      const fetchedVehicleData = responseData.data
+
+      setFormValues(fetchedVehicleData)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los datos del vehículo.',
+        severity: 'error',
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }, [notify, plate])
+
+  useEffect(() => {
+    fetchVehicleData()
+  }, [fetchVehicleData])
+
+  const editVehicle = async () => {
+    try {
+      const { plate, ...toEditValues } = formValues
+      const response = await fetch(
+        `${BACKEND_URLS.vehicles}?plate=${plate}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(toEditValues),
+          cache: 'no-store',
+        }
+      )
+
+      if (!response.ok) throw new Error()
+
+      notify({
+        message: '¡Se ha editado el vehículo exitosamente!',
+        severity: 'success',
+      })
+
+      router.push('/vehicles')
+    } catch (error) {
+      notify({
+        message: 'Error al intentar editar el vehículo.',
+        severity: 'error',
+      })
+    }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    editVehicle()
+  }
+
+  useEffect(() => {
+    fetchVehicleData()
+  }, [fetchVehicleData])
+
+  return { inputs, formValues, handleChange, handleSubmit, isLoading }
 }
