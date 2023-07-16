@@ -1,11 +1,11 @@
 'use client'
 
 import DataPageView from '@/components/data-page-view'
-import useVehiclesDataPage from '@/components/vehicles/hooks/use-vehicle-data-page'
+import useVehiclesDataPage from '@/components/vehicles/hooks/use-vehicles-data-page'
 
-export default function VehiclePage() {
+export default function VehiclesPage() {
 
-  const { columns, vehicles } = useVehiclesDataPage()
+  const { vehicles, columns, handleDelete } = useVehiclesDataPage()
 
   return (
     <DataPageView
@@ -13,6 +13,7 @@ export default function VehiclePage() {
       createButtonLabel="Agregar vehículo"
       rows={vehicles}
       columns={columns}
+      handleDelete={handleDelete}
     />
   )
 }
