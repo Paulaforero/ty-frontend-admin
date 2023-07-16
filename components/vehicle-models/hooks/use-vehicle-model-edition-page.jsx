@@ -15,7 +15,7 @@ export default function useVehicleModelEditionPage() {
   
 
   const [formValues, setFormValues] = useState({
-    id,
+    id: '',
     name: '',
     seatCount: '',
     octaneRating: '',

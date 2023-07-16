@@ -13,6 +13,7 @@ export default function VehicleModelsPage() {
       createButtonLabel="Agregar modelo de vehículo"
       rows={vehicleModels}
       columns={columns}
+      handleDelete={handleDelete}
     />
   )
 }
