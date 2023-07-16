@@ -1,10 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
-import { clients } from '@/mock/vehicles' 
 
 export default function useVehicleCreationPage() {
+  const router = useRouter()
+  const notify = useSnackbar()
   
 
   const [formValues, setFormValues] = useState({
@@ -19,6 +22,33 @@ export default function useVehicleCreationPage() {
     maintenanceSummary: '',
     ownerNationalId: '',
   })
+
+  const createVehicle = async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.vehicles, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+        cache: 'no-store',
+      })
+
+      if (!response.ok) throw new Error()
+
+      router.push('/vehicles')
+
+      notify({
+        message: '¡Vehículo creado con éxito!',
+        severity: 'success',
+      })
+    } catch (error) {
+      notify({
+        message: 'Error al crear el vehículo...',
+        severity: 'error',
+      })
+    }
+  }
 
   const inputs = [
     {
@@ -95,11 +125,15 @@ export default function useVehicleCreationPage() {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    createVehicle()
+  }
 
   return {
     inputs,
     formValues,
     handleChange,
+    handleSubmit,
   }
 }
-
