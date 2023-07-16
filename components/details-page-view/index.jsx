@@ -7,103 +7,80 @@ import {
   IconButton,
   Typography,
   Button,
-  InputLabel,
-  Input,
   Stack,
-  ListItem,
-  Select,
-  MenuItem,
+  Divider,
 } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import { useParams } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-export default function DetailsPageView() {
-  const dealership = {
-    rif: 'J-123456789',
-    name: 'Concesionaria A',
-    city_id: 1,
-    manager_id: 'M-987654321',
+export default function DetailsPage({ title, toEditButtonLabel, rows, id, handleDelete }) {
+  const pathname = usePathname()
+  const getPreviousPage = (splittedPathname) => {
+    splittedPathname.pop()
+    return(splittedPathname.join('/')) 
   }
 
-  const { id } = useParams()
-
   return (
-    <Box component="main" className="w-full h-full pt-9">
+    <Box component="main"
+    className="w-full h-full pt-9"
+    style={{
+      backgroundImage: 'url(/images/background.png)',
+      backgroundSize: 'cover',
+    }}>
       <Container
-        component="container"
-        className="flex flex-row justify-center items-center h-full w-full mb-5"
+        className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
-        <Box component="header" className="pb-4 w-full">
-          <IconButton size="large" color="secondary">
-            <ChevronLeftIcon size="large" />
-          </IconButton>
-        </Box>
-
-        <Box component="section" className="flex flex-row flex-grow gap-4 w-full">
+        <Box
+          component="section"
+          className="flex flex-row flex-grow gap-4 w-[70%]"
+        >
           <Card
-            variant="elevation"
-            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow"
+            className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
-            <Typography variant="h5" align="right">
-              Concesionario #{id}
-            </Typography>
+            <Box component="header" className="flex pb-0 w-full">
+              <Link href={getPreviousPage(pathname.split('/'))}>
+                <IconButton size="large" color="secondary" className="mr-2">
+                  <ChevronLeftIcon size="large" />
+                </IconButton>
+              </Link>
+              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
+                {title}
+              </Typography>
+              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
+                  {id}
+              </Typography>
+            </Box>
+              {rows.map(row => (
+                <Stack
+                  key={row.label}
+                  className=" text-secondary"
+                  direction="column"
+                >
+                  <Typography
+                    variant="h6"
+                    className="font-bold  text-secondary"
+                  >
+                    {row.label}
+                  </Typography>
+                  <Divider variant='fullWidth'/>
+                  <Typography className="text-secondary" variant='p'>
+                    {row.value}
+                  </Typography>
+                </Stack>
+              ))}
 
-            <Stack>
-              <ListItem>
-                <Typography variant="p" align="left" className="font-bold">
-                  RIF:
-                </Typography>
-                <Input
-                  placeholder="Inserte el RIF..."
-                  value={dealership.rif}
-                  className="ml-5"
-                />
-              </ListItem>
-              <ListItem>
-                <Typography variant="p" align="left" className="font-bold">
-                  Nombre:
-                </Typography>
-                <Input
-                  placeholder="Inserte el nombre..."
-                  value={dealership.name}
-                  className="ml-5"
-                />
-              </ListItem>
-              <ListItem>
-                <Typography variant="p" align="left" className="font-bold">
-                  Ciudad:
-                </Typography>
-                <Select
-                  placeholder="Selecciona la ciudad..."
-                  value={dealership.city_id}
-                  className="ml-5"
-                >
-                  <MenuItem value={dealership.city_id}>Caracas</MenuItem>
-                </Select>
-              </ListItem>
-              <ListItem>
-                <Typography variant="p" align="left" className="font-bold">
-                  Manager:
-                </Typography>
-                <Input
-                  placeholder="Inserte el ID del Manager..."
-                  value={dealership.manager_id}
-                  className="ml-5"
-                >
-                </Input>
-              </ListItem>
-            </Stack>
+            <Box className="flex flex-row justify-center gap-6">
+              <Link href={pathname + '/edit'}>
+                <Button variant="contained" className="max-w-md mt-6">
+                  {toEditButtonLabel}
+                </Button>
+              </Link>
+              <Button variant="contained" color="error" onClick={handleDelete} className='mt-6'>
+                Eliminar
+              </Button>
+            </Box>
           </Card>
-
-          <Box
-            component="aside"
-            className="flex flex-col gap-2 px-5 whitespace-nowrap w-[30%]"
-          >
-            <Button variant="contained" color="inherit">
-              Editar Orden
-            </Button>
-            <Button variant="contained">Agregar Pago</Button>
-          </Box>
         </Box>
       </Container>
     </Box>
