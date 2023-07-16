@@ -4,7 +4,7 @@ import DetailsPageView from '@/components/details-page-view'
 import { Typography } from '@mui/material'
 import useVehicleModelDetailsPage from '@/components/vehicle-models/hooks/use-vehicle-model-details-page'
 export default function ViewPage() {
-  const {  rows, vehicleModelData, handleChange, isLoading, id } = useVehicleModelDetailsPage()
+  const {  rows, vehicleModelData, handleDelete, isLoading, id } = useVehicleModelDetailsPage()
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function ViewPage() {
         toEditButtonLabel="Editar modelo de vehículo"
         rows={rows}
         values={vehicleModelData}
-        handleChange={handleChange}
+        handleDelete={handleDelete}
         />
       ) : (
         <Typography align="center">Loading...</Typography>
@@ -23,4 +23,3 @@ export default function ViewPage() {
     </>
   )
 }
-
