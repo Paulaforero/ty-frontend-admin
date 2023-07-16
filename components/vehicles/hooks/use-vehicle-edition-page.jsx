@@ -164,5 +164,6 @@ export default function useVehicleEditionPage() {
     fetchVehicleData()
   }, [fetchVehicleData])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading }
+  return { inputs, formValues, handleChange, handleSubmit, isLoading, plate: vehicleData.plate,
+  }
 }
