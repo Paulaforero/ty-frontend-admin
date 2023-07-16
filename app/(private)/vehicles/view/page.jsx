@@ -5,18 +5,18 @@ import { Typography } from '@mui/material'
 import useVehicleDetailsPage from '@/components/vehicles/hooks/use-vehicle-details-page'
 
 export default function ViewPage() {
-  const {  rows, vehicleData, handleChange, isLoading, id } = useVehicleDetailsPage()
+  const {  rows, vehicleData, handleDelete, isLoading, plate } = useVehicleDetailsPage()
 
   return (
     <>
       {!isLoading ? (
         <DetailsPageView
         title="Vehículo"
-        id={`#${id}`}
+        id={`#${plate}`}
         toEditButtonLabel="Editar vehículo"
         rows={rows}
         values={vehicleData}
-        handleChange={handleChange}
+        handleDelete={handleDelete}
         />
       ) : (
         <Typography align="center">Loading...</Typography>
