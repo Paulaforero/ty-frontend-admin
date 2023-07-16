@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material'
 import './globals.css'
 
 import { theme } from '@/lib/theme'
+import { SnackbarProvider } from '@/contexts/snackbar'
 
 export const metadata = {
   title: 'T&Y Admin Panel',
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <ThemeProvider theme={theme}>
         <body className={'h-screen w-screen overflow-x-hidden'}>
-          {children}
+          <SnackbarProvider>{children}</SnackbarProvider>
         </body>
       </ThemeProvider>
     </html>
