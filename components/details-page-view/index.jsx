@@ -12,13 +12,40 @@ import {
 } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
-export default function DetailsPage({ title, toEditButtonLabel, rows, id, handleDelete }) {
+export default function DetailsPage({
+  title,
+  toEditButtonLabel,
+  rows,
+  id,
+  handleDelete,
+}) {
   const pathname = usePathname()
-  const getPreviousPage = (splittedPathname) => {
+  const URLSearchParams = useSearchParams()
+
+  const searchParamsIterator = URLSearchParams.entries()
+
+  const obtainAllSearchParams = searchParamsIterator => {
+    let searchParams = {}
+    for (const [key, value] of searchParamsIterator) {
+      searchParams = { ...searchParams, [key]: value }
+    }
+    return searchParams
+  }
+
+  const searchParams = obtainAllSearchParams(searchParamsIterator)
+
+  const createSearchParamsURLSection = idAttrs => {
+    const queryParams = Object.entries(idAttrs)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+    return `?${queryParams}`
+  }
+
+  const getPreviousPage = splittedPathname => {
     splittedPathname.pop()
-    return(splittedPathname.join('/')) 
+    return splittedPathname.join('/')
   }
 
   return (
@@ -44,11 +71,20 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id, handle
                   <ChevronLeftIcon size="large" />
                 </IconButton>
               </Link>
-              <Typography variant="h4" align="left" className="text-secondary flex-shrink-0">
+              <Typography
+                variant="h4"
+                align="left"
+                className="text-secondary flex-shrink-0"
+              >
                 {title}
               </Typography>
-              <Typography variant="h4" align="right" className="text-secondary flex-1" style={{ wordBreak: 'break-word' }}>
-                  {id}
+              <Typography
+                variant="h4"
+                align="right"
+                className="text-secondary flex-1"
+                style={{ wordBreak: 'break-word' }}
+              >
+                {id}
               </Typography>
             </Box>
               {rows.map(row => (
@@ -71,7 +107,10 @@ export default function DetailsPage({ title, toEditButtonLabel, rows, id, handle
               ))}
 
             <Box className="flex flex-row justify-center gap-6">
-              <Link href={pathname + '/edit'}>
+              <Link href={
+                pathname.replace(/view/g, 'edit') +
+                createSearchParamsURLSection(searchParams)
+              }>
                 <Button variant="contained" className="max-w-md mt-6">
                   {toEditButtonLabel}
                 </Button>
