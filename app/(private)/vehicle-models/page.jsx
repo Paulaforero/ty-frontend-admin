@@ -5,7 +5,7 @@ import useVehicleModelsDataPage from '@/components/vehicle-models/hooks/use-vehi
 
 export default function VehicleModelsPage() {
 
-  const { columns, vehicleModels } = useVehicleModelsDataPage()
+  const { vehicleModels, columns, handleDelete } = useVehicleModelsDataPage()
 
   return (
     <DataPageView
