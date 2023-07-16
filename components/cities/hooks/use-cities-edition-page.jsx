@@ -13,10 +13,11 @@ export default function useCitiesEditionPage() {
 
   const searchParams = useSearchParams()
 
-  const id = searchParams.get('id')
+  const cityNumber = searchParams.get('city-number')
+  const stateId = searchParams.get('state-id')
 
   const [formValues, setFormValues] = useState({
-    id,
+    cityNumber: '',
     name: '',
     stateId: '',
   })
@@ -51,34 +52,49 @@ export default function useCitiesEditionPage() {
   const fetchCityData = useCallback(async () => {
     try {
       setIsLoading(true)
-      const response = await fetch(`${BACKEND_URLS.cities}/${id}`, {
-        method: 'GET',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.cities}/view?city-number=${cityNumber}&state-id=${stateId}`,
+        {
+          method: 'GET',
+          cache: 'no-store',
+        }
+      )
 
-      const fetchedCityData = await response.json()
+      const responseData = await response.json()
+      const fetchedCityData = responseData.data
 
       setFormValues(fetchedCityData)
     } catch (error) {
       notify({
-        message: 'Error al obtenter los datos de la ciudad.',
+        message: 'Error obteniendo los datos de la ciudad.',
         severity: 'error',
       })
     } finally {
       setIsLoading(false)
     }
-  }, [id, notify])
+  }, [notify, cityNumber, stateId])
+
+  useEffect(() => {
+    fetchCityData()
+  }, [fetchCityData])
 
   const editCity = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.cities}/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues),
-        cache: 'no-store',
-      })
+      const { cityNumber, ...toEditValues } = formValues
+      const response = await fetch(
+        `${BACKEND_URLS.cities}?city-number=${cityNumber}&state-id=${stateId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(toEditValues),
+          cache: 'no-store',
+        }
+      )
+
+      const responseData = await response.json()
+      console.log(responseData)
 
       if (!response.ok) throw new Error()
 

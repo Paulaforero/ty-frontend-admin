@@ -8,27 +8,17 @@ export default function useCitiesDataPage() {
   const [cities, setCities] = useState([])
 
   const columns = {
-    id: 'ID',
+    cityNumber: 'ID',
     name: 'Nombre',
     stateId: 'Estado (ID)',
   }
 
-  const filters = [
-    {
-      label: 'Filtar por estado',
-      options: [
-        { label: 'uno', value: 1 },
-        { label: 'dos', value: 2 },
-        { label: 'tres', value: 3 },
-        { label: 'cuatro', value: 4 },
-        { label: 'cinco', value: 5 },
-      ],
-    },
-  ]
-
-  const addIdAttrsObject = rows =>
+  const addIdAttrsObjectToEachRow = rows =>
     rows.map(row => {
-      return { ...row, idAttrs: { id: row.id } }
+      return {
+        ...row,
+        idAttrs: { 'city-number': row.cityNumber, 'state-id': row.stateId },
+      }
     })
 
   const fetchCities = useCallback(async () => {
@@ -38,8 +28,9 @@ export default function useCitiesDataPage() {
         cache: 'no-store',
       })
 
-      const fetchedCities = await response.json()
-      const formattedCities = addIdAttrsObject(fetchedCities)
+      const responseData = await response.json()
+      const fetchedCities = responseData.data
+      const formattedCities = addIdAttrsObjectToEachRow(fetchedCities)
 
       setCities(formattedCities)
     } catch (error) {
@@ -50,12 +41,18 @@ export default function useCitiesDataPage() {
     }
   }, [notify])
 
-  const handleDelete = async id => {
+  const handleDelete = async ({
+    'city-number': cityNumber,
+    'state-id': stateId,
+  }) => {
     try {
-      const response = await fetch(`${BACKEND_URLS.cities}/${id}`, {
-        method: 'DELETE',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.cities}?city-number=${cityNumber}&state-id=${stateId}`,
+        {
+          method: 'DELETE',
+          cache: 'no-store',
+        }
+      )
 
       if (!response.ok) throw new Error()
 
@@ -77,5 +74,5 @@ export default function useCitiesDataPage() {
     fetchCities()
   }, [fetchCities])
 
-  return { cities, columns, filters, handleDelete }
+  return { cities, columns, handleDelete }
 }

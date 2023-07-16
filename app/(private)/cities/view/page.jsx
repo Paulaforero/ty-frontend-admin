@@ -5,18 +5,18 @@ import { Typography } from '@mui/material'
 import useCityDetailsPage from '@/components/cities/hooks/use-citiy-details-page'
 
 export default function ViewPage() {
-  const { rows, cityData, handleChange, handleSubmit, handleDelete, isLoading, id } = useCityDetailsPage()
+  const { rows, cityData, handleDelete, isLoading, name, cityNumber } =
+    useCityDetailsPage()
 
   return (
     <>
       {!isLoading ? (
         <DetailsPageView
-          title={`Ciudad #${id}`}
+          title={name}
           toEditButtonLabel="Editar Ciudad"
           rows={rows}
+          id={cityNumber}
           values={cityData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
           handleDelete={handleDelete}
         />
       ) : (

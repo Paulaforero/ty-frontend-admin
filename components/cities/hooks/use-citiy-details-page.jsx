@@ -11,20 +11,22 @@ export default function useCityDetailsPage() {
 
   const searchParams = useSearchParams()
 
-  const id = searchParams.get('id')
+  const cityNumber = searchParams.get('city-number')
+  const stateId = searchParams.get('state-id')
 
   const [cityData, setCityData] = useState({
-    id: '',
+    cityNumber: '',
     name: '',
     stateId: '',
   })
+
   const [isLoading, setIsLoading] = useState(true)
 
   const rows = useMemo(
     () => [
       {
-        label: 'ID:',
-        value: cityData.id,
+        label: 'Número de ciudad:',
+        value: cityData.cityNumber,
       },
       {
         label: 'Nombre:',
@@ -38,30 +40,6 @@ export default function useCityDetailsPage() {
     [cityData]
   )
 
-  const handleChange = event => {
-    setCityData({ ...cityData, [event.target.name]: event.target.value })
-  }
-
-  const editCity = async () => {
-    try {
-      const response = await fetch(BACKEND_URLS.cities, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cityData),
-        cache: 'no-store',
-      })
-
-      if (!response.ok) throw new Error()
-
-      router.push('/cities')
-    } catch (error) {
-      console.log(error)
-      alert('ERROR')
-    }
-  }
-
   const handleSubmit = e => {
     e.preventDefault()
     editCity()
@@ -69,7 +47,7 @@ export default function useCityDetailsPage() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.cities}/${id}`, {
+      const response = await fetch(`${BACKEND_URLS.cities}?city-number=${cityNumber}&state-id=${stateId}`, {
         method: 'DELETE',
         cache: 'no-store',
       })
@@ -93,13 +71,16 @@ export default function useCityDetailsPage() {
   const fetchCityData = useCallback(async () => {
     try {
       setIsLoading(true)
-      const response = await fetch(`${BACKEND_URLS.cities}/${id}`, {
-        method: 'GET',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.cities}/view?city-number=${cityNumber}&state-id=${stateId}`,
+        {
+          method: 'GET',
+          cache: 'no-store',
+        }
+      )
 
-      const fetchedCityData = await response.json()
-
+      const responseData = await response.json()
+      const fetchedCityData = responseData.data
       setCityData(fetchedCityData)
     } catch (error) {
       notify({
@@ -109,11 +90,18 @@ export default function useCityDetailsPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [id, notify])
+  }, [notify, cityNumber, stateId])
 
   useEffect(() => {
     fetchCityData()
   }, [fetchCityData])
 
-  return { rows, cityData, handleChange, handleSubmit, handleDelete, isLoading, id }
+  return {
+    rows,
+    cityData,
+    handleDelete,
+    isLoading,
+    name: cityData.name,
+    cityNumber: cityData.cityNumber,
+  }
 }
