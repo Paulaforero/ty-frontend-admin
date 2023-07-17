@@ -173,7 +173,7 @@ export default function DataPageView({
                             )}`
                           )
                         }
-                        handleDelete={() => handleDelete(row.id)}
+                        handleDelete={() => handleDelete(row.idAttrs)}
                       />
                     </TableCell>
                   </TableRow>
