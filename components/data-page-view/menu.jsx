@@ -17,7 +17,6 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 export default function IconMenu({ handleView, handleEdit, handleDelete }) {
   const [anchorEl, setAnchorEl] = useState(null)
-  const [openDelete, setOpenDelete] = useState(false)
   const open = Boolean(anchorEl)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
@@ -29,16 +28,8 @@ export default function IconMenu({ handleView, handleEdit, handleDelete }) {
 
   const handleClickDelete = () => {
     handleDelete()
-    setAnchorEl(null)
-    setOpenDelete(true)
   }
 
-  const handleCloseDelete = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
-    setOpenDelete(false)
-  }
 
   return (
     <>
@@ -73,26 +64,13 @@ export default function IconMenu({ handleView, handleEdit, handleDelete }) {
             </ListItemIcon>
             <ListItemText>Editar</ListItemText>
           </MenuItem>
-          <MenuItem onClick={handleClickDelete}>
+          <MenuItem>
             <ListItemIcon>
               <DeleteIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Eliminar</ListItemText>
           </MenuItem>
         </Menu>
-        <Snackbar
-          open={openDelete}
-          autoHideDuration={5000}
-          onClose={handleCloseDelete}
-        >
-          <Alert
-            onClose={handleCloseDelete}
-            severity="success"
-            sx={{ width: '100%' }}
-          >
-            Se eliminó con éxito!
-          </Alert>
-        </Snackbar>
       </Paper>
     </>
   )
