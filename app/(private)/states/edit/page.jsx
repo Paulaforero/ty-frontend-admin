@@ -5,7 +5,8 @@ import { Typography } from '@mui/material'
 import useStateEditionPage from '@/components/states/hooks/use-state-edition-page'
 
 export default function EditPage() {
-  const { inputs, formValues, handleChange, isLoading, id} = useStateEditionPage()
+  const { inputs, formValues, handleChange, handleSubmit, isLoading, id } =
+    useStateEditionPage()
 
   return (
     <>
@@ -17,6 +18,7 @@ export default function EditPage() {
           inputs={inputs}
           values={formValues}
           handleChange={handleChange}
+          handleSubmit={handleSubmit}
         />
       ) : (
         <Typography align="center">Loading...</Typography>

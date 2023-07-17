@@ -4,8 +4,7 @@ import DataPageView from '@/components/data-page-view'
 import useStatesDataPage from '@/components/states/hooks/use-states-data-page'
 
 export default function StatesPage() {
-
-  const { columns, states } = useStatesDataPage()
+  const { columns, states, handleDelete } = useStatesDataPage()
 
   return (
     <DataPageView
@@ -13,6 +12,7 @@ export default function StatesPage() {
       createButtonLabel="Agregar estado"
       columns={columns}
       rows={states}
+      handleDelete={handleDelete}
     />
   )
 }
