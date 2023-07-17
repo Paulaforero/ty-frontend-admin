@@ -5,103 +5,67 @@ import { useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import { useRouter } from 'next/navigation'
 import useSnackbar from '@/hooks/use-snackbar'
-import {vehicleModels} from '../../../mock/vehicles'
-import { clients } from '../../../mock/vehicles'
 
-export default function useVehicleEditionPage() {
+export default function useClientEditionPage() {
   const router = useRouter()
   const notify = useSnackbar()
 
   const searchParams = useSearchParams()
 
-  const plate = searchParams.get('plate')
+  const id = searchParams.get('national-id')
 
   const [formValues, setFormValues] = useState({
-    plate: '',
-    brand: '',
-    modelId: '',
-    serialNo: '',
-    engineSerialNo: '',
-    color: '',
-    purchaseDate: '',
-    additionalInfo: '',
-    maintenanceSummary: '',
-    ownerNationalId: '',
+    nationalId: '',
+    fullName: '',
+    mainPhoneNo: '',
+    secondaryPhoneNo: '',
+    email: '',
   })
 
   const [isLoading, setIsLoading] = useState(false)
 
   const inputs = [
-      {
-        label: 'Marca',
-        type: 'text',
-        name: 'brand',
-        required: true,
-      },
-      {
-          type: 'select',
-          options: vehicleModels.map(vehicleModels => ({
-            label: vehicleModels.name,
-            value: vehicleModels.id,
-          })),
-        name: 'modelId',
-        label: 'Id del modelo',
-        required: true,
-      },
-      {
-          type: 'text',
-          name: 'serialNo',
-          label: 'Número de serial',
-          required: true,
-        },
-        {
-          type: 'text',
-          name: 'engineSerialNo',
-          label: 'Número de serial del motor',
-          required: true,
-        },
-        {
-          type: 'text',
-          name: 'color',
-          label: 'Color',
-          required: true,
-        },
-        {
-            type: 'text',
-            name: 'purchaseDate',
-            label: 'Fecha de compra (dd/mm/yyyy)',
-            required: true,
-        },
-        {
-            type: 'text',
-            name: 'additionalInfo',
-            label: 'Información adicional',
-        },
-        {
-            type: 'text',
-            name: 'maintenanceSummary',
-            label: 'Resumen de mantenimientos',
-        },
-        {
-            type: 'select',
-            options: clients.map(clients => ({
-              label: clients.fullName,
-              value: clients.nationalId,
-            })),
-          name: 'ownerNationalId',
-          label: 'Cédula del propietario',
-          required: true,
-        },
+    {
+      label: 'Nombre',
+      name: 'fullName',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Nro. Telefónico',
+      name: 'mainPhoneNo',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Nro. Telefónico secundario',
+      name: 'secondaryPhoneNo',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Correo electrónico',
+      name: 'email',
+      type: 'email',
+      required: true,
+    },
   ]
+
   const handleChange = event => {
-    setFormValues({...formValues, [event.target.name]: typeof event.target.value === 'string' ? event.target.value.trim() : event.target.value })
+    setFormValues({
+      ...formValues,
+      [event.target.name]:
+        typeof event.target.value === 'string'
+          ? event.target.value.trim()
+          : event.target.value,
+    })
   }
 
-  const fetchVehicleData = useCallback(async () => {
+  const fetchClientData = useCallback(async () => {
     try {
       setIsLoading(true)
       const response = await fetch(
-        `${BACKEND_URLS.vehicles}/view?plate=${plate}`,
+        `${BACKEND_URLS.clients}/view?national-id=${id}`,
         {
           method: 'GET',
           cache: 'no-store',
@@ -109,28 +73,28 @@ export default function useVehicleEditionPage() {
       )
 
       const responseData = await response.json()
-      const fetchedVehicleData = responseData.data
+      const fetchedClientData = responseData.data
 
-      setFormValues(fetchedVehicleData)
+      setFormValues(fetchedClientData)
     } catch (error) {
       notify({
-        message: 'Error obteniendo los datos del vehículo.',
+        message: 'Error obteniendo los datos del cliente.',
         severity: 'error',
       })
     } finally {
       setIsLoading(false)
     }
-  }, [notify, plate])
+  }, [notify, id])
 
   useEffect(() => {
-    fetchVehicleData()
-  }, [fetchVehicleData])
+    fetchClientData()
+  }, [fetchClientData])
 
   const editVehicle = async () => {
     try {
-      const { plate, ...toEditValues } = formValues
+      const { nationalId, ...toEditValues } = formValues
       const response = await fetch(
-        `${BACKEND_URLS.vehicles}?plate=${plate}`,
+        `${BACKEND_URLS.clients}?national-id=${nationalId}`,
         {
           method: 'PATCH',
           headers: {
@@ -144,14 +108,14 @@ export default function useVehicleEditionPage() {
       if (!response.ok) throw new Error()
 
       notify({
-        message: '¡Se ha editado el vehículo exitosamente!',
+        message: '¡Se ha editado el cliente exitosamente!',
         severity: 'success',
       })
 
-      router.push('/vehicles')
+      router.push('/clients')
     } catch (error) {
       notify({
-        message: 'Error al intentar editar el vehículo.',
+        message: 'Error al intentar editar el cliente.',
         severity: 'error',
       })
     }
@@ -163,9 +127,15 @@ export default function useVehicleEditionPage() {
   }
 
   useEffect(() => {
-    fetchVehicleData()
-  }, [fetchVehicleData])
+    fetchClientData()
+  }, [fetchClientData])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading, plate
+  return {
+    inputs,
+    formValues,
+    handleChange,
+    handleSubmit,
+    isLoading,
+    id,
   }
 }

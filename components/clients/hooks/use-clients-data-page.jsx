@@ -14,12 +14,12 @@ export default function useClientsDataPage() {
     secondaryPhoneNo: 'Nro. Telefónico secundario',
     email: 'E-mail',
   }
-  
+
   const addIdAttrsObjectToEachRow = rows =>
     rows.map(row => {
       return {
         ...row,
-        idAttrs: { 'national-id': row.nationalId},
+        idAttrs: { 'national-id': row.nationalId },
       }
     })
 
@@ -43,12 +43,10 @@ export default function useClientsDataPage() {
     }
   }, [notify])
 
-  const handleDelete = async ({
-    'national-id': nationalId
-  }) => {
+  const handleDelete = async ({ 'national-id': nationalId }) => {
     try {
       const response = await fetch(
-        `${BACKEND_URLS.vehicles}?national-id=${plate}`,
+        `${BACKEND_URLS.clients}?national-id=${nationalId}`,
         {
           method: 'DELETE',
           cache: 'no-store',
@@ -77,4 +75,3 @@ export default function useClientsDataPage() {
 
   return { clients, columns, handleDelete }
 }
-

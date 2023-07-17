@@ -5,103 +5,83 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
 
-export default function useVehicleDetailsPage() {
+export default function useClientDetailsPage() {
   const router = useRouter()
   const notify = useSnackbar()
 
   const searchParams = useSearchParams()
 
-  const plate = searchParams.get('plate')
+  const nationalId = searchParams.get('national-id')
 
+  const id = nationalId
 
-  const [vehicleData, setVehicleData] = useState({
-    plate: '',
-    brand: '',
-    modelId: '',
-    serialNo: '',
-    engineSerialNo: '',
-    color: '',
-    purchaseDate: '',
-    additionalInfo: '',
-    maintenanceSummary: '',
-    ownerNationalId: '',
+  const [clientData, setClientData] = useState({
+    nationalId: '',
+    fullName: '',
+    mainPhoneNo: '',
+    secondaryPhoneNo: '',
+    email: '',
   })
+
   const [isLoading, setIsLoading] = useState(false)
 
   const rows = useMemo(
     () => [
       {
-        label: 'Marca',
-        value: vehicleData.brand,
+        label: 'Cédula',
+        value: clientData.nationalId,
       },
       {
-        label: 'Modelo (ID)',
-        value: vehicleData.modelId,
+        label: 'Nombre',
+        value: clientData.fullName,
       },
       {
-        label: 'Número de serial',
-        value: vehicleData.serialNo,
+        label: 'Nro. Telefónico',
+        value: clientData.mainPhoneNo,
       },
       {
-        label: 'Número de serial del motor',
-        value: vehicleData.engineSerialNo,
+        label: 'Nro. Telefónico secundario',
+        value: clientData.secondaryPhoneNo,
       },
       {
-        label: 'Color',
-        value: vehicleData.color ,
-      },
-      {
-        label: 'Fecha de compra',
-        value: vehicleData.purchaseDate  ,
-      },
-      {
-        label: 'Información adicional',
-        value: vehicleData.additionalInfo ,
-      },
-      {
-        label: 'Resumen de mantenimientos',
-        value: vehicleData.maintenanceSummary ,
-      },
-      {
-        label: 'Cédula del propietario',
-        value: vehicleData.ownerNationalId ,
+        label: 'Correo electrónico',
+        value: clientData.email,
       },
     ],
-    [vehicleData]
+    [clientData]
   )
-  const handleSubmit = e => {
-    e.preventDefault()
-    editVehicle()
-  }
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.vehicles}?plate=${plate}`, {
-        method: 'DELETE',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.clients}?national-id=${nationalId}`,
+        {
+          method: 'DELETE',
+          cache: 'no-store',
+        }
+      )
 
       if (!response.ok) throw new Error()
 
       notify({
-        message: '¡El vehículo se ha eliminado exitósamente!',
+        message: '¡El cliente se ha eliminado exitósamente!',
         severity: 'success',
       })
 
-      router.push('/vehicles')
+      router.push('/clients')
     } catch (error) {
       notify({
-        message: 'Error al intentar eliminar el vehículo.',
+        message: 'Error al intentar eliminar el cliente.',
         severity: 'error',
       })
     }
   }
 
-  const fetchVehicleData = useCallback(async () => {
+  const fetchClientData = useCallback(async () => {
     try {
       setIsLoading(true)
       const response = await fetch(
-        `${BACKEND_URLS.vehicles}/view?plate=${plate}`,
+        `${BACKEND_URLS.clients}/view?national-id=${nationalId}`,
         {
           method: 'GET',
           cache: 'no-store',
@@ -109,27 +89,27 @@ export default function useVehicleDetailsPage() {
       )
 
       const responseData = await response.json()
-      const fetchedVehicleData = responseData.data
-      setVehicleData(fetchedVehicleData)
+      const fetchedClientData = responseData.data
+      setClientData(fetchedClientData)
     } catch (error) {
       notify({
-        message: 'Error obteniendo los datos del vehículo.',
+        message: 'Error obteniendo los datos del cliente.',
         severity: 'error',
       })
     } finally {
       setIsLoading(false)
     }
-  }, [notify, plate])
+  }, [notify, nationalId])
 
   useEffect(() => {
-    fetchVehicleData()
-  }, [fetchVehicleData])
+    fetchClientData()
+  }, [fetchClientData])
 
   return {
     rows,
-    vehicleData,
+    clientData,
     handleDelete,
     isLoading,
-    plate: vehicleData.plate,
+    id,
   }
 }

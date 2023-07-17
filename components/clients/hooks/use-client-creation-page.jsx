@@ -4,30 +4,22 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
-import {vehicleModels} from '../../../mock/vehicles'
-import { clients } from '../../../mock/vehicles'
 
-export default function useVehicleCreationPage() {
+export default function useClientCreationPage() {
   const router = useRouter()
   const notify = useSnackbar()
-  
 
   const [formValues, setFormValues] = useState({
-    plate: '',
-    brand: '',
-    modelId: '',
-    serialNo: '',
-    engineSerialNo: '',
-    color: '',
-    purchaseDate: '',
-    additionalInfo: '',
-    maintenanceSummary: '',
-    ownerNationalId: '',
+    nationalId: '',
+    fullName: '',
+    mainPhoneNo: '',
+    secondaryPhoneNo: '',
+    email: '',
   })
 
   const createVehicle = async () => {
     try {
-      const response = await fetch(BACKEND_URLS.vehicles, {
+      const response = await fetch(BACKEND_URLS.clients, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,15 +30,15 @@ export default function useVehicleCreationPage() {
 
       if (!response.ok) throw new Error()
 
-      router.push('/vehicles')
+      router.push('/clients')
 
       notify({
-        message: '¡Vehículo creado con éxito!',
+        message: '¡Cliente creado con éxito!',
         severity: 'success',
       })
     } catch (error) {
       notify({
-        message: 'Error al crear el vehículo...',
+        message: 'Error al crear el cliente...',
         severity: 'error',
       })
     }
@@ -54,77 +46,45 @@ export default function useVehicleCreationPage() {
 
   const inputs = [
     {
-        label: 'Placa',
-        type: 'text',
-        name: 'plate',
-        required: true,
-      },
-      {
-        label: 'Marca',
-        type: 'text',
-        name: 'brand',
-        required: true,
-      },
-      {
-          type: 'select',
-          options: vehicleModels.map(vehicleModels => ({
-            label: vehicleModels.name,
-            value: vehicleModels.id,
-          })),
-        name: 'modelId',
-        label: 'Id del modelo',
-        required: true,
-      },
-      {
-          type: 'text',
-          name: 'serialNo',
-          label: 'Número de serial',
-          required: true,
-        },
-        {
-          type: 'text',
-          name: 'engineSerialNo',
-          label: 'Número de serial del motor',
-          required: true,
-        },
-        {
-          type: 'text',
-          name: 'color',
-          label: 'Color',
-          required: true,
-        },
-        {
-            type: 'text',
-            name: 'purchaseDate',
-            label: 'Fecha de compra (yyyy-mm-dd)',
-            required: true,
-        },
-        {
-            type: 'text',
-            name: 'additionalInfo',
-            label: 'Información adicional',
-        },
-        {
-            type: 'text',
-            name: 'maintenanceSummary',
-            label: 'Resumen de mantenimientos',
-        },
-        {
-            type: 'select',
-            options: clients.map(clients => ({
-              label: clients.fullName,
-              value: clients.nationalId,
-            })),
-          name: 'ownerNationalId',
-          label: 'Cédula del propietario',
-          required: true,
-        },
-                 
-
+      label: 'Cédula',
+      name: 'nationalId',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Nombre',
+      name: 'fullName',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Nro. Telefónico',
+      name: 'mainPhoneNo',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Nro. Telefónico secundario',
+      name: 'secondaryPhoneNo',
+      type: 'text',
+      required: true,
+    },
+    {
+      label: 'Correo electrónico',
+      name: 'email',
+      type: 'email',
+      required: true,
+    },
   ]
 
   const handleChange = event => {
-    setFormValues({...formValues, [event.target.name]: typeof event.target.value === 'string' ? event.target.value.trim() : event.target.value })
+    setFormValues({
+      ...formValues,
+      [event.target.name]:
+        typeof event.target.value === 'string'
+          ? event.target.value.trim()
+          : event.target.value,
+    })
   }
 
   const handleSubmit = e => {
