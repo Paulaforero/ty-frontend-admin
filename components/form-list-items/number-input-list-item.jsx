@@ -14,8 +14,10 @@ export default function NumberInputListItem({
   adornment,
   inputProps,
   handleChange,
-}) {
+})
+{
   const { min, max } = inputProps
+  
   return (
     <ListItem className="flex flex-row w-full justify-center">
       <FormControl className="m-1 w-full">

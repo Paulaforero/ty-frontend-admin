@@ -125,6 +125,6 @@ export default function useVehicleModelDetailsPage() {
     vehicleModelData,
     handleDelete,
     isLoading,
-    id: vehicleModelData.id,
+    id
   }
 }
