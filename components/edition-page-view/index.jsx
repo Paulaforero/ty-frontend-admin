@@ -31,11 +31,10 @@ export default function EditionPage({
     component="main"
     className="w-full h-full pt-9"
     style={{
-      backgroundImage: 'url(/img/background.png)',
+      backgroundImage: 'url(/images/background.png)',
       backgroundSize: 'cover',
     }}>
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
@@ -46,7 +45,7 @@ export default function EditionPage({
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
             <Box component="header" className="flex pb-0 w-full mb-7 mt-4">
-              <Link href={pathname.replace('/create', '')}>
+              <Link href={pathname.replace('/edit', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
                 </IconButton>
@@ -69,7 +68,7 @@ export default function EditionPage({
             </Box>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col items-center relative mb-8"
+              className="flex flex-col items-center mb-8"
             >
               {inputs.map(input =>
                 input.type === 'text' ? (
@@ -106,6 +105,26 @@ export default function EditionPage({
                       }}
                     />
                   </FormControl>
+                ) : input.type === 'email' ? (
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
+                    <TextInputListItem
+                      key={input.name}
+                      label={input.label}
+                      name={input.name}
+                      handleChange={handleChange}
+                      type={input.type}
+                      value={values[input.name]}
+                      required={input.required}
+                      adornment={input.adornment}
+                      inputProps={{
+                        min: input.min,
+                        max: input.max,
+                      }}
+                    />
+                  </FormControl>
                 ) : (
                   <FormControl
                     key={input.name}
@@ -121,7 +140,7 @@ export default function EditionPage({
                       required={input.required}
                     />
                   </FormControl>
-                )
+                ) 
               )}
 
               <Box textAlign="center" mt={4} className="mx-auto">
