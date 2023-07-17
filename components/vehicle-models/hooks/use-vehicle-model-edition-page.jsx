@@ -41,6 +41,14 @@ export default function useVehicleModelEditionPage() {
         max: 8,
         required: true,
       },
+      {
+        type: 'number',
+        name: 'weightInKg',
+        label: 'Peso en Kg',
+        adornment:'Kg',
+        min: 0,
+        required: true,
+      },
     {
         type: 'select',
         options: [
@@ -76,15 +84,27 @@ export default function useVehicleModelEditionPage() {
         required: true,
       },
   ]
-  const handleChange = event => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
-  }
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    let parsedValue;
+  
+    if (name === 'seatCount'|| name==='weightInKg') {
+      parsedValue = parseInt(value, 10);
+    } else {
+      parsedValue = typeof value === 'string' ? value.trim() : value;
+    }
+  
+    setFormValues({
+      ...formValues,
+      [name]: parsedValue,
+    });
+  };
   const fetchVehicleModelData = useCallback(async () => {
     try {
       setIsLoading(true)
       const response = await fetch(
-        `${BACKEND_URLS.cities}/view?id=${id}`,
+        `${BACKEND_URLS.vehicleModels}/view?id=${id}`,
         {
           method: 'GET',
           cache: 'no-store',
@@ -152,6 +172,6 @@ export default function useVehicleModelEditionPage() {
     fetchVehicleModelData()
   }, [fetchVehicleModelData])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading, id: vehicleModelData.id,
+  return { inputs, formValues, handleChange, handleSubmit, isLoading, id,
   }
 }

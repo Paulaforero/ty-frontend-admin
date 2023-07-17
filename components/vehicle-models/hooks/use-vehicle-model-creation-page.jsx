@@ -17,7 +17,7 @@ export default function useVehicleCreationPage() {
     engineCoolantType: '',
   })
 
-  const createVehicle = async () => {
+  const createVehicleModel = async () => {
     try {
       const response = await fetch(BACKEND_URLS.vehicleModels, {
         method: 'POST',
@@ -59,6 +59,14 @@ export default function useVehicleCreationPage() {
           max: 8,
           required: true,
         },
+        {
+          type: 'number',
+          name: 'weightInKg',
+          label: 'Peso en Kg',
+          adornment:'Kg',
+          min: 0,
+          required: true,
+        },
       {
           type: 'select',
           options: [
@@ -95,10 +103,26 @@ export default function useVehicleCreationPage() {
         },
   ]
 
-  const handleChange = event => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
-  }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    let parsedValue;
+  
+    if (name === 'seatCount'|| name==='weightInKg') {
+      parsedValue = parseInt(value, 10);
+    } else {
+      parsedValue = typeof value === 'string' ? value.trim() : value;
+    }
+  
+    setFormValues({
+      ...formValues,
+      [name]: parsedValue,
+    });
+  };
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    createVehicleModel()
+  }
 
   return {
     inputs,
