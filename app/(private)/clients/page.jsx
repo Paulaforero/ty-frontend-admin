@@ -1,23 +1,18 @@
 'use client'
 
-import DataPageView from '@/components/data-page/data-page-view'
-import { clients } from '@/mock/clients'
+import useClientsDataPage from '@/components/clients/hooks/use-clients-data-page'
+import DataPageView from '@/components/data-page-view'
 
 export default function DealershipsPage() {
-  const columns = {
-    national_id: 'Cedula',
-    full_name: 'Nombre completo',
-    main_phone_no: 'Telefono principal',
-    secondary_phone_no: 'Telefono secundario',
-    email: 'Correo electronico',
-  }
-  
+  const { clients, columns, handleDelete } = useClientsDataPage()
+
   return (
     <DataPageView
       title="Clientes"
       createButtonLabel="Agregar clientes"
       columns={columns}
       rows={clients}
+      handleDelete={handleDelete}
     />
   )
 }
