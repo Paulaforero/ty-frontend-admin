@@ -30,12 +30,11 @@ export default function CreationPage({
       component="main"
       className="w-full h-full pt-9"
       style={{
-        backgroundImage: 'url(/img/background.png)',
+        backgroundImage: 'url(/images/background.png)',
         backgroundSize: 'cover',
       }}
     >
       <Container
-        component="container"
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >
         <Box
@@ -45,7 +44,7 @@ export default function CreationPage({
           <Card
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
-            <Box component="header" className="flex pb-4 w-full mb-7 mt-4">
+            <Box component="header" className="flex pb-4 w-full mb-11">
               <Link href={pathname.replace('/create', '')}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
@@ -73,6 +72,7 @@ export default function CreationPage({
                       value={values[input.name]}
                       required={input.required}
                       adornment={input.adornment}
+                      type={input.type}
                     />
                   </FormControl>
                 ) : input.type === 'number' ? (
@@ -85,6 +85,26 @@ export default function CreationPage({
                       label={input.label}
                       name={input.name}
                       handleChange={handleChange}
+                      value={values[input.name]}
+                      required={input.required}
+                      adornment={input.adornment}
+                      inputProps={{
+                        min: input.min,
+                        max: input.max,
+                      }}
+                    />
+                  </FormControl>
+                ) : input.type === 'email' ? (
+                  <FormControl
+                    key={input.name}
+                    className="w-[45%] mb-[0.25rem]"
+                  >
+                    <TextInputListItem
+                      key={input.name}
+                      label={input.label}
+                      name={input.name}
+                      handleChange={handleChange}
+                      type={input.type}
                       value={values[input.name]}
                       required={input.required}
                       adornment={input.adornment}
@@ -109,7 +129,7 @@ export default function CreationPage({
                       required={input.required}
                     />
                   </FormControl>
-                )
+                ) 
               )}
 
               <Box textAlign="center" mt={4} className="mx-auto">
