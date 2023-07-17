@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
+import {vehicleModels} from '../../../mock/vehicles'
+import { clients } from '../../../mock/vehicles'
 
 export default function useVehicleCreationPage() {
   const router = useRouter()
@@ -94,7 +96,7 @@ export default function useVehicleCreationPage() {
         {
             type: 'text',
             name: 'purchaseDate',
-            label: 'Fecha de compra (dd/mm/yyyy)',
+            label: 'Fecha de compra (yyyy-mm-dd)',
             required: true,
         },
         {
@@ -122,7 +124,7 @@ export default function useVehicleCreationPage() {
   ]
 
   const handleChange = event => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
+    setFormValues({...formValues, [event.target.name]: typeof event.target.value === 'string' ? event.target.value.trim() : event.target.value })
   }
 
   const handleSubmit = e => {
