@@ -36,7 +36,7 @@ export default function useSupplyLineDetailsPage() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.supplyLines}/${id}`, {
+      const response = await fetch(`${BACKEND_URLS.supplyLines}?id=${id}`, {
         method: 'DELETE',
         cache: 'no-store',
       })
@@ -60,7 +60,7 @@ export default function useSupplyLineDetailsPage() {
   const fetchSupplyLineData = useCallback(async () => {
     try {
       setIsLoading(true)
-      const response = await fetch(`${BACKEND_URLS.supplyLines}/${id}`, {
+      const response = await fetch(`${BACKEND_URLS.supplyLines}/view?id=${id}`, {
         method: 'GET',
         cache: 'no-store',
       })

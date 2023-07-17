@@ -26,7 +26,7 @@ export default function useCitiesDataPage() {
 
       const responseData = await response.json()
       const fetchedSupplyLines = responseData.data
-      
+
       const formattedSupplyLines = addIdAttrsObject(fetchedSupplyLines)
 
       setSupplyLines(formattedSupplyLines)
@@ -38,9 +38,9 @@ export default function useCitiesDataPage() {
     }
   }, [notify])
 
-  const handleDelete = async id => {
+  const handleDelete = async ({ id }) => {
     try {
-      const response = await fetch(`${BACKEND_URLS.supplyLines}/${id}`, {
+      const response = await fetch(`${BACKEND_URLS.supplyLines}?id=${id}`, {
         method: 'DELETE',
         cache: 'no-store',
       })

@@ -37,14 +37,18 @@ export default function useSupplyLineEditionPage() {
   const fetchSupplyLineData = useCallback(async () => {
     try {
       setIsLoading(true)
-      const response = await fetch(`${BACKEND_URLS.supplyLines}/${id}`, {
-        method: 'GET',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.supplyLines}/view?id=${id}`,
+        {
+          method: 'GET',
+          cache: 'no-store',
+        }
+      )
 
-      const fetchedCityData = await response.json()
+      const responseData = await response.json()
+      const fetchedSupplyLineData = responseData.data
 
-      setFormValues(fetchedCityData)
+      setFormValues(fetchedSupplyLineData)
     } catch (error) {
       notify({
         message: 'Error al obtener los datos de la línea de suministro.',
@@ -57,14 +61,17 @@ export default function useSupplyLineEditionPage() {
 
   const editSupplyLine = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.supplyLines}/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues),
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.supplyLines}/view?id=${id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formValues),
+          cache: 'no-store',
+        }
+      )
 
       if (!response.ok) throw new Error()
 
