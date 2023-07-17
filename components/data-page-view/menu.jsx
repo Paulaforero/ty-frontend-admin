@@ -5,15 +5,9 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import DeleteIcon from '@mui/icons-material/Delete'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import EditIcon from '@mui/icons-material/Edit'
-import Snackbar from '@mui/material/Snackbar'
-import MuiAlert from '@mui/material/Alert'
 import { MoreVertOutlined } from '@mui/icons-material'
 import { Button, Menu } from '@mui/material'
 import { useState, forwardRef } from 'react'
-
-const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
-})
 
 export default function IconMenu({ handleView, handleEdit, handleDelete }) {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -25,11 +19,6 @@ export default function IconMenu({ handleView, handleEdit, handleDelete }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
-
-  const handleClickDelete = () => {
-    handleDelete()
-  }
-
 
   return (
     <>
@@ -45,6 +34,11 @@ export default function IconMenu({ handleView, handleEdit, handleDelete }) {
       </Button>
       <Paper>
         <Menu
+          /* The `anchorEl={anchorEl}` prop is used to specify the element that the menu should be
+          anchored to. In this case, it is set to the value of the `anchorEl` state variable, which
+          is initially set to `null`. When the button is clicked, the `anchorEl` state variable is
+          updated with the current target of the click event, which is the button itself. This
+          causes the menu to be anchored to the button when it is opened. */
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
@@ -64,7 +58,7 @@ export default function IconMenu({ handleView, handleEdit, handleDelete }) {
             </ListItemIcon>
             <ListItemText>Editar</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleDelete}>
             <ListItemIcon>
               <DeleteIcon fontSize="small" />
             </ListItemIcon>
