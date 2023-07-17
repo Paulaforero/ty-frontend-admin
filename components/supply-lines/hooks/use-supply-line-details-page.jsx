@@ -67,7 +67,7 @@ export default function useSupplyLineDetailsPage() {
 
       const fetchedCityData = await response.json()
 
-      setSupplyLineData(fetchedCityData)
+      setSupplyLineData(fetchedCityData.data)
     } catch (error) {
       notify({
         message: 'Error obteniendo los datos de la línea de suministro.',
@@ -76,7 +76,7 @@ export default function useSupplyLineDetailsPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [id])
+  }, [id, notify])
 
   useEffect(() => {
     fetchSupplyLineData()

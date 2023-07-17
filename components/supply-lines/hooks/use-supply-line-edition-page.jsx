@@ -53,7 +53,7 @@ export default function useSupplyLineEditionPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [id])
+  }, [id, notify])
 
   const editSupplyLine = async () => {
     try {

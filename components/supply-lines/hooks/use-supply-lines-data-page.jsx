@@ -24,7 +24,9 @@ export default function useCitiesDataPage() {
         cache: 'no-store',
       })
 
-      const fetchedSupplyLines = await response.json()
+      const responseData = await response.json()
+      const fetchedSupplyLines = responseData.data
+      
       const formattedSupplyLines = addIdAttrsObject(fetchedSupplyLines)
 
       setSupplyLines(formattedSupplyLines)
@@ -34,7 +36,7 @@ export default function useCitiesDataPage() {
         severity: 'error',
       })
     }
-  }, [])
+  }, [notify])
 
   const handleDelete = async id => {
     try {
