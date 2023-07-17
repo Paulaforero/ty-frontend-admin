@@ -7,7 +7,13 @@ export default forwardRef(function Earth(props, ref) {
   const { nodes, materials } = useGLTF('/3d-models/earth-transformed.glb')
 
   return (
-    <motion.group {...props} dispose={null} ref={ref}>
+    <motion.group
+      {...props}
+      dispose={null}
+      ref={ref}
+      onPointerEnter={() => props.setIsOn(true)}
+      onPointerLeave={() => props.setIsOn(false)}
+    >
       <motion.mesh
         geometry={nodes.earth4_blinn1_0.geometry}
         material={materials.blinn1}

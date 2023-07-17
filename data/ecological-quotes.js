@@ -1,0 +1,15 @@
+export const ecologicalQuotes = [
+  'El planeta no es una herencia de nuestros padres, sino un préstamo de nuestros hijos.',
+  'Reduce, reutiliza y recicla. ¡El futuro del planeta está en tus manos!',
+  'Cuida el medio ambiente, no lo maltrates. ¡Haz tu parte!',
+  'La naturaleza no necesita al hombre, el hombre sí necesita de la naturaleza.',
+  'El cambio climático no es una opinión, es una realidad. ¡Actúa ahora!',
+  'La naturaleza es una obra de arte y es nuestra responsabilidad protegerla.',
+  'No hay planeta B. ¡Cuidemos nuestro hogar!',
+  'Piensa globalmente, actúa localmente. ¡Cada pequeño gesto cuenta!',
+  'El respeto por todas las formas de vida es el primer principio de la ética ecológica.',
+  '¡No más plástico! Opta por alternativas sostenibles.',
+  'El futuro es renovable. ¡Apuesta por la energía limpia!',
+  'Si no cambiamos nuestra dirección, acabaremos llegando donde nos dirigimos.',
+  'La naturaleza es un regalo que debemos preservar para las generaciones futuras.',
+]
