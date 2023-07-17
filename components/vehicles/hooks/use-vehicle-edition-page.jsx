@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import { useRouter } from 'next/navigation'
 import useSnackbar from '@/hooks/use-snackbar'
+import {vehicleModels} from '../../../mock/vehicles'
+import { clients } from '../../../mock/vehicles'
 
 export default function useVehicleEditionPage() {
   const router = useRouter()
@@ -92,7 +94,7 @@ export default function useVehicleEditionPage() {
         },
   ]
   const handleChange = event => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
+    setFormValues({...formValues, [event.target.name]: typeof event.target.value === 'string' ? event.target.value.trim() : event.target.value })
   }
 
   const fetchVehicleData = useCallback(async () => {
@@ -164,6 +166,6 @@ export default function useVehicleEditionPage() {
     fetchVehicleData()
   }, [fetchVehicleData])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading, plate: vehicleData.plate,
+  return { inputs, formValues, handleChange, handleSubmit, isLoading, plate
   }
 }
