@@ -97,13 +97,128 @@ export const vehicles = [
       }
   ]
 
- export const clients = [
-  {
-    nationalId: '30109865',
-    fullname: 'maria'
-  },
-  {
-    nationalId: '30104521',
-    fullname:'paula'
-  },
-]
+  export const clients = [
+    {
+      nationalId: 'V-1234567890',
+      fullName: 'Juan Pérez',
+      mainPhoneNo: '5551234567',
+      secondaryPhoneNo: '5559876543',
+      email: 'juan.perez@example.com'
+    },
+    {
+      nationalId: 'V-0987654321',
+      fullName: 'María García',
+      mainPhoneNo: '5555555555',
+      secondaryPhoneNo: '5556666666',
+      email: 'maria.garcia@example.com'
+    },
+    {
+      nationalId: 'V-1357908642',
+      fullName: 'Pedro González',
+      mainPhoneNo: '5552223333',
+      secondaryPhoneNo: '5554445555',
+      email: 'pedro.gonzalez@example.com'
+    },
+    {
+      nationalId: 'V-2468013579',
+      fullName: 'Ana Martinez',
+      mainPhoneNo: '5557778888',
+      secondaryPhoneNo: '5559990000',
+      email: 'ana.martinez@example.com'
+    },
+    {
+      nationalId: 'V-3692581470',
+      fullName: 'Luis Ramirez',
+      mainPhoneNo: '5553334444',
+      secondaryPhoneNo: '5554443333',
+      email: 'luis.ramirez@example.com'
+    },
+    {
+      nationalId: 'V-8024671359',
+      fullName: 'Marta Fernández',
+      mainPhoneNo: '5556667777',
+      secondaryPhoneNo: '5557776666',
+      email: 'marta.fernandez@example.com'
+    },
+    {
+      nationalId: 'V-9753108642',
+      fullName: 'Carlos Sánchez',
+      mainPhoneNo: '5551112222',
+      secondaryPhoneNo: '5552221111',
+      email: 'carlos.sanchez@example.com'
+    },
+    {
+      nationalId: 'V-7531908642',
+      fullName: 'Sara Torres',
+      mainPhoneNo: '5554445555',
+      secondaryPhoneNo: '5555554444',
+      email: 'sara.torres@example.com'
+    },
+    {
+      nationalId: 'V-8642097531',
+      fullName: 'Jorge Rodriguez',
+      mainPhoneNo: '5558889999',
+      secondaryPhoneNo: '5559998888',
+      email: 'jorge.rodriguez@example.com'
+    },
+    {
+      nationalId: 'V-9513574862',
+      fullName: 'Laura Gómez',
+      mainPhoneNo: '5552221111',
+      secondaryPhoneNo: '5551112222',
+      email: 'laura.gomez@example.com'
+    }
+  ];
+  
+  export const vehicleModels = [
+    {
+      id:1,
+      name: 'Toyota Camry',
+      seatCount: 5,
+      weightInKg: 1500,
+      octaneRating: 91,
+      gearboxOilType: 'Automatic Transmission Fluid',
+      engineOilType: '5W-30',
+      engineCoolantType: 'Ethylene Glycol'
+    },
+    {
+      id:2,
+      name: 'Honda Civic',
+      seatCount: 5,
+      weightInKg: 1300,
+      octaneRating: 95,
+      gearboxOilType: 'Manual Transmission Fluid',
+      engineOilType: '0W-20',
+      engineCoolantType: 'Propylene Glycol'
+    },
+    {
+      id:3,
+      name: 'Ford Mustang',
+      seatCount: 4,
+      weightInKg: 1700,
+      octaneRating: 95,
+      gearboxOilType: 'Automatic Transmission Fluid',
+      engineOilType: '5W-50',
+      engineCoolantType: 'Ethylene Glycol'
+    },
+    {
+      id:4,
+      name: 'Chevrolet Silverado',
+      seatCount: 6,
+      weightInKg: 2500,
+      octaneRating: 91,
+      gearboxOilType: 'Automatic Transmission Fluid',
+      engineOilType: '10W-30',
+      engineCoolantType: 'Propylene Glycol'
+    },
+    {
+      id:5,
+      name: 'Nissan Altima',
+      seatCount: 5,
+      weightInKg: 1400,
+      octaneRating: 91,
+      gearboxOilType: 'CVT Fluid',
+      engineOilType: '5W-30',
+      engineCoolantType: 'Ethylene Glycol'
+    }
+  ];

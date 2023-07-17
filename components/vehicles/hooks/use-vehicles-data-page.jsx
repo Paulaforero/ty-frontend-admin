@@ -15,11 +15,12 @@ export default function useVehiclesDataPage() {
     ownerNationalId: 'Propietario (Cedula)',
     color: 'Color',
   }
+  
   const addIdAttrsObjectToEachRow = rows =>
     rows.map(row => {
       return {
         ...row,
-        idAttrs: { 'plate': row.plate },
+        idAttrs: { 'plate': row.plate},
       }
     })
 
@@ -44,7 +45,7 @@ export default function useVehiclesDataPage() {
   }, [notify])
 
   const handleDelete = async ({
-    'plate': plate,
+    'plate': plate
   }) => {
     try {
       const response = await fetch(
