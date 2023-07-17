@@ -88,7 +88,7 @@ export default function useVehicleDetailsPage() {
         severity: 'success',
       })
 
-      router.push('/cities')
+      router.push('/vehicles')
     } catch (error) {
       notify({
         message: 'Error al intentar eliminar el vehículo.',
