@@ -43,81 +43,78 @@ export default function useVehicleCreationPage() {
       })
     }
   }
-  
+
   const inputs = [
     {
-        label: 'Nombre',
-        type: 'text',
-        name: 'name',
-        required: true,
-      },
-      {
-          type: 'number',
-          name: 'seatCount',
-          label: 'Cantidad de asientos',
-          min: 2,
-          max: 8,
-          required: true,
+      label: 'Nombre',
+      type: 'text',
+      name: 'name',
+      required: true,
+    },
+    {
+      type: 'number',
+      name: 'seatCount',
+      label: 'Cantidad de asientos',
+      min: 2,
+      max: 8,
+      required: true,
+    },
+    {
+      type: 'number',
+      name: 'weightInKg',
+      label: 'Peso en Kg',
+      adornment: 'Kg',
+      min: 0,
+      required: true,
+    },
+    {
+      type: 'select',
+      options: [
+        {
+          label: '95',
+          value: 95,
         },
         {
-          type: 'number',
-          name: 'weightInKg',
-          label: 'Peso en Kg',
-          adornment:'Kg',
-          min: 0,
-          required: true,
+          label: '91',
+          value: 91,
         },
-      {
-          type: 'select',
-          options: [
-          {
-            label: '95',
-            value: 95,
-          },
-          {
-            label: '91',
-            value: 91,
-          },
-        ],
-        name: 'octaneRating',
-        label: 'Octanaje',
-        required: true,
-      },
-      {
-          type: 'text',
-          name: 'gearboxOilType',
-          label: 'Tipo de aceite de caja',
-          required: true,
-        },
-        {
-          type: 'text',
-          name: 'engineOilType',
-          label: 'Tipo de aceite de motor',
-          required: true,
-        },
-        {
-          type: 'text',
-          name: 'engineCoolantType',
-          label: 'Tipo de refrigerante',
-          required: true,
-        },
+      ],
+      name: 'octaneRating',
+      label: 'Octanaje',
+      required: true,
+    },
+    {
+      type: 'text',
+      name: 'gearboxOilType',
+      label: 'Tipo de aceite de caja',
+      required: true,
+    },
+    {
+      type: 'text',
+      name: 'engineOilType',
+      label: 'Tipo de aceite de motor',
+      required: true,
+    },
+    {
+      type: 'text',
+      name: 'engineCoolantType',
+      label: 'Tipo de refrigerante',
+      required: true,
+    },
   ]
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    let parsedValue;
-  
-    if (name === 'seatCount'|| name==='weightInKg') {
-      parsedValue = parseInt(value, 10);
-    } else {
-      parsedValue = typeof value === 'string' ? value.trim() : value;
-    }
-  
+  const handleChange = event => {
+    const { name, value } = event.target
+    let parsedValue
+
+    if (name === 'seatCount') parsedValue = parseInt(value)
+    if (name === 'weightInKg') parsedValue = parseFloat(value)
+
     setFormValues({
       ...formValues,
       [name]: parsedValue,
-    });
-  };
+    })
+  }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -131,4 +128,3 @@ export default function useVehicleCreationPage() {
     handleSubmit,
   }
 }
-

@@ -64,11 +64,6 @@ export default function useVehicleModelDetailsPage() {
     [vehicleModelData]
   )
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    editVehicleModel()
-  }
-
   const handleDelete = async () => {
     try {
       const response = await fetch(`${BACKEND_URLS.vehicleModels}?id=${id}`, {

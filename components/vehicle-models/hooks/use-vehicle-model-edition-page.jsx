@@ -85,21 +85,18 @@ export default function useVehicleModelEditionPage() {
       },
   ]
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    let parsedValue;
-  
-    if (name === 'seatCount'|| name==='weightInKg') {
-      parsedValue = parseInt(value, 10);
-    } else {
-      parsedValue = typeof value === 'string' ? value.trim() : value;
-    }
-  
+  const handleChange = event => {
+    const { name, value } = event.target
+    let parsedValue
+
+    if (name === 'seatCount') parsedValue = parseInt(value)
+    if (name === 'weightInKg') parsedValue = parseFloat(value)
+
     setFormValues({
       ...formValues,
       [name]: parsedValue,
-    });
-  };
+    })
+  }
   const fetchVehicleModelData = useCallback(async () => {
     try {
       setIsLoading(true)
