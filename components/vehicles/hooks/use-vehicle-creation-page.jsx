@@ -1,11 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
-import {vehicleModels} from '../../../mock/vehicles'
-import { clients } from '../../../mock/vehicles'
 
 export default function useVehicleCreationPage() {
   const router = useRouter()
@@ -24,6 +22,48 @@ export default function useVehicleCreationPage() {
     maintenanceSummary: '',
     ownerNationalId: '',
   })
+
+  const [clients, setClients] = useState([])
+  const [vehicleModels, setVehicleModels] = useState([])
+
+
+  const fetchClients = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.clients, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedClients = responseData.data
+
+      setClients(fetchedClients)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los clientes',
+        severity: 'error',
+      })
+    }
+  }, [notify])
+
+  const fetchVehicleModels = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.vehicleModels, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedVehicleModels = responseData.data
+
+      setVehicleModels(fetchedVehicleModels)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los modelos de vehículos',
+        severity: 'error',
+      })
+    }
+  }, [notify])
 
   const createVehicle = async () => {
     try {
@@ -124,13 +164,27 @@ export default function useVehicleCreationPage() {
   ]
 
   const handleChange = event => {
-    setFormValues({...formValues, [event.target.name]: typeof event.target.value === 'string' ? event.target.value.trim() : event.target.value })
+    const { name, value } = event.target
+    let parsedValue
+
+    if (name === 'seatCount') parsedValue = parseInt(value)
+    if (name === 'weightInKg') parsedValue = parseFloat(value)
+
+    setFormValues({
+      ...formValues,
+      [name]: parsedValue,
+    })
   }
 
   const handleSubmit = e => {
     e.preventDefault()
     createVehicle()
   }
+
+  useEffect(() => {
+    fetchClients()
+    fetchVehicleModels()
+  }, [])
 
   return {
     inputs,

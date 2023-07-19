@@ -69,10 +69,6 @@ export default function useVehicleDetailsPage() {
     ],
     [vehicleData]
   )
-  const handleSubmit = e => {
-    e.preventDefault()
-    editVehicle()
-  }
 
   const handleDelete = async () => {
     try {

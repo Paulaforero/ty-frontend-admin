@@ -5,8 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import { useRouter } from 'next/navigation'
 import useSnackbar from '@/hooks/use-snackbar'
-import {vehicleModels} from '../../../mock/vehicles'
-import { clients } from '../../../mock/vehicles'
+
 
 export default function useVehicleEditionPage() {
   const router = useRouter()
@@ -30,6 +29,47 @@ export default function useVehicleEditionPage() {
   })
 
   const [isLoading, setIsLoading] = useState(false)
+  const [clients, setClients] = useState([])
+  const [vehicleModels, setVehicleModels] = useState([])
+
+
+  const fetchClients = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.clients, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedClients = responseData.data
+
+      setClients(fetchedClients)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los clientes',
+        severity: 'error',
+      })
+    }
+  }, [notify])
+
+  const fetchVehicleModels = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.vehicleModels, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedVehicleModels = responseData.data
+
+      setVehicleModels(fetchedVehicleModels)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los modelos de vehículos',
+        severity: 'error',
+      })
+    }
+  }, [notify])
 
   const inputs = [
       {
@@ -93,9 +133,7 @@ export default function useVehicleEditionPage() {
           required: true,
         },
   ]
-  const handleChange = event => {
-    setFormValues({...formValues, [event.target.name]: typeof event.target.value === 'string' ? event.target.value.trim() : event.target.value })
-  }
+  
 
   const fetchVehicleData = useCallback(async () => {
     try {
@@ -157,6 +195,19 @@ export default function useVehicleEditionPage() {
     }
   }
 
+  const handleChange = event => {
+    const { name, value } = event.target
+    let parsedValue
+
+    if (name === 'seatCount') parsedValue = parseInt(value)
+    if (name === 'weightInKg') parsedValue = parseFloat(value)
+
+    setFormValues({
+      ...formValues,
+      [name]: parsedValue,
+    })
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
     editVehicle()
@@ -164,7 +215,9 @@ export default function useVehicleEditionPage() {
 
   useEffect(() => {
     fetchVehicleData()
-  }, [fetchVehicleData])
+    fetchClients()
+    fetchVehicleModels()
+  }, [])
 
   return { inputs, formValues, handleChange, handleSubmit, isLoading, plate
   }
