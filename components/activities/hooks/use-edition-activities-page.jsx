@@ -24,6 +24,26 @@ export default function useActivityEditionPage() {
   })
 
   const [isLoading, setIsLoading] = useState(true)
+  const [services, setServices] = useState([])
+  
+  const fetchServices = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.services, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedServices = responseData.data
+
+      setServices(fetchedServices)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los servicios',
+        severity: 'error',
+      })
+    }
+  }, [notify])
 
   const inputs = [
     {
@@ -89,10 +109,6 @@ export default function useActivityEditionPage() {
     }
   }, [notify, activityNumber, serviceId])
 
-  useEffect(() => {
-    fetchActivityData()
-  }, [fetchActivityData])
-
   const editActivity = async () => {
     try {
       const { activityNumber, ...toEditValues } = formValues
@@ -131,7 +147,8 @@ export default function useActivityEditionPage() {
 
   useEffect(() => {
     fetchActivityData()
-  }, [fetchActivityData])
+    fetchServices()
+  }, [fetchActivityData, fetchServices])
 
   return { inputs, formValues, handleChange, handleSubmit, isLoading, id,
   }

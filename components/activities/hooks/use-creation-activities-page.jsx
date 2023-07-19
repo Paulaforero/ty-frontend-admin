@@ -14,6 +14,26 @@ export default function useActivitiesCreationPage() {
     description: '',
     pricePerHour: '',
   })
+  const [services, setServices] = useState([])
+  
+  const fetchServices = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.services, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedServices = responseData.data
+
+      setServices(fetchedServices)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los servicios',
+        severity: 'error',
+      })
+    }
+  }, [notify])
 
   const createActivities = async () => {
     try {
@@ -85,6 +105,10 @@ export default function useActivitiesCreationPage() {
     e.preventDefault()
     createActivities()
   }
+
+  useEffect(() => {
+    fetchServices()
+  }, [fetchServices])
 
   return {
     inputs,
