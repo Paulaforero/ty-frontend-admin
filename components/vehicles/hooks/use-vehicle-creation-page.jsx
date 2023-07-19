@@ -164,16 +164,7 @@ export default function useVehicleCreationPage() {
   ]
 
   const handleChange = event => {
-    const { name, value } = event.target
-    let parsedValue
-
-    if (name === 'seatCount') parsedValue = parseInt(value)
-    if (name === 'weightInKg') parsedValue = parseFloat(value)
-
-    setFormValues({
-      ...formValues,
-      [name]: parsedValue,
-    })
+    setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = e => {
