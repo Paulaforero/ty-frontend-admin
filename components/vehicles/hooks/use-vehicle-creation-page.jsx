@@ -175,7 +175,7 @@ export default function useVehicleCreationPage() {
   useEffect(() => {
     fetchClients()
     fetchVehicleModels()
-  }, [])
+  }, [fetchClients, fetchVehicleModels])
 
   return {
     inputs,

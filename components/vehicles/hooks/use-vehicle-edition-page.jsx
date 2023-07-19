@@ -208,7 +208,7 @@ export default function useVehicleEditionPage() {
     fetchVehicleData()
     fetchClients()
     fetchVehicleModels()
-  }, [])
+  }, [fetchVehicleData, fetchClients, fetchVehicleModels])
 
   return { inputs, formValues, handleChange, handleSubmit, isLoading, plate
   }
