@@ -1,0 +1,25 @@
+'use client'
+
+import DetailsPageView from '@/components/details-page-view'
+import { Typography } from '@mui/material'
+import useEmployeeDetailsPage from '@/components/vehicle-models/hooks/use-vehicle-model-details-page'
+export default function ViewPage() {
+  const {  rows, EmployeeData, handleDelete, isLoading, nationalId } = useEmployeeDetailsPage()
+
+  return (
+    <>
+      {!isLoading ? (
+        <DetailsPageView
+        title="Empleado"
+        id={`#${nationalId}`}
+        toEditButtonLabel="Editar empleado"
+        rows={rows}
+        values={EmployeeData}
+        handleDelete={handleDelete}
+        />
+      ) : (
+        <Typography align="center">Loading...</Typography>
+      )}
+    </>
+  )
+}
