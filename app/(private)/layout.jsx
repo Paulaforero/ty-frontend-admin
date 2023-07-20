@@ -61,7 +61,7 @@ const menuItemsSecondary = [
     route: '/dealerships',
   },
   { name: 'Clientes', icon: <PersonOutlineOutlinedIcon />, route: '/clients' },
-  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route: '/employees' },
+  { name: 'Empleados', icon: <BadgeOutlinedIcon />, route: '/staff' },
   {
     name: 'Vehiculos',
     icon: <DirectionsCarOutlinedIcon />,
