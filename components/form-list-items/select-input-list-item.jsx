@@ -16,11 +16,8 @@ export default function SelectInputListItem({
 }) {
   return (
     <ListItem className="flex flex-row w-full">
-      <FormControl className='m-1 w-full'>
-        <InputLabel
-          id={`${name}-select`}
-          className="items-center  w-full"
-        >
+      <FormControl className="m-1 w-full">
+        <InputLabel id={`${name}-select`} className="items-center  w-full">
           {label}
         </InputLabel>
         <Select

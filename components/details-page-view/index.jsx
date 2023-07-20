@@ -65,7 +65,7 @@ export default function DetailsPage({
           <Card
             className="flex flex-col gap-5 px-10 py-6 h-full mx-2 mb-10 flex-grow rounded-lg text-white text-lg bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 border-opacity-30"
           >
-            <Box component="header" className="flex pb-0 w-full">
+            <Box component="header" className="flex pb-0 w-full mb-7 mt-4">
               <Link href={getPreviousPage(pathname.split('/'))}>
                 <IconButton size="large" color="secondary" className="mr-2">
                   <ChevronLeftIcon size="large" />
@@ -105,7 +105,6 @@ export default function DetailsPage({
                   </Typography>
                 </Stack>
               ))}
-
             <Box className="flex flex-row justify-center gap-6">
               <Link href={
                 pathname.replace(/view/g, 'edit') +

@@ -18,7 +18,7 @@ export default function TextInputListItem({
 
   return (
     <ListItem className="flex flex-row w-full justify-center">
-      <FormControl className='m-1 w-full'>
+      <FormControl className="m-1 w-full">
         <InputLabel htmlFor="outlined-adornment-text">{label}</InputLabel>
         <OutlinedInput
           required={required ? required : false}
