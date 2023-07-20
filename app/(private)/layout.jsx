@@ -234,7 +234,7 @@ export default function MiniDrawer({ children }) {
   }
 
   return (
-    <Box className="flex flex-row">
+    <Box className="flex flex-row overflow-x-hidden">
       <CssBaseline />
       <Drawer variant="permanent" open={open} className="block">
         <DrawerHeader
@@ -397,7 +397,7 @@ export default function MiniDrawer({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box className="flex-grow">{children}</Box>
+      <Box className="flex-grow overflow-x-hidden">{children}</Box>
 
       <Earth />
     </Box>
