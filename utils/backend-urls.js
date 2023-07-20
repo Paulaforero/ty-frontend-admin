@@ -6,5 +6,6 @@ export const BACKEND_URLS = {
   staff: BACKEND_URL + '/staff',
   dealerships: BACKEND_URL + '/dealerships',
   vehicles: BACKEND_URL + '/vehicles',
-  clients: BACKEND_URL + '/clients'
+  clients: BACKEND_URL + '/clients',
+  supplyLines: BACKEND_URL + '/supply-lines',
 }
