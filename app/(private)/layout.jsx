@@ -41,6 +41,7 @@ import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined'
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined'
 import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined'
 import Link from 'next/link'
+import Earth from '@/components/earth'
 
 const drawerWidth = 295
 
@@ -397,6 +398,8 @@ export default function MiniDrawer({ children }) {
         </List>
       </Drawer>
       <Box className="flex-grow">{children}</Box>
+
+      <Earth />
     </Box>
   )
 }
