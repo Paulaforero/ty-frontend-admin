@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { states } from '@/mock/cities'
 import { useSearchParams } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import { useRouter } from 'next/navigation'
@@ -21,6 +20,7 @@ export default function useCitiesEditionPage() {
     name: '',
     stateId: '',
   })
+  const [statesList, setStatesList] = useState([])
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -40,7 +40,7 @@ export default function useCitiesEditionPage() {
     {
       label: 'Estado:',
       type: 'select',
-      options: states.map(state => ({
+      options: statesList.map(state => ({
         label: state.name,
         value: state.id,
       })),
@@ -56,7 +56,6 @@ export default function useCitiesEditionPage() {
 
   const fetchCityData = useCallback(async () => {
     try {
-      setIsLoading(true)
       const response = await fetch(
         `${BACKEND_URLS.cities}/view?city-number=${cityNumber}&state-id=${stateId}`,
         {
@@ -74,14 +73,27 @@ export default function useCitiesEditionPage() {
         message: 'Error obteniendo los datos de la ciudad.',
         severity: 'error',
       })
-    } finally {
-      setIsLoading(false)
     }
   }, [notify, cityNumber, stateId])
 
-  useEffect(() => {
-    fetchCityData()
-  }, [fetchCityData])
+  const fetchStatesList = useCallback(async () => {
+    try {
+      const response = await fetch(`${BACKEND_URLS.states}`, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedStatesList = responseData.data
+
+      setStatesList(fetchedStatesList)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo la lista de estados.',
+        severity: 'error',
+      })
+    }
+  }, [notify])
 
   const editCity = async () => {
     try {
@@ -120,8 +132,13 @@ export default function useCitiesEditionPage() {
   }
 
   useEffect(() => {
-    fetchCityData()
-  }, [fetchCityData])
+    ;(async () => {
+      setIsLoading(true)
+      await fetchCityData()
+      await fetchStatesList()
+      setIsLoading(false)
+    })()
+  }, [fetchCityData, fetchStatesList])
 
-  return { inputs, formValues, handleChange, handleSubmit, isLoading, id }
+  return { inputs, formValues, handleChange, handleSubmit, isLoading, id, statesList }
 }

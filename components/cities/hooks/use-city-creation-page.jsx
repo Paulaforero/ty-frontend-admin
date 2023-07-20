@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { states } from '@/mock/cities'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
@@ -14,6 +13,26 @@ export default function useCityCreationPage() {
     name: '',
     stateId: '',
   })
+  const [statesList, setStatesList] = useState([])
+
+  const fetchStatesList = useCallback(async () => {
+    try {
+      const response = await fetch(`${BACKEND_URLS.states}`, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedStatesList = responseData.data
+
+      setStatesList(fetchedStatesList)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo la lista de estados.',
+        severity: 'error',
+      })
+    }
+  }, [notify])
 
   const createCity = async () => {
     try {
@@ -53,7 +72,7 @@ export default function useCityCreationPage() {
     {
       label: 'Estado:',
       type: 'select',
-      options: states.map(state => ({
+      options: statesList.map(state => ({
         label: state.name,
         value: state.id,
       })),
@@ -71,6 +90,12 @@ export default function useCityCreationPage() {
     e.preventDefault()
     createCity()
   }
+
+  useEffect(() => {
+    ;(async () => {
+      await fetchStatesList()
+    })()
+  }, [fetchStatesList])
 
   return {
     inputs,
