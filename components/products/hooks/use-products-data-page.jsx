@@ -51,7 +51,7 @@ export default function useProductsDataPage() {
   }) => {
     try {
       const response = await fetch(
-        `${BACKEND_URLS.poducts}?id=${id}`,
+        `${BACKEND_URLS.products}?id=${id}`,
         {
           method: 'DELETE',
           cache: 'no-store',

@@ -119,7 +119,7 @@ const menuItemsSecondary = [
     icon: <PlumbingOutlinedIcon />,
     route: '/product-applications',
   },
-  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route: '/charges' },
+  { name: 'Cargos', icon: <WorkOutlineOutlinedIcon />, route: '/roles' },
   { name: 'Ciudades', icon: <LocationCityOutlinedIcon />, route: '/cities' },
   { name: 'Estados', icon: <PublicOutlinedIcon />, route: '/states' },
 ]

@@ -32,7 +32,7 @@ export default function useRoleEditionPage() {
     {
         label: 'Descripción',
         type: 'text',
-        name: 'name',
+        name: 'description',
         required: true,
       },
     

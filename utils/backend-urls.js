@@ -12,4 +12,5 @@ export const BACKEND_URLS = {
   activities: BACKEND_URL + '/activities',
   products: BACKEND_URL + '/products',
   services: BACKEND_URL + '/services',
+  roles: BACKEND_URL + '/roles',
 }

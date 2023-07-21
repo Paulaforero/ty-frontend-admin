@@ -18,7 +18,7 @@ export default function Earth() {
   }, [isOn])
 
   return (
-    <motion.div className="fixed bottom-0 -right-10 w-full flex flex-row justify-end overflow-hidden">
+    <motion.div className="fixed bottom-0 -right-10 w-full flex flex-row justify-end overflow-hidden -z-10">
       <motion.div
         initial={{ y: 200, opacity: 0 }}
         animate={{ y: isOn ? 0 : 200, opacity: isOn ? 1 : 0 }}
@@ -26,7 +26,7 @@ export default function Earth() {
       >
         <Paper
           elevation={10}
-          className="w-full text-center bg-secondary px-2"
+          className="w-full text-center bg-secondary px-2 z-30"
           variant="elevation"
         >
           <Typography
@@ -38,7 +38,7 @@ export default function Earth() {
         </Paper>
       </motion.div>
 
-      <motion.div>
+      <motion.div className='z-30'>
         <EarthScene isOn={isOn} setIsOn={setIsOn} />
       </motion.div>
     </motion.div>

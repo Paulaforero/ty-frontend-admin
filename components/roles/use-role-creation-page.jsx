@@ -51,7 +51,7 @@ export default function useRoleCreationPage() {
     {
         label: 'Descripción',
         type: 'text',
-        name: 'name',
+        name: 'description',
         required: true,
       },
     

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
@@ -12,13 +12,14 @@ export default function useEmployeeCreationPage() {
   const [formValues, setFormValues] = useState({
     nationalId: '',
     fullName: '',
-    mainPhoneNo:'',
+    mainPhoneNo: '',
     secondaryPhoneNo: '',
-    email:'',
+    email: '',
     address: '',
     roleId: '',
     salary: '',
   })
+  const [roles, setRoles] = useState([])
 
   const createEmployee = async () => {
     try {
@@ -47,6 +48,25 @@ export default function useEmployeeCreationPage() {
     }
   }
 
+  const fetchRoles = useCallback(async () => {
+    try {
+      const response = await fetch(BACKEND_URLS.roles, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      const responseData = await response.json()
+      const fetchedRoles = responseData.data
+
+      setRoles(fetchedRoles)
+    } catch (error) {
+      notify({
+        message: 'Error obteniendo los cargos',
+        severity: 'error',
+      })
+    }
+  }, [notify])
+
   const inputs = [
     {
       label: 'Cedula',
@@ -55,34 +75,34 @@ export default function useEmployeeCreationPage() {
       required: true,
     },
     {
-        label: 'Nombre completo',
-        type: 'text',
-        name: 'fullName',
-        required: true,
+      label: 'Nombre completo',
+      type: 'text',
+      name: 'fullName',
+      required: true,
     },
     {
-        label: 'Teléfono principal',
-        type: 'text',
-        name: 'mainPhoneNo ',
-        required: true,
+      label: 'Teléfono principal',
+      type: 'text',
+      name: 'mainPhoneNo ',
+      required: true,
     },
     {
-        label: 'Teléfono secundario',
-        type: 'text',
-        name: 'secondaryPhoneNo',
-        required: true,
+      label: 'Teléfono secundario',
+      type: 'text',
+      name: 'secondaryPhoneNo',
+      required: true,
     },
     {
-        label: 'Email',
-        type: 'email',
-        name: 'email',
-        required: true,
+      label: 'Email',
+      type: 'email',
+      name: 'email',
+      required: true,
     },
     {
-        label: 'Dirección',
-        type: 'text',
-        name: 'address',
-        required: true,
+      label: 'Dirección',
+      type: 'text',
+      name: 'address',
+      required: true,
     },
     {
       label: 'Cargo',
@@ -95,12 +115,12 @@ export default function useEmployeeCreationPage() {
       required: true,
     },
     {
-        label: 'Salario',
-        type: 'number',
-        name: 'salary',
-        required: true,
-        adornment: '$',
-        min: 0,
+      label: 'Salario',
+      type: 'number',
+      name: 'salary',
+      required: true,
+      adornment: '$',
+      min: 0,
     },
   ]
 
@@ -121,6 +141,10 @@ export default function useEmployeeCreationPage() {
     createEmployee()
   }
 
+  useEffect(() => {
+    fetchRoles()
+  }, [fetchRoles])
+
   return {
     inputs,
     formValues,
@@ -128,4 +152,3 @@ export default function useEmployeeCreationPage() {
     handleSubmit,
   }
 }
-
