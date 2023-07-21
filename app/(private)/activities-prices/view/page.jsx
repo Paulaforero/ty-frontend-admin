@@ -2,7 +2,7 @@
 
 import DetailsPageView from '@/components/details-page-view'
 import { Typography } from '@mui/material'
-import useActivityPriceDetailsPage from '@/components/activities-prices/use-activity-price-details-page'
+import useActivityPriceDetailsPage from '@/components/activities-prices/hooks/use-activity-price-details-page'
 
 export default function ViewPage() {
   const {  rows, activityPriceData, handleDelete, isLoading, id } = useActivityPriceDetailsPage()

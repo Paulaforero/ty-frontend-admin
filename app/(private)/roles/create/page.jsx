@@ -1,7 +1,7 @@
 'use client'
 
 import CreationPageView from '@/components/creation-page-view'
-import useRoleCreationPage from '@/components/roles/use-role-creation-page'
+import useRoleCreationPage from '@/components/roles/hooks/use-role-creation-page'
 
 export default function CreatePage() {
   const { inputs, formValues, handleChange, handleSubmit } =

@@ -2,7 +2,7 @@
 
 import EditionPageView from '@/components/edition-page-view'
 import { Typography } from '@mui/material'
-import useRoleEditionPage from '@/components/roles/use-role-edition-page'
+import useRoleEditionPage from '@/components/roles/hooks/use-role-edition-page'
 export default function EditPage() {
   const { inputs, formValues, handleChange, handleSubmit, isLoading, id } = useRoleEditionPage()
 

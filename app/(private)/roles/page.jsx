@@ -1,7 +1,7 @@
 'use client'
 
 import DataPageView from '@/components/data-page-view'
-import useRolesDataPage from '@/components/roles/use-roles-data-page'
+import useRolesDataPage from '@/components/roles/hooks/use-roles-data-page'
 export default function RolesPage() {
   const { roles, columns, handleDelete } = useRolesDataPage()
 

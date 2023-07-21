@@ -2,7 +2,7 @@
 
 import DetailsPageView from '@/components/details-page-view'
 import { Typography } from '@mui/material'
-import useEmployeeDetailsPage from '@/components/staff/use-details-staff-page'
+import useEmployeeDetailsPage from '@/components/staff/hooks/use-details-staff-page'
 
 export default function ViewPage() {
   const {  rows, EmployeeData, handleDelete, isLoading, nationalId } = useEmployeeDetailsPage()

@@ -1,7 +1,7 @@
 'use client'
 
 import CreationPageView from '@/components/creation-page-view'
-import useDealershipCreationPage from '@/components/dealerships/use-dealership-creation-page'
+import useDealershipCreationPage from '@/components/dealerships/hooks/use-dealership-creation-page'
 
 export default function CreatePage() {
   const { inputs, formValues, handleChange, handleSubmit } =
