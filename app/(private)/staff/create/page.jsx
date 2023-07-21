@@ -1,11 +1,11 @@
 'use client'
 
 import CreationPageView from '@/components/creation-page-view'
-import useEmployeeCreationPage from '@/components/vehicle-models/hooks/use-vehicle-model-creation-page'
+import useEmployeeCreationPage from '@/components/staff/use-creation-staff-page'
 
 export default function CreatePage() {
   const { inputs, formValues, handleChange, handleSubmit } =
-  useEmployeeCreationPage()
+    useEmployeeCreationPage()
 
   return (
     <CreationPageView

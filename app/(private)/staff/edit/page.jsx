@@ -2,7 +2,7 @@
 
 import EditionPageView from '@/components/edition-page-view'
 import { Typography } from '@mui/material'
-import useEmployeeEditionPage from '@/components/vehicle-models/hooks/use-vehicle-model-edition-page'
+import useEmployeeEditionPage from '@/components/staff/use-edition-staff-page'
 
 export default function EditPage() {
   const { inputs, formValues, handleChange, handleSubmit, isLoading, nationalId } = useEmployeeEditionPage()

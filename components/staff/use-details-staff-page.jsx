@@ -16,9 +16,9 @@ export default function useEmployeeDetailsPage() {
   const [employeeData, setEmployeeData] = useState({
     nationalId: '',
     fullName: '',
-    mainPhoneNo:'',
+    mainPhoneNo: '',
     secondaryPhoneNo: '',
-    email:'',
+    email: '',
     address: '',
     roleId: '',
     salary: '',
@@ -30,59 +30,57 @@ export default function useEmployeeDetailsPage() {
     () => [
       {
         label: 'Nombre completo',
-        value: EmployeeData.fullName,
+        value: employeeData.fullName,
       },
       {
         label: 'Telefono principal',
-        value: EmployeeData.mainPhoneNo,
+        value: employeeData.mainPhoneNo,
       },
       {
         label: 'Telefono secundario',
-        value: EmployeeData.secondaryPhoneNo,
+        value: employeeData.secondaryPhoneNo,
       },
       {
         label: 'Email',
-        value: EmployeeData.email,
+        value: employeeData.email,
       },
       {
         label: 'Dirección',
-        value: EmployeeData.address,
+        value: employeeData.address,
       },
       {
         label: 'Cargo (ID',
-        value: EmployeeData.roleId,
+        value: employeeData.roleId,
       },
       {
         label: 'Salario',
-        value: EmployeeData.salary,
+        value: employeeData.salary,
       },
     ],
-    [EmployeeData]
+    [employeeData]
   )
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    editEmployee()
-  }
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${BACKEND_URLS.cities}?Employee-number=${EmployeeNumber}&state-id=${stateId}`, {
-        method: 'DELETE',
-        cache: 'no-store',
-      })
+      const response = await fetch(
+        `${BACKEND_URLS.staff}?nationalId=${nationalId}`,
+        {
+          method: 'DELETE',
+          cache: 'no-store',
+        }
+      )
 
       if (!response.ok) throw new Error()
 
       notify({
-        message: '¡La ciudad se ha eliminado exitósamente!',
+        message: '¡El empleado se ha eliminado exitósamente!',
         severity: 'success',
       })
 
       router.push('/cities')
     } catch (error) {
       notify({
-        message: 'Error al intentar eliminar la ciudad.',
+        message: 'Error al intentar eliminar al empleado.',
         severity: 'error',
       })
     }
@@ -92,7 +90,7 @@ export default function useEmployeeDetailsPage() {
     try {
       setIsLoading(true)
       const response = await fetch(
-        `${BACKEND_URLS.cities}/view?Employee-number=${EmployeeNumber}&state-id=${stateId}`,
+        `${BACKEND_URLS.staff}/view?nationalId=${nationalId}`,
         {
           method: 'GET',
           cache: 'no-store',
@@ -104,13 +102,13 @@ export default function useEmployeeDetailsPage() {
       setEmployeeData(fetchedEmployeeData)
     } catch (error) {
       notify({
-        message: 'Error obteniendo los datos de la ciudad.',
+        message: 'Error obteniendo los datos del empleado.',
         severity: 'error',
       })
     } finally {
       setIsLoading(false)
     }
-  }, [notify, EmployeeNumber, stateId])
+  }, [notify, nationalId])
 
   useEffect(() => {
     fetchEmployeeData()
@@ -118,10 +116,9 @@ export default function useEmployeeDetailsPage() {
 
   return {
     rows,
-    EmployeeData,
+    employeeData,
     handleDelete,
     isLoading,
-    name: EmployeeData.name,
-    EmployeeNumber: EmployeeData.EmployeeNumber,
+    id: nationalId,
   }
 }
