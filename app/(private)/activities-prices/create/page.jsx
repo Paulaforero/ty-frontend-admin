@@ -1,7 +1,7 @@
 'use client'
 
 import CreationPageView from '@/components/creation-page-view'
-import useActivityPriceCreationPage from '@/components/activities-prices/use-activity-creation-page'
+import useActivityPriceCreationPage from '@/components/activities-prices/hooks/use-activity-creation-page'
 
 export default function CreatePage() {
   const { inputs, formValues, handleChange, handleSubmit } =
