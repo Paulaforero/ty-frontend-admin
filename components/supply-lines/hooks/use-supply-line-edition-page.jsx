@@ -62,7 +62,7 @@ export default function useSupplyLineEditionPage() {
   const editSupplyLine = async () => {
     try {
       const response = await fetch(
-        `${BACKEND_URLS.supplyLines}/view?id=${id}`,
+        `${BACKEND_URLS.supplyLines}?id=${id}`,
         {
           method: 'PUT',
           headers: {

@@ -291,7 +291,7 @@ export default function MiniDrawer({ children }) {
           </ListItem>
           {menuItemsPrimary.map(item => (
             <ListItem
-              key={item.name}
+              key={item.route}
               disablePadding
               className="block"
               onClick={() => handleSelectItem(item)}
@@ -300,6 +300,7 @@ export default function MiniDrawer({ children }) {
                 href={item.route}
                 key={item.name}
                 className="no-underline text-current"
+                prefetch={false}
               >
                 <ListItemButtonStyled
                   selected={selectItem === item}
@@ -338,6 +339,7 @@ export default function MiniDrawer({ children }) {
             <>
               {item.name === 'Ciudades' ? (
                 <Divider
+                  key={item.name}
                   variant="middle"
                   textAlign="left"
                   className="text-secondary"
@@ -346,6 +348,7 @@ export default function MiniDrawer({ children }) {
                 </Divider>
               ) : item.name === 'Servicios' ? (
                 <Divider
+                  key={item.name}
                   variant="middle"
                   textAlign="left"
                   className="text-secondary"
@@ -356,7 +359,7 @@ export default function MiniDrawer({ children }) {
                 ''
               )}
               <ListItem
-                key={item.name}
+                key={item.route}
                 disablePadding
                 className="block"
                 onClick={() => handleSelectItem(item)}
@@ -365,6 +368,7 @@ export default function MiniDrawer({ children }) {
                   href={item.route}
                   key={item.name}
                   className="no-underline"
+                  prefetch={false}
                 >
                   <ListItemButtonStyled
                     selected={selectItem === item}
@@ -399,6 +403,7 @@ export default function MiniDrawer({ children }) {
       </Drawer>
       <Box className="flex-grow overflow-x-hidden">{children}</Box>
 
+      
       <Earth />
     </Box>
   )

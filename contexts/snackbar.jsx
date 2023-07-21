@@ -21,7 +21,7 @@ export function SnackbarProvider({ children }) {
   }
 
   const updateSnackbarParams = useCallback(newParams => {
-    setSnackbarParams((prevParams) => ({
+    setSnackbarParams(prevParams => ({
       message: newParams?.message || prevParams.message,
       severity: newParams?.severity || prevParams.severity,
       autoHideDuration:
@@ -35,6 +35,7 @@ export function SnackbarProvider({ children }) {
     >
       {children}
       <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isOpen}
         autoHideDuration={snackbarParams.autoHideDuration}
         onClose={handleClose}

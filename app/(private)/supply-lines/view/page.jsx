@@ -11,8 +11,9 @@ export default function ViewPage() {
     <>
       {!isLoading ? (
         <DetailsPageView
-          title={`Ciudad #${id}`}
-          toEditButtonLabel="Editar Ciudad"
+          title={'Línea de suministro'}
+          id={id}
+          toEditButtonLabel="Editar Línea de suministro"
           rows={rows}
           handleDelete={handleDelete}
         />
