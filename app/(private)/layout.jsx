@@ -67,7 +67,7 @@ const menuItemsSecondary = [
     icon: <DirectionsCarOutlinedIcon />,
     route: '/vehicles',
   },
-  { name: 'Modelos', icon: <MinorCrashOutlinedIcon />, route: '/models' },
+  { name: 'Modelos', icon: <MinorCrashOutlinedIcon />, route: '/vehicle-models' },
   { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon />, route: '/orders' },
   { name: 'Servicios', icon: <ConstructionOutlinedIcon />, route: '/services' },
   {
