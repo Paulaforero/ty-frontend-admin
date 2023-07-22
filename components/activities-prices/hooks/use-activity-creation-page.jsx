@@ -56,7 +56,7 @@ export default function useActivityPriceCreationPage() {
         severity: 'error',
       })
     }
-  }, [notify])
+  }, [notify, dealershipRif])
 
   const fetchActivities = useCallback(async () => {
     try {
@@ -149,7 +149,7 @@ export default function useActivityPriceCreationPage() {
 
   const handleChange = event => {
     const { name, value } = event.target
-    let parsedValue
+    let parsedValue = value
 
     if (name === 'pricePerHour') parsedValue = parseFloat(value)
 
