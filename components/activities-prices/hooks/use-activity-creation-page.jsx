@@ -56,7 +56,7 @@ export default function useActivityPriceCreationPage() {
         severity: 'error',
       })
     }
-  }, [notify, dealershipRif])
+  }, [notify])
 
   const fetchActivities = useCallback(async () => {
     try {
