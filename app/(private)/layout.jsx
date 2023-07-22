@@ -42,6 +42,7 @@ import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined'
 import MinorCrashOutlinedIcon from '@mui/icons-material/MinorCrashOutlined'
 import Link from 'next/link'
 import Earth from '@/components/earth'
+import Background from '@/components/background'
 
 const drawerWidth = 295
 
@@ -67,7 +68,11 @@ const menuItemsSecondary = [
     icon: <DirectionsCarOutlinedIcon />,
     route: '/vehicles',
   },
-  { name: 'Modelos', icon: <MinorCrashOutlinedIcon />, route: '/vehicle-models' },
+  {
+    name: 'Modelos',
+    icon: <MinorCrashOutlinedIcon />,
+    route: '/vehicle-models',
+  },
   { name: 'Órdenes', icon: <ShoppingCartOutlinedIcon />, route: '/orders' },
   { name: 'Servicios', icon: <ConstructionOutlinedIcon />, route: '/services' },
   {
@@ -403,7 +408,7 @@ export default function MiniDrawer({ children }) {
       </Drawer>
       <Box className="flex-grow overflow-x-hidden">{children}</Box>
 
-      
+      <Background />
       <Earth />
     </Box>
   )
