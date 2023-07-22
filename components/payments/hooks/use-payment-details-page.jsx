@@ -101,7 +101,7 @@ export default function usePaymentDetailsPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [notify, paymentNumber, stateId])
+  }, [notify, paymentNumber])
 
   useEffect(() => {
     fetchPaymentData()
