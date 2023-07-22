@@ -54,10 +54,7 @@ export default function DataPageView({
   }
 
   return (
-    <Box component="main" className="w-full h-full pt-9" style={{
-      backgroundImage: 'url(/images/background.png)',
-      backgroundSize: 'cover',
-    }}>
+    <Box component="main" className="w-full h-full pt-9">
       <Container
         className="flex flex-col justify-center items-center w-full mb-5"
       >

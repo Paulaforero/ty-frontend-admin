@@ -20,13 +20,11 @@ export default function useDealershipEditionPage() {
     name: '',
     cityNumber: '',
     stateId: '',
-    managerNationalId: '',
   })
 
   const [isLoading, setIsLoading] = useState(false)
 
   const [citiesList, setCitiesList] = useState([])
-  const [staffList, setStaffList] = useState([])
 
   const inputs = [
     {
@@ -53,17 +51,6 @@ export default function useDealershipEditionPage() {
         }
       }),
     },
-    {
-      label: 'Cédula del encargado',
-      name: 'managerNationalId',
-      type: 'select',
-      options: staffList.map(employee => {
-        return {
-          label: employee.nationalId,
-          value: employee.nationalId,
-        }
-      }),
-    },
   ]
 
   const handleChange = event => {
@@ -86,33 +73,10 @@ export default function useDealershipEditionPage() {
       const responseData = await response.json()
       const fetchedCitiesList = responseData.data
 
-      console.log(fetchedCitiesList)
-
       setCitiesList(fetchedCitiesList)
     } catch (error) {
       notify({
         message: 'Error obteniendo la lista de ciudades.',
-        severity: 'error',
-      })
-    }
-  }, [notify])
-
-  const fetchStaffList = useCallback(async () => {
-    try {
-      const response = await fetch(BACKEND_URLS.staff, {
-        method: 'GET',
-        cache: 'no-store',
-      })
-
-      const responseData = await response.json()
-      const fetchedStaffList = responseData.data
-
-      console.log(fetchedStaffList)
-
-      setStaffList(fetchedStaffList)
-    } catch (error) {
-      notify({
-        message: 'Error obteniendo la lista de empleados.',
         severity: 'error',
       })
     }
@@ -143,7 +107,7 @@ export default function useDealershipEditionPage() {
   const editDealership = async () => {
     try {
       const { rif, ...toEditValues } = formValues
-      const response = await fetch(`${BACKEND_URLS.clients}?=${nationalId}`, {
+      const response = await fetch(`${BACKEND_URLS.dealerships}?rif=${rif}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -178,10 +142,9 @@ export default function useDealershipEditionPage() {
       setIsLoading(true)
       await fetchDealershipData()
       await fetchCitiesList()
-      await fetchStaffList()
       setIsLoading(false)
     })()
-  }, [fetchDealershipData, fetchCitiesList, fetchStaffList])
+  }, [fetchDealershipData, fetchCitiesList])
 
   return {
     inputs,

@@ -1,38 +1,10 @@
 'use client'
 
 import DataPageView from '@/components/data-page-view'
-import { dealerships } from '@/mock/dealerships'
+import useDealershipsDataPage from '@/components/dealerships/hooks/use-dealerships-data-page'
 
 export default function DealershipsPage() {
-  const columns = {
-    rif: 'Rif',
-    name: 'Nombre',
-    city_id: 'Ciudad (ID)',
-    manager_id: 'Manager (ID)',
-  }
-
-  const filters = [
-    {
-      label: 'Filtar por ciudad',
-      options: [
-        { label: 'uno', value: 1 },
-        { label: 'dos', value: 2 },
-        { label: 'tres', value: 3 },
-        { label: 'cuatro', value: 4 },
-        { label: 'cinco', value: 5 },
-      ],
-    },
-    {
-      label: 'Filtrar por manager',
-      options: [
-        { label: 'uno', value: 1 },
-        { label: 'dos', value: 2 },
-        { label: 'tres', value: 3 },
-        { label: 'cuatro', value: 4 },
-        { label: 'cinco', value: 5 },
-      ],
-    },
-  ]
+  const { dealerships, columns, handleDelete } = useDealershipsDataPage()
 
   return (
     <DataPageView
@@ -40,7 +12,7 @@ export default function DealershipsPage() {
       createButtonLabel="Agregar concesionario"
       columns={columns}
       rows={dealerships}
-      filters={filters}
+      handleDelete={handleDelete}
     />
   )
 }

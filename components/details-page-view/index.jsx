@@ -51,10 +51,7 @@ export default function DetailsPage({
   return (
     <Box component="main"
     className="w-full h-full pt-9"
-    style={{
-      backgroundImage: 'url(/images/background.png)',
-      backgroundSize: 'cover',
-    }}>
+    >
       <Container
         className="flex flex-col justify-center items-center h-full w-full mb-5"
       >

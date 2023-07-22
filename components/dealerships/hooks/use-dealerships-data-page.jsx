@@ -12,14 +12,13 @@ export default function useDealershipsDataPage() {
     name: 'Nombre',
     cityNumber: 'Ciudad',
     stateId: 'Estado',
-    managerNationalId: 'Encargado',
   }
 
   const addIdAttrsObjectToEachRow = rows =>
     rows.map(row => {
       return {
         ...row,
-        idAttrs: { 'national-id': row.nationalId },
+        idAttrs: { 'rif': row.rif },
       }
     })
 
@@ -46,7 +45,7 @@ export default function useDealershipsDataPage() {
   const handleDelete = async ({ 'rif': rif }) => {
     try {
       const response = await fetch(
-        `${BACKEND_URLS.clients}?rif=${rif}`,
+        `${BACKEND_URLS.dealerships}?rif=${rif}`,
         {
           method: 'DELETE',
           cache: 'no-store',

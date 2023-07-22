@@ -20,7 +20,6 @@ export default function useDealershipDetailsPage() {
     name: '',
     cityNumber: '',
     stateId: '',
-    managerNationalId: ''
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -42,10 +41,6 @@ export default function useDealershipDetailsPage() {
       {
         label: 'State:',
         value: dealershipData.stateId,
-      },
-      {
-        label: 'Manager:',
-        value: dealershipData.managerNationalId,
       },
     ],
     [dealershipData]

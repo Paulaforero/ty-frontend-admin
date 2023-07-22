@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
+import { states } from '@/mock/cities'
 
 export default function useDealershipCreationPage() {
   const router = useRouter()
@@ -14,11 +15,10 @@ export default function useDealershipCreationPage() {
     name: '',
     cityNumber: '',
     stateId: '',
-    managerNationalId: '',
   })
 
   const [citiesList, setCitiesList] = useState([])
-  const [staffList, setStaffList] = useState([])
+  const [statesList, setStatesList] = useState([])
 
   const fetchCitiesList = useCallback(async () => {
     try {
@@ -39,28 +39,28 @@ export default function useDealershipCreationPage() {
     }
   }, [notify])
 
-  const fetchStaffList = useCallback(async () => {
+  const fetchStatesList = useCallback(async () => {
     try {
-      const response = await fetch(BACKEND_URLS.staff, {
+      const response = await fetch(BACKEND_URLS.states, {
         method: 'GET',
         cache: 'no-store',
       })
 
       const responseData = await response.json()
-      const fetchedStaffList = responseData.data
+      const fetchedStatesList = responseData.data
 
-      setStaffList(fetchedStaffList)
+      setStatesList(fetchedStatesList)
     } catch (error) {
       notify({
-        message: 'Error obteniendo la lista de empleados.',
+        message: 'Error obteniendo la lista de estados.',
         severity: 'error',
       })
     }
   }, [notify])
 
-  const createVehicle = async () => {
+  const createDealership = async () => {
     try {
-      const response = await fetch(BACKEND_URLS.clients, {
+      const response = await fetch(BACKEND_URLS.dealerships, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,15 +71,15 @@ export default function useDealershipCreationPage() {
 
       if (!response.ok) throw new Error()
 
-      router.push('/clients')
+      router.push('/dealerships')
 
       notify({
-        message: '¡Cliente creado con éxito!',
+        message: '¡Concesionario creado con éxito!',
         severity: 'success',
       })
     } catch (error) {
       notify({
-        message: 'Error al crear el cliente...',
+        message: 'Error al crear el concesionario...',
         severity: 'error',
       })
     }
@@ -99,56 +99,51 @@ export default function useDealershipCreationPage() {
       required: true,
     },
     {
-      label: 'Ciudad',
-      name: 'cityNumber',
+      label: 'Estado',
+      name: 'stateId',
       type: 'select',
       required: true,
-      options: citiesList.map(city => {
+      options: statesList.map(state => {
         return {
-          label: city.name,
-          value: JSON.stringify({ cityNumber: city.cityNumber, stateId: city.stateId }),
+          label: state.name,
+          value: state.id,
         }
       }),
     },
     {
-      label: 'Cédula del encargado',
-      name: 'managerNationalId',
+      label: 'Ciudad',
+      name: 'cityNumber',
       type: 'select',
-      options: staffList.map(employee => {
-        return {
-          label: employee.nationalId,
-          value: employee.nationalId,
-        }
-      }),
+      required: true,
+      options: citiesList
+        .filter(city => city.stateId === formValues.stateId)
+        .map(city => {
+          return {
+            label: city.name,
+            value: city.cityNumber,
+          }
+        }),
     },
   ]
 
   const handleChange = event => {
-    if (event.target.name === 'cityNumber') {
-      const parsedValues = JSON.parse(event.target.value)
-      setFormValues({
-        ...formValues,
-        ['cityNumber']: parsedValues.cityNumber,
-        ['stateId']: parsedValues.stateId,
-      })
-      console.log(formValues)
-    } else {
-      setFormValues({
-        ...formValues,
-        [event.target.name]: event.target.value,
-      })
-    }
+    console.log(event.target.name, event.target.value)
+
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    })
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    createVehicle()
+    createDealership()
   }
 
   useEffect(() => {
+    fetchStatesList()
     fetchCitiesList()
-    fetchStaffList()
-  }, [fetchCitiesList, fetchStaffList])
+  }, [fetchCitiesList, fetchStatesList])
 
   return {
     inputs,
