@@ -81,7 +81,7 @@ export default function useInvoicesEditionPage() {
 
   const handleChange = event => {
     const { name, value } = event.target
-    let parsedValue
+    let parsedValue = value
 
     if (name === 'amountDue' || name === 'discount') parsedValue = parseFloat(value)
     
