@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { BACKEND_URLS } from '@/utils/backend-urls'
 import useSnackbar from '@/hooks/use-snackbar'
@@ -34,7 +34,7 @@ export default function useDiscountCreationPage() {
         severity: 'error',
       })
     }
-  }, [notify, dealershipRif])
+  }, [notify])
 
   const createDiscount = async () => {
     try {
@@ -78,7 +78,7 @@ export default function useDiscountCreationPage() {
       type: 'select',
       options: dealerships.map(dealership => ({
         label: dealership.name,
-        value: dealership.id,
+        value: dealership.rif,
       })),
       name: 'dealershipRif',
       required: true,
@@ -94,7 +94,7 @@ export default function useDiscountCreationPage() {
 
   const handleChange = event => {
     const { name, value } = event.target
-    let parsedValue
+    let parsedValue = value
 
     if (name === 'requiredAnnualServiceUsageCount') parsedValue = parseInt(value)
     if (name === 'discountPercentage') parsedValue = parseFloat(value)

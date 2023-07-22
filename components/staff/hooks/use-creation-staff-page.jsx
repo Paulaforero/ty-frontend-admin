@@ -83,7 +83,7 @@ export default function useEmployeeCreationPage() {
     {
       label: 'Teléfono principal',
       type: 'text',
-      name: 'mainPhoneNo ',
+      name: 'mainPhoneNo',
       required: true,
     },
     {
@@ -126,7 +126,7 @@ export default function useEmployeeCreationPage() {
 
   const handleChange = event => {
     const { name, value } = event.target
-    let parsedValue
+    let parsedValue = value
 
     if (name === 'salary') parsedValue = parseFloat(value)
 

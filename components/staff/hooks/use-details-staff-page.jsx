@@ -49,7 +49,7 @@ export default function useEmployeeDetailsPage() {
         value: employeeData.address,
       },
       {
-        label: 'Cargo (ID',
+        label: 'Cargo (ID)',
         value: employeeData.roleId,
       },
       {
@@ -63,7 +63,7 @@ export default function useEmployeeDetailsPage() {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `${BACKEND_URLS.staff}?nationalId=${nationalId}`,
+        `${BACKEND_URLS.staff}?national-id=${nationalId}`,
         {
           method: 'DELETE',
           cache: 'no-store',
@@ -77,7 +77,7 @@ export default function useEmployeeDetailsPage() {
         severity: 'success',
       })
 
-      router.push('/cities')
+      router.push('/staff')
     } catch (error) {
       notify({
         message: 'Error al intentar eliminar al empleado.',
@@ -90,7 +90,7 @@ export default function useEmployeeDetailsPage() {
     try {
       setIsLoading(true)
       const response = await fetch(
-        `${BACKEND_URLS.staff}/view?nationalId=${nationalId}`,
+        `${BACKEND_URLS.staff}/view?national-id=${nationalId}`,
         {
           method: 'GET',
           cache: 'no-store',

@@ -16,9 +16,9 @@ export default function useEmployeeEditionPage() {
 
   const [formValues, setFormValues] = useState({
     fullName: '',
-    mainPhoneNo:'',
+    mainPhoneNo: '',
     secondaryPhoneNo: '',
-    email:'',
+    email: '',
     address: '',
     roleId: '',
     salary: '',
@@ -29,41 +29,34 @@ export default function useEmployeeEditionPage() {
 
   const inputs = [
     {
-      label: 'Nombre:',
+      label: 'Nombre completo',
       type: 'text',
-      name: 'name',
-      placeholder: 'Ingrese el nombre',
+      name: 'fullName',
       required: true,
     },
     {
-        label: 'Nombre completo',
-        type: 'text',
-        name: 'fullName',
-        required: true,
+      label: 'Teléfono principal',
+      type: 'text',
+      name: 'mainPhoneNo',
+      required: true,
     },
     {
-        label: 'Teléfono principal',
-        type: 'text',
-        name: 'mainPhoneNo ',
-        required: true,
+      label: 'Teléfono secundario',
+      type: 'text',
+      name: 'secondaryPhoneNo',
+      required: true,
     },
     {
-        label: 'Teléfono secundario',
-        type: 'text',
-        name: 'secondaryPhoneNo',
-        required: true,
+      label: 'Email',
+      type: 'email',
+      name: 'email',
+      required: true,
     },
     {
-        label: 'Email',
-        type: 'email',
-        name: 'email',
-        required: true,
-    },
-    {
-        label: 'Dirección',
-        type: 'text',
-        name: 'address',
-        required: true,
+      label: 'Dirección',
+      type: 'text',
+      name: 'address',
+      required: true,
     },
     {
       label: 'Cargo',
@@ -76,15 +69,14 @@ export default function useEmployeeEditionPage() {
       required: true,
     },
     {
-        label: 'Salario',
-        type: 'number',
-        name: 'salary',
-        required: true,
-        adornment: '$',
-        min: 0,
+      label: 'Salario',
+      type: 'number',
+      name: 'salary',
+      required: true,
+      adornment: '$',
+      min: 0,
     },
   ]
-
 
   const handleChange = event => {
     const { name, value } = event.target
@@ -185,9 +177,14 @@ export default function useEmployeeEditionPage() {
   useEffect(() => {
     fetchEmployeeData()
     fetchRoles()
+  }, [fetchEmployeeData, fetchRoles])
 
-  }, [fetchEmployeeData, fetchRoles ])
-
-  return { inputs, formValues, handleChange, handleSubmit, isLoading, nationalId,
+  return {
+    inputs,
+    formValues,
+    handleChange,
+    handleSubmit,
+    isLoading,
+    nationalId,
   }
 }

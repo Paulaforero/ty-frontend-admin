@@ -2,10 +2,10 @@
 
 import EditionPageView from '@/components/edition-page-view'
 import { Typography } from '@mui/material'
-import useEmployeeEditionPage from '@/components/staff/hooks/use-edition-staff-page'
+import useEditionStaffPage from '@/components/staff/hooks/use-edition-staff-page'
 
 export default function EditPage() {
-  const { inputs, formValues, handleChange, handleSubmit, isLoading, nationalId } = useEmployeeEditionPage()
+  const { inputs, formValues, handleChange, handleSubmit, isLoading, nationalId } = useEditionStaffPage()
 
   return (
     <>

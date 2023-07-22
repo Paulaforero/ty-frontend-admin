@@ -30,8 +30,8 @@ export default function useDiscountEditionPage() {
         name: 'discountPercentage',
         adornment: '%',
         required: true,
-        min: 0,
-        max: 1,
+        min: 1,
+        max: 100,
       },
       {
         label: 'Cantidad de servicios requeridos',
@@ -44,7 +44,7 @@ export default function useDiscountEditionPage() {
 
   const handleChange = event => {
     const { name, value } = event.target
-    let parsedValue
+    let parsedValue = value
 
     if (name === 'requiredAnnualServiceUsageCount') parsedValue = parseInt(value)
     if (name === 'discountPercentage') parsedValue = parseFloat(value)
